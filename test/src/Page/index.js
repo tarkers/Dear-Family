@@ -1,0 +1,12 @@
+// import Receive from "./Letter/Receive";
+// import Letter from "./Letter/Letter";
+// import RecieveLetter from "./Letter/RecieveLetter";
+// import Gender from "./Story/Gender";
+// import Main from "./Loading/Main";
+// import Kind from "./Story/Kind";
+// import Another from "./Story/Another";
+import { default  as Story } from "./Story/Main";
+import { default  as Letter } from "./Letter/Main";
+import { default  as Loading } from "./Loading/Main";
+import { default  as Download } from "./Download/Main";
+export { Letter,Story,Loading ,Download};
