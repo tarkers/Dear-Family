@@ -1,0 +1,18 @@
+@import "../style.module.scss";
+
+.maxHeight {
+    height: 100vh;
+}
+
+.letterImg{
+    max-width: inherit;
+    padding: 10px 0px;
+}
+
+.letterDiv{
+    // position: absolute;
+    margin-left: 1em;
+    margin-right: 1em;
+    min-height:600px;
+    background-color: rgba(223, 223, 223, 0.746);
+}
