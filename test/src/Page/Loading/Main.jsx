@@ -13,8 +13,8 @@ const Main = () => {
   return (
     <Container fluid >
       <div className={styles.maxHeight}>
-        <img className={styles.leftimg} src={"/images/Main/load.png"} alt="loadPic" />
-        <img className={styles.rightimg} src={"/images/Main/load.png"} alt="loadPic" />
+        <img className={styles.leftimg} src={process.env.PUBLIC_URL+"/images/Main/load.png"} alt="loadPic" />
+        <img className={styles.rightimg} src={process.env.PUBLIC_URL+"/images/Main/load.png"} alt="loadPic" />
         <Button variant="contained" color="primary" onClick={()=>ToStory()}>Next</Button>
       </div>
     

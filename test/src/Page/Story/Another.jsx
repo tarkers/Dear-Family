@@ -12,14 +12,14 @@ const Another = ({ShowNext,display="block"}) => {
       <Col className="justify-content-center m-2" >
         <img
           style={{ width: "100%" }}
-          src={"/images/Story/other.png"}
+          src={process.env.PUBLIC_URL+"/images/Story/other.png"}
           alt="select"
         />
       </Col>
       <Col className="justify-content-center m-2">
         <img
           style={{ width: "100%" }}
-          src={"/images/Story/other.png"}
+          src={process.env.PUBLIC_URL+"/images/Story/other.png"}
           alt="select"
         />
       </Col>
@@ -28,7 +28,7 @@ const Another = ({ShowNext,display="block"}) => {
       <Col className="justify-content-center m-2">
         <img
           style={{ width: "45%" }}
-          src={"/images/Story/send.png"}
+          src={process.env.PUBLIC_URL+"/images/Story/send.png"}
           alt="select"
           onClick={()=>ToSend()}
         />

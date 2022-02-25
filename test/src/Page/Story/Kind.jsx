@@ -12,7 +12,7 @@ const Kind = ({ShowNext,person,display="block"}) => {
         <Col className="justify-content-center m-2" >
           <img
             style={{ width: "60%" }}
-            src={"/images/Story/born.png"}
+            src={process.env.PUBLIC_URL+"/images/Story/born.png"}
             alt="select"
           />
         </Col>
@@ -21,7 +21,7 @@ const Kind = ({ShowNext,person,display="block"}) => {
         <Col className="justify-content-center m-2">
           <img
             style={{ width: "60%" }}
-            src={"/images/Story/born.png"}
+            src={process.env.PUBLIC_URL+"/images/Story/born.png"}
             alt="select"
           />
         </Col>
@@ -30,7 +30,7 @@ const Kind = ({ShowNext,person,display="block"}) => {
         <Col className="justify-content-center m-2">
           <img
             style={{ width: "60%" }}
-            src={"/images/Story/born.png"}
+            src={process.env.PUBLIC_URL+"/images/Story/born.png"}
             alt="select"
           />
         </Col>
@@ -39,7 +39,7 @@ const Kind = ({ShowNext,person,display="block"}) => {
         <Col className="justify-content-center m-2"  onClick={()=>ShowNext(2)}>
           <img
             style={{ width: "60%",margin:"10em 0px" }}
-            src={"/images/Story/introduction.png"}
+            src={process.env.PUBLIC_URL+"/images/Story/introduction.png"}
             alt="select"
            
           />

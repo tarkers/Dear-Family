@@ -21,7 +21,7 @@ const Main = () => {
     const id = params.id;
     console.log(id);
     axios
-      .get(`http://localhost:3004/letters/${id}`)
+      .get(`https://dear-family-server.herokuapp.com/letters/${id}`)
       .then((resp) => {
         let data = "";
         data = resp.data;

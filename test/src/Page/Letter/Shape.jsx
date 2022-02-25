@@ -42,7 +42,7 @@ const Shape = ({ShowNext,display="block"}) => {
             scaleOnDrag={true}
           >
             {images.map(({ url, title }, i) => (
-              <img src={url} key={i} alt={title}  onClick={(e)=>{ShowNext(title)}} />
+              <img src={process.env.PUBLIC_URL+url} key={i} alt={title}  onClick={(e)=>{ShowNext(title)}} />
             ))}
           </Slider>
         </Col>

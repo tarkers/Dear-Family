@@ -31,7 +31,7 @@ const Letter = ({ ShowNext, display = "block" }) => {
   ]);
   const SaveData = (image, { name = "img", extension = "jpg" } = {}) => {
     axios
-      .post("http://localhost:3004/letters", {
+      .post("https://dear-family-server.herokuapp.com/letters", {
         image: image,
         name: name,
       })
@@ -39,40 +39,14 @@ const Letter = ({ ShowNext, display = "block" }) => {
         console.log(resp.data.id,name);
         const a = document.createElement("a");
         a.href =image;
-        a.tag=`http://localhost:3000/letter/${resp.data.id}`;
+        a.tag=`https://tarkers.github.io/Dear-Family/letter/${resp.data.id}`;
         a.download = createFileName("jpg", name);
         ShowNext(a);
       })
       .catch((error) => {
         console.log(error);
       });
-    // axios
-    //   .get("http://localhost:3004/letters")
-    //   .then((resp) => {
-    //     let data = "";
-    //     data = resp.data;
-    //     data.forEach((e) => {
-    //       console.log(`${e.id},${e.image}, ${e.name}, ${e.word}`);
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
   };
-  // const testClick = () => {
-  //   axios
-  //     .get("http://localhost:3004/letters")
-  //     .then((resp) => {
-  //       let data = "";
-  //       data = resp.data;
-  //       data.forEach((e) => {
-  //         console.log(`${e.id},${e.image}, ${e.name}, ${e.word}`);
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // };
   const setLineArray = () => {
     var tmp = [];
     for (let i = 0; i < 6; ++i) {
@@ -119,7 +93,7 @@ const Letter = ({ ShowNext, display = "block" }) => {
             <Col className="justify-content-center">
               <img
                 style={{ width: "50%" }}
-                src={"/images/Letter/select.png"}
+                src={process.env.PUBLIC_URL+"/images/Letter/select.png"}
                 alt="select"
               />
             </Col>

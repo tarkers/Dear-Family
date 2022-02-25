@@ -5,19 +5,13 @@ import DownloadForOfflineIcon from "@mui/icons-material/DownloadForOffline";
 import QRCode from "qrcode.react";
 import {  createFileName } from "use-react-screenshot";
 const QRcode = ({imageLink=null,display="block"}) => {
-  // const Download = ({ name = "img", extension = "png" } = {}) => {
-  //   const a = document.createElement("a");
-  //   a.href = imageLink;
-  //   a.download = createFileName(extension, Date().toLocaleString());
-  //   a.click();
-  // };
   
   return (
     <Container  style={{display:`${display}`}}>
       <Row>
         <Col className="justify-content-center mb-2 mt-5">
           <img
-            src={"/images/Story/back.png"}
+            src={process.env.PUBLIC_URL+"/images/Story/back.png"}
             alt={"title"}
             style={{ width: "50%" }}
             onClick={() => console.log("click")}
