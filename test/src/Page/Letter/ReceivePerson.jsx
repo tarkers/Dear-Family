@@ -63,7 +63,7 @@ const ReceivePerson = ({ShowNext,display="block"}) => {
             <Col key={index} className="col-6">
               <img
                 className={styles.letterImg}
-                src={person.click ? person.hoverImg : person.img}
+                src={person.click ? process.env.PUBLIC_URL+person.hoverImg : process.env.PUBLIC_URL+person.img}
                 alt="choose"
                 // onTouchStart={() => SetClick(person.name)}
                 // onTouchEnd={() => SetClick(person.name, true)}
