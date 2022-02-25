@@ -6,7 +6,7 @@ import {  useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 const Main = () => {
   const navigate = useNavigate();
-  const [load, isLoading] = useState(true);
+  // const [load, isLoading] = useState(true);
   const ToStory=()=>{
     navigate(`/story`);
   }

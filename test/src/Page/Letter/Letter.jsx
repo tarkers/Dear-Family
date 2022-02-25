@@ -10,25 +10,25 @@ const axios = require("axios");
 const Letter = ({ ShowNext, display = "block" }) => {
   const [backline, setBackLine] = useState(false);
   const ref = createRef(null);
-  const [eimage, takeScreenShot] = useScreenshot({
+  const [_, takeScreenShot] = useScreenshot({
     type: "image/jpeg",
     quality: 1.0,
   });
-  const Download = (image, { name = "img", extension = "jpg" } = {}) => {
-    SaveData(image, "123");
-  };
+  // const Download = (image, { name = "img", extension = "jpg" } = {}) => {
+  //   SaveData(image, "123");
+  // };
   const downloadScreenshot = () => takeScreenShot(ref.current).then(SaveData);
-  const [inputLines, setInputLines] = useState([
-    <TextField
-      id="standard-basic"
-      variant="standard"
-      onKeyDown={(e) => {
-        if (e.key === "Enter") {
-          //   typeWord();
-        }
-      }}
-    />,
-  ]);
+  // const [inputLines, setInputLines] = useState([
+  //   <TextField
+  //     id="standard-basic"
+  //     variant="standard"
+  //     onKeyDown={(e) => {
+  //       if (e.key === "Enter") {
+  //         //   typeWord();
+  //       }
+  //     }}
+  //   />,
+  // ]);
   const SaveData = (image, { name = "img", extension = "jpg" } = {}) => {
     axios
       .post("https://dear-family-server.herokuapp.com/letters", {
