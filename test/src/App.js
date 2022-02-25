@@ -8,7 +8,7 @@ import * as t from "./Page";
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <Routes>
           <Route path="/" element={<t.Loading />} />
           <Route path="*" element={<t.Loading />} />

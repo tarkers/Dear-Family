@@ -9,7 +9,7 @@ const StoryPic = ({ShowNext,kind,display="block"}) => {
       <Row>
         <img
           style={{ width: "100%", padding: "0" }}
-          src={"/images/Story/text.png"}
+          src={process.env.PUBLIC_URL+"/images/Story/text.png"}
           alt="select"
         />
         <Row className="p-0 m-0">
