@@ -8,19 +8,19 @@ const Gender = ({ ShowNext, display = "block" }) => {
     navigate(`/story/${sname}`);
   };
   const [sname, setName] = useState("");
-  
+
   const [personList, setPersonList] = useState([
     {
       name: "girl",
       hover: false,
       img: "/images/Story/P4-3.png",
-      hoverImg: "/images/Story/p4-5.png",
+      hoverImg: "/images/Story/P4-5.png",
     },
     {
       name: "boy",
       hover: false,
-      img: "/images/Story/p4-4.png",
-      hoverImg: "/images/Story/p4-6.png",
+      img: "/images/Story/P4-4.png",
+      hoverImg: "/images/Story/P4-6.png",
     },
   ]);
   const SetClick = (name, reset = false) => {
@@ -53,22 +53,22 @@ const Gender = ({ ShowNext, display = "block" }) => {
       <Row style={{ height: "30%" }}>
         <label>選擇角色</label>
       </Row>
-      <Row className={styles.alignCenter} style={{ marginTop: "1em"}}>
+      <Row className={styles.alignCenter} style={{ marginTop: "1em" }}>
         {personList.map((person, index) => {
           return (
             // <Col key={index} className="col-6">
-              <img
+            <img
               key={index}
-              style={{width:"40%" ,padding:"0 20px"}}
-                className={styles.letterImg}
-                src={
-                  person.hover
-                    ? process.env.PUBLIC_URL + person.hoverImg
-                    : process.env.PUBLIC_URL + person.img
-                }
-                alt="choose"
-                onClick={() => SetClick(person.name)}
-              />
+              style={{ width: "40%", padding: "0 20px" }}
+              className={styles.letterImg}
+              src={
+                person.hover
+                  ? process.env.PUBLIC_URL + person.hoverImg
+                  : process.env.PUBLIC_URL + person.img
+              }
+              alt="choose"
+              onClick={() => SetClick(person.name)}
+            />
             // </Col>
           );
         })}
@@ -86,7 +86,7 @@ const Gender = ({ ShowNext, display = "block" }) => {
           </Button> */}
           <img
             className={styles.P4NextPic}
-            src={process.env.PUBLIC_URL+"/images/Story/p4-7.png"}
+            src={process.env.PUBLIC_URL + "/images/Story/P4-7.png"}
             alt="next"
             onClick={() => ToStory()}
           />

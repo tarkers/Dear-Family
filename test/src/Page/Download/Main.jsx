@@ -16,7 +16,7 @@ const Main = () => {
     console.log(a);
     // a.target = "_blank";
     a.click();
-    navigate(`/`);
+    // navigate(`/`);
   };
   const SetLink = () => {
     axios
@@ -35,7 +35,7 @@ const Main = () => {
 
   return (
     <div>
-      {console.log(params)}
+    <button onClick={()=>navigate(`/`)}>back to main</button>
       <IconButton
         color="primary"
         aria-label="doenload picture"

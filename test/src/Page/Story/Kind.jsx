@@ -44,9 +44,9 @@ const Kind = ({ ShowNext, person, display = "block" }) => {
             src={process.env.PUBLIC_URL + "/images/Story/P5-3.png"}
             alt="select"
           />
-           <div className={styles.p5BornDiv}></div>
-           <div className={styles.p5GrowDiv}></div>
-           <div className={styles.p5StrongDiv}></div>
+           <div className={styles.p5BornDiv} onClick={()=>ShowNext()}></div>
+           <div className={styles.p5GrowDiv} onClick={()=>ShowNext()}></div>
+           <div className={styles.p5StrongDiv} onClick={()=>ShowNext()}></div>
         </Col>
        
       </Row>

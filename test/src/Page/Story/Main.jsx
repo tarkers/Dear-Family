@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Gender from './Gender'
 import Another from './Another'
 import Kind from './Kind'
 import { useParams, useNavigate } from "react-router-dom";
@@ -31,8 +30,8 @@ const Main = () => {
     <>
       {/* <Gender display={page.Gender.show} ShowNext={ToKind} /> */}
       <Kind display={page.Kind.show} ShowNext={ToStoryPic} person={params??"girl"}/>
-      {/* <StoryPic  display={page.StoryPic.show}  ShowNext={ToAnother} kind={page.Kind.kind}/>
-      <Another display={page.Another.show} ShowNext={ToStoryPic} /> */}
+      <StoryPic  display={page.StoryPic.show}  ShowNext={ToAnother} kind={page.Kind.kind}/>
+      <Another display={page.Another.show} ShowNext={ToStoryPic} />
     </>
   )
 }
