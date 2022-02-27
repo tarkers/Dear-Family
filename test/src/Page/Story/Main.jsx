@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import Gender from './Gender'
 import Another from './Another'
 import Kind from './Kind'
+import { useParams, useNavigate } from "react-router-dom";
 import StoryPic from './StoryPic'
 const Main = () => {
+  const params = useParams().name;
+  const navigate =useNavigate();
   const [page, SetPage] = useState({
-    Gender: { show: "block", person: "" },
-    Kind: { show: "none", kind:"" },
+    // Gender: { show: "block", person: "" },
+    Kind: { show: "block", kind:"" },
     StoryPic: { show: "none" },
     Another: { show: "none" },
   });
@@ -15,13 +18,6 @@ const Main = () => {
       ...page,
       Kind: { show: "none", kind: kind },
       StoryPic: { show: "block",  },
-    })
-  }
-  const ToKind=(person)=>{
-    SetPage({
-      ...page,
-      Gender: { show: "none", person: person },
-      Kind: { show: "block",  },
     })
   }
   const ToAnother=()=>{
@@ -33,10 +29,10 @@ const Main = () => {
   }
   return (
     <>
-      <Gender display={page.Gender.show} ShowNext={ToKind} />
-      <Kind display={page.Kind.show} ShowNext={ToStoryPic} person={page.Gender.person}/>
-      <StoryPic  display={page.StoryPic.show}  ShowNext={ToAnother} kind={page.Kind.kind}/>
-      <Another display={page.Another.show} ShowNext={ToStoryPic} />
+      {/* <Gender display={page.Gender.show} ShowNext={ToKind} /> */}
+      <Kind display={page.Kind.show} ShowNext={ToStoryPic} person={params??"girl"}/>
+      {/* <StoryPic  display={page.StoryPic.show}  ShowNext={ToAnother} kind={page.Kind.kind}/>
+      <Another display={page.Another.show} ShowNext={ToStoryPic} /> */}
     </>
   )
 }

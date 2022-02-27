@@ -1,3 +1,7 @@
+$red: #ae4439;
+$orange:#de7641;
+$yellow: #e5a96b;
+$pink: #e4acaa;
 @function get-vw($target) {
     $vw-context: (1000 * 0.01) * 1px;
     @return ($target/$vw-context) * 1vw;
@@ -19,4 +23,20 @@
     100% {
         left: 50%;
     }
+}
+.PDiv {
+    // background-image: url('../../../public/images/Loading/PB2.png');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+}
+
+.alignCenter {
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center;
+    // width: 100vw;
 }

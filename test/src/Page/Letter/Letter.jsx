@@ -2,13 +2,15 @@ import React, { createRef, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
-import Button from "@mui/material/Button";
+import {  Button } from "@mui/material";
+import LoadingButton from '@mui/lab/LoadingButton';
 import style from "./style.module.scss";
 import { useScreenshot, createFileName } from "use-react-screenshot";
 
 const axios = require("axios");
-const Letter = ({ ShowNext, display = "block" }) => {
+const Letter = ({ ShowNext,data, display = "block" }) => {
   const [backline, setBackLine] = useState(false);
+  const [loading, setLoading] = React.useState(false);
   const ref = createRef(null);
   const [_, takeScreenShot] = useScreenshot({
     type: "image/jpeg",
@@ -36,10 +38,10 @@ const Letter = ({ ShowNext, display = "block" }) => {
         name: name,
       })
       .then((resp) => {
-        console.log(resp.data.id,name);
+        console.log(resp.data.id, name);
         const a = document.createElement("a");
-        a.href =image;
-        a.tag=`https://tarkers.github.io/Dear-Family/letter/${resp.data.id}`;
+        a.href = image;
+        a.tag = `https://tarkers.github.io/Dear-Family/#/download/${resp.data.id}`;
         a.download = createFileName("jpg", name);
         ShowNext(a);
       })
@@ -93,14 +95,14 @@ const Letter = ({ ShowNext, display = "block" }) => {
             <Col className="justify-content-center">
               <img
                 style={{ width: "50%" }}
-                src={process.env.PUBLIC_URL+"/images/Letter/select.png"}
+                src={process.env.PUBLIC_URL + "/images/Letter/select.png"}
                 alt="select"
               />
             </Col>
           </Row>
           <Row className={"pl-3"}>
             <Col style={{ fontSize: "18px", textAlign: "left" }}>
-              <label>Dear: somebody</label>
+              <label>Dear: {data.name}</label>
             </Col>
           </Row>
           <Row id="linesDiv" className={"p-3 pt-0"}>
@@ -110,14 +112,26 @@ const Letter = ({ ShowNext, display = "block" }) => {
       </Row>
       <Row className="justify-content-center" style={{ margin: "2rem" }}>
         <Col>
-          <Button
+          <LoadingButton
+            onClick={() => {
+              setLoading(true);
+              downloadScreenshot();
+            }}
+            endIcon={<SendIcon />}
+            loading={loading}
+            loadingPosition="end"
+            variant="contained"
+          >
+            Send
+          </LoadingButton>
+          {/* <Button
             variant="contained"
             color="success"
             endIcon={<SendIcon />}
             onClick={() => downloadScreenshot()}
           >
             Send
-          </Button>
+          </Button> */}
         </Col>
       </Row>
     </Container>

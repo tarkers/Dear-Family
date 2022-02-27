@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import Button from "@mui/material/Button";
 import styles from "./style.module.scss";
+import { useNavigate } from "react-router-dom";
 const Gender = ({ ShowNext, display = "block" }) => {
+  const navigate = useNavigate();
+  const ToStory = () => {
+    navigate(`/story/${sname}`);
+  };
   const [sname, setName] = useState("");
   
   const [personList, setPersonList] = useState([
@@ -56,7 +60,7 @@ const Gender = ({ ShowNext, display = "block" }) => {
               <img
               key={index}
               style={{width:"40%" ,padding:"0 20px"}}
-                className={styles.P4letterImg}
+                className={styles.letterImg}
                 src={
                   person.hover
                     ? process.env.PUBLIC_URL + person.hoverImg
@@ -84,7 +88,7 @@ const Gender = ({ ShowNext, display = "block" }) => {
             className={styles.P4NextPic}
             src={process.env.PUBLIC_URL+"/images/Story/p4-7.png"}
             alt="next"
-            onClick={() => ShowNext(sname)}
+            onClick={() => ToStory()}
           />
         </Col>
       </Row>

@@ -32,7 +32,7 @@ const Main = () => {
     console.log(name, pic);
     SetPage({
       ...page,
-      ReceivePerson: { ...page.ReceivePerson, show: "none" },
+      ReceivePerson: { ...page.ReceivePerson,person:pic,name:name, show: "none" },
       Letter: { ...page.Letter, show: "block" },
     });
   }
@@ -44,7 +44,7 @@ const Main = () => {
     <Container>
       <Shape display={page.Shape.show} ShowNext={ShowReceivePerson} />
       <ReceivePerson display={page.ReceivePerson.show} ShowNext={ShowLetter} />
-      <Letter  display={page.Letter.show}  ShowNext={ShowQRcode} />
+      <Letter  display={page.Letter.show} data={{name:page.ReceivePerson.name,pic:page.ReceivePerson.pic}}  ShowNext={ShowQRcode} />
       <QRcode display={page.QRcode.show} imageLink={page.Letter.link} />
       {/* <BrowserRouter>
         <Routes>

@@ -1,32 +1,31 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { createFileName } from "use-react-screenshot";
+import { IconButton } from "@mui/material";
+import DownloadForOfflineIcon from "@mui/icons-material/DownloadForOffline";
 const axios = require("axios");
 
 const Main = () => {
-  const navigate = useNavigate();
+  const params = useParams().id;
+  const navigate =useNavigate();
   const Download = (image, { name = "img", extension = "jpg" } = {}) => {
-    
+    console.log(image);
     const a = document.createElement("a");
     a.href = image;
     a.download = createFileName(extension, name);
     console.log(a);
-    a.target = "_blank";
+    // a.target = "_blank";
     a.click();
     navigate(`/`);
   };
   const SetLink = () => {
-    let params = useParams();
-   
-    const id = params.id;
-    console.log(id);
     axios
-      .get(`https://dear-family-server.herokuapp.com/letters/${id}`)
+      .get(`https://dear-family-server.herokuapp.com/letters/${params}`)
       .then((resp) => {
         let data = "";
         data = resp.data;
         console.log(data);
-        Download(data.image, { name: data.name });      
+        Download(data.image, { name: data.name });
       })
       .catch((error) => {
         console.log(error);
@@ -36,7 +35,15 @@ const Main = () => {
 
   return (
     <div>
-      <label>{SetLink()}1345</label>
+      {console.log(params)}
+      <IconButton
+        color="primary"
+        aria-label="doenload picture"
+        component="span"
+        onClick={() => SetLink()}
+      >
+        <DownloadForOfflineIcon sx={{ fontSize: 60 }} />
+      </IconButton>
     </div>
   );
 };

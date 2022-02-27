@@ -1,49 +1,54 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-const Kind = ({ShowNext,person,display="block"}) => {
+import styles from "./style.module.scss";
+import {useNavigate} from 'react-router-dom'
+const Kind = ({ ShowNext, person, display = "block" }) => {
+  const navigate = useNavigate();
   return (
-    <Container style={{display:`${display}`}}>
+    <Container
+      fluid
+      className={styles.PDiv}
+      style={{
+        display: `${display}`,
+        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Story/PB5.png)`,
+      }}
+    >
       <Row>
-        <Col className="justify-content-center mb-5" >
-          <label>請輸入收件人</label>
-        </Col>
-      </Row>
-      <Row>
-        <Col className="justify-content-center m-2" >
+        <Col className="d-flex justify-content-start mt-5"style={{marginBottom:"15%"}} >
           <img
-            style={{ width: "60%" }}
-            src={process.env.PUBLIC_URL+"/images/Story/born.png"}
-            alt="select"
+            style={{ width: "35px", margin: "10px" }}
+            src={process.env.PUBLIC_URL + "/images/Story/P5.png"}
+            alt="back"
+            onClick={()=>navigate("/?section=to-gender")}
+          />
+          <img
+            style={{ width: "35px", margin: "10px" }}
+            src={process.env.PUBLIC_URL + "/images/Story/P5-1.png"}
+            alt="test"
           />
         </Col>
       </Row>
       <Row>
-        <Col className="justify-content-center m-2">
+        <Col className="justify-content-center mt-3 mb-3">
           <img
-            style={{ width: "60%" }}
-            src={process.env.PUBLIC_URL+"/images/Story/born.png"}
-            alt="select"
+            style={{ width: "25vw " }}
+            src={process.env.PUBLIC_URL + "/images/Story/P5-2.png"}
+            alt="test"
           />
         </Col>
       </Row>
       <Row>
-        <Col className="justify-content-center m-2">
+        <Col className="justify-content-center mt-5" style={{position:"relative"}}>
           <img
-            style={{ width: "60%" }}
-            src={process.env.PUBLIC_URL+"/images/Story/born.png"}
+            style={{ width: "80vw", marginLeft: "15vw" }}
+            src={process.env.PUBLIC_URL + "/images/Story/P5-3.png"}
             alt="select"
           />
+           <div className={styles.p5BornDiv}></div>
+           <div className={styles.p5GrowDiv}></div>
+           <div className={styles.p5StrongDiv}></div>
         </Col>
-      </Row>
-      <Row>
-        <Col className="justify-content-center m-2"  onClick={()=>ShowNext(2)}>
-          <img
-            style={{ width: "60%",margin:"10em 0px" }}
-            src={process.env.PUBLIC_URL+"/images/Story/introduction.png"}
-            alt="select"
-           
-          />
-        </Col>
+       
       </Row>
     </Container>
   );
