@@ -59,8 +59,8 @@ const Gender = ({ ShowNext, display = "block" }) => {
             // <Col key={index} className="col-6">
             <img
               key={index}
-              style={{ width: "40%", padding: "0 20px" }}
-              className={styles.letterImg}
+              style={person.hover?{ width: "35%", padding: " 10vh 3vh 0 3vh" }:{ width: "30%", padding: " 10vh 3vh 0 3vh" }}
+              // className={styles.letterImg}
               src={
                 person.hover
                   ? process.env.PUBLIC_URL + person.hoverImg

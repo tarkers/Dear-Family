@@ -4,6 +4,7 @@ import Envelope from "./Envelope";
 import Go from "./Go";
 import Gender from "./Gender";
 import { useSearchParams } from 'react-router-dom';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import {
   Element,
   Events,

@@ -41,7 +41,7 @@ const Main = () => {
   //   props.setAuthenticated(true);
   // }, []);
   return (
-    <Container>
+    <>
       <Shape display={page.Shape.show} ShowNext={ShowReceivePerson} />
       <ReceivePerson display={page.ReceivePerson.show} ShowNext={ShowLetter} />
       <Letter  display={page.Letter.show} data={{name:page.ReceivePerson.name,pic:page.ReceivePerson.pic}}  ShowNext={ShowQRcode} />
@@ -55,7 +55,7 @@ const Main = () => {
         </Routes>
       </BrowserRouter> */}
       <Outlet/>
-    </Container>
+    </>
   );
 };
 
