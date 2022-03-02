@@ -51,3 +51,128 @@
     left: 57.5%;
     top: 55%;
 }
+.BackgroundText {
+    position: absolute;
+    // background-color: red;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 50vw;
+}
+
+.NextTriangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    bottom: 3%;
+    left: 50%;
+    border-style: solid;
+    border-width: 2vh 2vh 0 2vh;
+    transform: translateX(-50%);
+    border-color: #ffffff transparent transparent transparent;
+    &:active {
+        opacity: 0.5;
+        border-width: 3vh 3vh 0 3vh;
+    }
+}
+.BornItem_1 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 30%);
+    width: 50vw;
+    &:active {
+        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
+    }
+}
+.BornItem_2 {
+    position: absolute;
+    left: 45%;
+    top: 50%;
+    transform: translate(-50%, -80%);
+    width: 15vw;
+    &:active {
+        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
+    }
+}
+.BornItem_3 {
+    position: absolute;
+    left: 62%;
+    top: 50%;
+    transform: translate(-50%, -57%);
+    width: 45vw;
+    &:active {
+        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
+    }
+}
+.BornItem_4 {
+    position: absolute;
+    left: 0%;
+    top: 50%;
+    width: 45vw;
+    transform: translate(0%, -22%);
+    &:active {
+        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
+    }
+}
+.BornItem_5 {
+    position: absolute;
+    left: 61%;
+    top: 50%;
+    width: 50vw;
+    transform: translate(0%,65%);
+    &:active {
+        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
+    }
+}
+.BornItem_6 {
+    position: absolute;
+    left: 40%;
+    top: 50%;
+    transform: translateY(-40%);
+    width: 27vw;
+    &:active {
+        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
+    }
+}
+.BornItem_7 {
+    position: absolute;
+    left: 62%;
+    top: 50%;
+    width: 30vw;
+    transform: translateY(-63%);
+    &:active {
+        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
+    }
+}
+.BornItem_8 {
+    position: absolute;
+    left: 55%;
+    top: 50%;
+    width: 35vw;
+    transform: translateY(-67%);
+    &:active {
+        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
+    }
+}
+.BornItem_9 {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 38vw;
+    transform: translate(-45%, 28%);
+    &:active {
+      
+        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
+    }
+}
+.BornItem_10 {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 46vw;
+    transform: translate(-56%, 22%);
+    &:active {
+        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
+    }
+}

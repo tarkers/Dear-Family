@@ -9,7 +9,7 @@ const Main = () => {
   const [page, SetPage] = useState({
     // Gender: { show: "block", person: "" },
     Kind: { show: "block", kind:"" },
-    StoryPic: { show: "none" },
+    StoryPic: { show: "block" },
     Another: { show: "none" },
   });
   const ToStoryPic=(kind)=>{
@@ -29,7 +29,7 @@ const Main = () => {
   return (
     <>
       {/* <Gender display={page.Gender.show} ShowNext={ToKind} /> */}
-      <Kind display={page.Kind.show} ShowNext={ToStoryPic} person={params??"girl"}/>
+      {/* <Kind display={page.Kind.show} ShowNext={ToStoryPic} person={params??"girl"}/> */}
       <StoryPic  display={page.StoryPic.show}  ShowNext={ToAnother} kind={page.Kind.kind}/>
       <Another display={page.Another.show} ShowNext={ToStoryPic} />
     </>
