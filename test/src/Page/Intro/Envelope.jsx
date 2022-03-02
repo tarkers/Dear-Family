@@ -16,11 +16,11 @@ const Envelope = ({scrollToGo}) => {
       }}
     >
       <div style={{ position: "relative", height: "100%" }}>
-        <Row style={{ paddingTop: "5vh" }}>
+        <Row style={{ paddingTop: "15vh" }}>
           <label>有天他說</label>
           <label>...</label>
         </Row>
-        <Row style={{ paddingTop: "33vh",lineHeight:"4vh" }}>
+        <Row style={{ paddingTop: "20vh",lineHeight:"4vh" }}>
           <label>記憶</label>
           <label>是日積月累</label>
           <label>是歲月繞過的痕跡</label>

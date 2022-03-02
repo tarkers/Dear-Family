@@ -4,12 +4,13 @@ import Kind from './Kind'
 import { useParams, useNavigate } from "react-router-dom";
 import StoryPic from './StoryPic'
 const Main = () => {
-  const params = useParams().name;
+  // const params = useParams().name;
+  const { person } = useParams();
   const navigate =useNavigate();
   const [page, SetPage] = useState({
     // Gender: { show: "block", person: "" },
     Kind: { show: "block", kind:"" },
-    StoryPic: { show: "block" },
+    StoryPic: { show: "none" },
     Another: { show: "none" },
   });
   const ToStoryPic=(kind)=>{
@@ -26,12 +27,14 @@ const Main = () => {
       Another: { show: "block",  },
     })
   }
+  const ToSend=()=>{
+    navigate(`/letter/${page.Kind.kind??"Born"}?person=${person}`);
+  }
   return (
-    <>
-      {/* <Gender display={page.Gender.show} ShowNext={ToKind} /> */}
-      {/* <Kind display={page.Kind.show} ShowNext={ToStoryPic} person={params??"girl"}/> */}
+    <> 
+      <Kind display={page.Kind.show} ShowNext={ToStoryPic} person={person??"Girl"}/>
       <StoryPic  display={page.StoryPic.show}  ShowNext={ToAnother} kind={page.Kind.kind}/>
-      <Another display={page.Another.show} ShowNext={ToStoryPic} />
+      <Another display={page.Another.show} ToSend={ToSend}  ShowNext={ToStoryPic}/>
     </>
   )
 }

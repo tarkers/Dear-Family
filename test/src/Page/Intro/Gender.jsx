@@ -7,17 +7,17 @@ const Gender = ({ ShowNext, display = "block" }) => {
   const ToStory = () => {
     navigate(`/story/${sname}`);
   };
-  const [sname, setName] = useState("");
+  const [sname, setName] = useState("Boy");
 
   const [personList, setPersonList] = useState([
     {
-      name: "girl",
+      name: "Girl",
       hover: false,
       img: "/images/Story/P4-3.png",
       hoverImg: "/images/Story/P4-5.png",
     },
     {
-      name: "boy",
+      name: "Boy",
       hover: false,
       img: "/images/Story/P4-4.png",
       hoverImg: "/images/Story/P4-6.png",

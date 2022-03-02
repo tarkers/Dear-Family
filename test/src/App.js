@@ -12,17 +12,18 @@ function App() {
         <Routes >
           <Route path="/" element={<t.Intro />} >
             {/* <Route path="*" element={<t.Intro />} /> */}
-            </Route>
-              <Route path="*" element={<t.Intro />} />
-              <Route path="story" element={<t.Story />} >
-                <Route path=":name" element={<t.Story />} />
-              </Route>
-              <Route path="letter" element={<t.Letter />} />
-              <Route path="download/:id" element={<t.Download />} />
-            </Routes>
-          </HashRouter>
-        </div>
-        );
+          </Route>
+          <Route path="*" element={<t.Intro />} />
+          <Route path="story" element={<t.Story />} >
+            <Route path=":person" element={<t.Story />} />
+          </Route>
+          <Route path="letter/:kind" element={<t.Letter />}/>
+
+          <Route path="download/:id" element={<t.Download />} />
+        </Routes>
+      </HashRouter>
+    </div>
+  );
 }
 
-        export default App;
+export default App;

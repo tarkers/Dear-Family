@@ -1,5 +1,5 @@
 @import "../style.module.scss";
-
+$anime: 0.8s linear 1s infinite alternate blink;
 .maxHeight {
     height: 100vh;
 }
@@ -62,25 +62,30 @@
 
 .NextTriangle {
     position: absolute;
-    width: 0;
-    height: 0;
+    width: 5vw;
     bottom: 3%;
     left: 50%;
-    border-style: solid;
-    border-width: 2vh 2vh 0 2vh;
     transform: translateX(-50%);
-    border-color: #ffffff transparent transparent transparent;
+    // border-style: solid;
+    // border-width: 2vh 2vh 0 2vh;
+    // transform: translateX(-50%);
+    // border-color: #ffffff transparent transparent transparent;
     &:active {
-        opacity: 0.5;
-        border-width: 3vh 3vh 0 3vh;
+        width: 3vw;
+    }
+}
+@mixin assignAnimation($properties, $value) {
+    @each $property in $properties {
+        #{$property}: $value;
     }
 }
 .BornItem_1 {
     position: absolute;
-    left: 50%;
+    left: 50vw;
     top: 50%;
     transform: translate(-50%, 30%);
     width: 50vw;
+    animation: $anime;
     &:active {
         filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
     }
@@ -91,6 +96,7 @@
     top: 50%;
     transform: translate(-50%, -80%);
     width: 15vw;
+    animation: $anime;
     &:active {
         filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
     }
@@ -101,6 +107,7 @@
     top: 50%;
     transform: translate(-50%, -57%);
     width: 45vw;
+    animation: $anime;
     &:active {
         filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
     }
@@ -111,6 +118,7 @@
     top: 50%;
     width: 45vw;
     transform: translate(0%, -22%);
+    animation: $anime;
     &:active {
         filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
     }
@@ -120,7 +128,8 @@
     left: 61%;
     top: 50%;
     width: 50vw;
-    transform: translate(0%,65%);
+    transform: translate(0%, 65%);
+    animation: $anime;
     &:active {
         filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
     }
@@ -130,6 +139,7 @@
     left: 40%;
     top: 50%;
     transform: translateY(-40%);
+    animation: $anime;
     width: 27vw;
     &:active {
         filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
@@ -141,6 +151,7 @@
     top: 50%;
     width: 30vw;
     transform: translateY(-63%);
+    animation: $anime;
     &:active {
         filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
     }
@@ -151,6 +162,7 @@
     top: 50%;
     width: 35vw;
     transform: translateY(-67%);
+    animation: $anime;
     &:active {
         filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
     }
@@ -161,8 +173,8 @@
     top: 0;
     width: 38vw;
     transform: translate(-45%, 28%);
+    animation: $anime;
     &:active {
-      
         filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
     }
 }
@@ -172,7 +184,23 @@
     top: 0;
     width: 46vw;
     transform: translate(-56%, 22%);
+    animation: $anime;
     &:active {
         filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
     }
+}
+.BornText {
+    position: absolute;
+    left: 50%;
+    top: 58%;
+    transform: translate(-50%, -50%);
+    width: 20vw;
+}
+.BornClick {
+    position: absolute;
+    left: 50%;
+    top: 73%;
+    transform: translate(-50%, -50%);
+    width: 25vw;
+    animation: $anime;
 }

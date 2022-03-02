@@ -2,97 +2,15 @@ import React, { useState } from "react";
 import Slider from "react-touch-drag-slider";
 // import { Pagination } from "@mui/material";
 import { Col, Container, Row } from "react-bootstrap";
-import styles from './style.module.scss'
-const Shape = ({ ShowNext, display = "block" }) => {
-  const kindname = "boy";
-  const [index, setIndex] = useState(0);
-  const images = {
-    boy: [
-      {
-        url: "/images/Letter/Kind//Boy/1.png",
-        title: "/images/Letter/Kind//Title/1.png",
-      },
-      {
-        url: "/images/Letter/Kind//Boy/2.png",
-        title: "/images/Letter/Kind//Title/2.png",
-      },
-      {
-        url: "/images/Letter/Kind//Boy/3.png",
-        title: "/images/Letter/Kind//Title/3.png",
-      },
-      {
-        url: "/images/Letter/Kind//Boy/4.png",
-        title: "/images/Letter/Kind//Title/4.png",
-      },
-      {
-        url: "/images/Letter/Kind//Boy/5.png",
-        title: "/images/Letter/Kind//Title/5.png",
-      },
-      {
-        url: "/images/Letter/Kind//Boy/6.png",
-        title: "/images/Letter/Kind//Title/6.png",
-      },
-      {
-        url: "/images/Letter/Kind//Boy/7.png",
-        title: "/images/Letter/Kind//Title/7.png",
-      },
-      {
-        url: "/images/Letter/Kind//Boy/8.png",
-        title: "/images/Letter/Kind//Title/8.png",
-      },
-      {
-        url: "/images/Letter/Kind//Boy/9.png",
-        title: "/images/Letter/Kind//Title/9.png",
-      },
-      {
-        url: "/images/Letter/Kind//Boy/10.png",
-        title: "/images/Letter/Kind//Title/10.png",
-      },
-    ],
-    girl: [
-      {
-        url: "/images/Letter/Kind//Girl/1.png",
-        title: "/images/Letter/Kind//Title/1.png",
-      },
-      {
-        url: "/images/Letter/Kind//Girl/2.png",
-        title: "/images/Letter/Kind//Title/2.png",
-      },
-      {
-        url: "/images/Letter/Kind//Girl/3.png",
-        title: "/images/Letter/Kind//Title/3.png",
-      },
-      {
-        url: "/images/Letter/Kind//Girl/4.png",
-        title: "/images/Letter/Kind//Title/4.png",
-      },
-      {
-        url: "/images/Letter/Kind//Girl/5.png",
-        title: "/images/Letter/Kind//Title/5.png",
-      },
-      {
-        url: "/images/Letter/Kind//Girl/6.png",
-        title: "/images/Letter/Kind//Title/6.png",
-      },
-      {
-        url: "/images/Letter/Kind//Girl/7.png",
-        title: "/images/Letter/Kind//Title/7.png",
-      },
-      {
-        url: "/images/Letter/Kind//Girl/8.png",
-        title: "/images/Letter/Kind//Title/8.png",
-      },
-      {
-        url: "/images/Letter/Kind//Girl/9.png",
-        title: "/images/Letter/Kind//Title/9.png",
-      },
-      {
-        url: "/images/Letter/Kind//Girl/10.png",
-        title: "/images/Letter/Kind//Title/10.png",
-      },
-    ],
-  };
+import styles from "./style.module.scss";
+import BornLetter from "../../BornLetter.json";
+import { useParams, useSearchParams } from "react-router-dom";
 
+const Shape = ({ ShowNext, display = "block" }) => {
+  const { kind } = useParams();
+  const [searchParams, _] = useSearchParams();
+  const [index, setIndex] = useState(0);
+  const person =searchParams.get("person")
   const changeItem = (e, num) => {
     setIndex(num - 1);
   };
@@ -117,30 +35,34 @@ const Shape = ({ ShowNext, display = "block" }) => {
         </Col>
       </Row>
       <Row>
-        <Col style={{ marginTop:"5vh", width: "100%" }}>
+        <Col style={{ marginTop: "5vh", width: "100%" }}>
           <div className="d-flex flex-row" style={{ overflow: "auto" }}>
-            {images[kindname].map(({ url, title }, i) => (
-              <Col index={i} className="justify-content-center d-flex flex-column bd-highlight m-3">
+            {BornLetter[person].map((image, i) => (
+              <Col
+                key={i}
+                className="justify-content-center d-flex flex-column bd-highlight m-3"
+              >
                 <div className="mb-3">
                   <img
-                    src={process.env.PUBLIC_URL + title}
+                    src={process.env.PUBLIC_URL + image}
                     alt="title"
                     style={{ height: "4vh", width: "auto" }}
+                    onClick={() => console.log(image)}
                   />
                 </div>
                 <div className="mb-3">
                   <img
-                    src={process.env.PUBLIC_URL + url}
+                    src={process.env.PUBLIC_URL + image}
                     alt="picurl"
                     style={{ width: "28vw", height: "auto" }}
                   />
                 </div>
-                <div >
+                <div>
                   <img
                     src={process.env.PUBLIC_URL + "/images/Letter/Kind/pen.png"}
                     alt="pen"
                     className={styles.clickPen}
-                    onClick={()=>ShowNext(i)}
+                    onClick={() => ShowNext(i)}
                   />
                 </div>
               </Col>
@@ -150,10 +72,12 @@ const Shape = ({ ShowNext, display = "block" }) => {
         </Col>
       </Row>
       <Row>
-        <Col
-         className={styles.shapeIcon}
-        >
-         <img style={{ width: "15vw", height: "auto" }} src={process.env.PUBLIC_URL+"/images/Letter/iconyellow.png"} alt="icon" />
+        <Col className={styles.shapeIcon}>
+          <img
+            style={{ width: "15vw", height: "auto" }}
+            src={process.env.PUBLIC_URL + "/images/Letter/iconyellow.png"}
+            alt="icon"
+          />
         </Col>
       </Row>
     </Container>

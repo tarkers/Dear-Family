@@ -15,14 +15,14 @@ const Main = () => {
   const [searchParams] = useSearchParams();
   const [page, SetPage] = useState({
     Loading: { show: "block" },
-    Envelope: { show: "block" },
-    Go: { show: "block" },
-    Gender: { show: "block" },
+    Envelope: { show: "none" },
+    Go: { show: "none" },
+    Gender: { show: "none" },
   });
   useEffect(() => {
    scrollTo(searchParams.get("section"),1000)
   },[]);
-  const scrollTo = (element,delay=100,smooth="easeOutQuad") => {
+  const scrollTo = (element,delay=300,smooth="easeOutQuad") => {
     console.log(element);
     scroller.scrollTo(element, {
       duration: 300,

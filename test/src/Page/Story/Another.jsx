@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-const Another = ({ShowNext,display="block"}) => {
-  const navigate = useNavigate();
-  const ToSend=()=>{
-    navigate(`/letter`);
-  }
+const Another = ({ToSend,ShowNext,display="block"}) => {
   return (
     <Container style={{display:`${display}`}}>
     <Row>
