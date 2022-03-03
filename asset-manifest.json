@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Dear-Family/static/css/main.79e55459.css",
-    "main.js": "/Dear-Family/static/js/main.ec517072.js",
+    "main.css": "/Dear-Family/static/css/main.580d822f.css",
+    "main.js": "/Dear-Family/static/js/main.35cd952e.js",
     "static/js/787.0c3f432a.chunk.js": "/Dear-Family/static/js/787.0c3f432a.chunk.js",
     "static/media/story.png": "/Dear-Family/static/media/story.3af51956c475e4a3ab92.png",
     "index.html": "/Dear-Family/index.html",
-    "main.79e55459.css.map": "/Dear-Family/static/css/main.79e55459.css.map",
-    "main.ec517072.js.map": "/Dear-Family/static/js/main.ec517072.js.map",
+    "main.580d822f.css.map": "/Dear-Family/static/css/main.580d822f.css.map",
+    "main.35cd952e.js.map": "/Dear-Family/static/js/main.35cd952e.js.map",
     "787.0c3f432a.chunk.js.map": "/Dear-Family/static/js/787.0c3f432a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.79e55459.css",
-    "static/js/main.ec517072.js"
+    "static/css/main.580d822f.css",
+    "static/js/main.35cd952e.js"
   ]
 }
