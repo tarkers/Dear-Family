@@ -258,8 +258,10 @@
     position: absolute;
     height: 32%;
     width: auto;
-    // animation: opText 3s ease-out 0 1 direction ;
-    animation: 4s ease-out 0s 1 alternate opText;
+    &.show{
+        animation: 5s ease-out 0s 1 alternate opText;
+    }
+ 
 }
 
 .texttt {

@@ -1,15 +1,15 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Another from "./Another";
 import Kind from "./Kind";
 import { useParams, useNavigate } from "react-router-dom";
-import Bornaudio from "../../sound/Born.mp3";
-import Strongaudio from "../../sound/Strong.mp3";
-import Growaudio from "../../sound/Grow.mp3";
+// import Bornaudio from "../../sound/Born.mp3";
+// import Strongaudio from "../../sound/Strong.mp3";
+// import Growaudio from "../../sound/Grow.mp3";
 import StoryPic from "./StoryPic";
 const Main = () => {
   // let data=Born
-  const [audio, setAudio] = useState(Bornaudio);
-  const [data, setData] = useState(null);
+  // const [audio, setAudio] = useState(Bornaudio);
+  // const [data, setData] = useState(null);
   const { person } = useParams();
   const navigate = useNavigate();
   const [page, SetPage] = useState({
@@ -31,17 +31,17 @@ const Main = () => {
 
     switch (kind) {
       case "Born":
-        setAudio(Bornaudio)
+        // setAudio(Bornaudio)
         tmp = { first: "Grow", second: "Strong" };
         break;
 
       case "Grow":
-        setAudio(Growaudio)
+        // setAudio(Growaudio)
         tmp = { first: "Born", second: "Strong" };
         break;
 
       case "Strong":
-        setAudio(Strongaudio)
+        // setAudio(Strongaudio)
         tmp = { first: "Born", second: "Grow" };
         break;
       default:
@@ -76,7 +76,7 @@ const Main = () => {
         ToBack={ToKind}
         ShowNext={ToAnother}
         kind={page.Kind.kind}
-        test={audio}
+        // test={audio}
       />
       <Another
         other={page.Another.other}

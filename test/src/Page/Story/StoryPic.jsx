@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Row,  } from "react-bootstrap";
 import styles from "./style.module.scss";
 import CircularProgress from "@mui/material/CircularProgress";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -13,7 +13,7 @@ import Strong from "../../StrongStory.json";
 import { Element, scroller } from "react-scroll";
 import classNames from "classnames";
 const StoryPic = ({ ShowNext,test, ToBack, kind, display = "block" }) => {
-  const soundRef = useRef();
+  // const soundRef = useRef();
   const { person } = useParams();
   const [move, canMove] = useState(false);
   const [sound, setSound] = useState({
@@ -38,8 +38,8 @@ const StoryPic = ({ ShowNext,test, ToBack, kind, display = "block" }) => {
     return tmp;
   };
   const ClearData = () => {
-    soundRef.current.pause();
-    soundRef.current.currentTime = 0;
+    // soundRef.current.pause();
+    // soundRef.current.currentTime = 0;
     canMove(false);
     setSound({
       url: null,
