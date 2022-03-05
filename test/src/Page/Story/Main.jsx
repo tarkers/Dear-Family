@@ -2,9 +2,7 @@ import React, { useState, useRef } from "react";
 import Another from "./Another";
 import Kind from "./Kind";
 import { useParams, useNavigate } from "react-router-dom";
-import Born from "../../BornStory.json";
-import Grow from "../../GrowStory.json";
-import Strong from "../../StrongStory.json";
+
 import StoryPic from "./StoryPic";
 const Main = () => {
   // let data=Born
@@ -14,34 +12,32 @@ const Main = () => {
   const navigate = useNavigate();
   const [page, SetPage] = useState({
     Kind: { show: "block", kind: "" },
-    StoryPic: { show: "none" },
-    Another: { show: "none", other: { first: "", second: "" } },
+    Born: { show: "none" },
+    Grow: { show: "none" },
+    Strong: { show: "none" },
+    Another: { show: "none", other: { first: "Born", second: "Grow" } },
   });
-  
+
   const ToKind = () => {
     SetPage({
       Kind: { show: "block", kind: "" },
-      StoryPic: {...page.StoryPic, show: "none" },
-      Another: {...page.Another, show: "none" },
+      Born: { show: "none" },
+      Grow: { show: "none" },
+      Strong: { show: "none" },
+      Another: { ...page.Another, other: { first: "Born", second: "Grow" }},
     });
   };
   const ToStoryPic = (kind) => {
     let tmp = { first: "", second: "" };
-    console.log(kind)
-    
     switch (kind) {
       case "Born":
-        setData(Born)
         tmp = { first: "Grow", second: "Strong" };
         break;
-
       case "Grow":
-        setData(Grow)
         tmp = { first: "Born", second: "Strong" };
         break;
 
       case "Strong":
-        setData(Strong)
         tmp = { first: "Born", second: "Grow" };
         break;
       default:
@@ -50,15 +46,17 @@ const Main = () => {
     SetPage({
       ...page,
       Kind: { show: "none", kind: kind },
-      StoryPic: { show: "block" },
+      [kind]: { show: "block" },
       Another: { show: "none", other: tmp },
     });
   };
   const ToAnother = () => {
     SetPage({
       ...page,
-      StoryPic: { show: "none" },
-      Another: {...page.Another, show: "block" },
+      Born: { show: "none" },
+      Grow: { show: "none" },
+      Strong: { show: "none" },
+      Another: { ...page.Another, show: "block" },
     });
   };
   const ToSend = () => {
@@ -66,19 +64,36 @@ const Main = () => {
   };
   return (
     <>
-      {/* <button onClick={()=>setMute(!mute)}>test code</button> */}
       <Kind
         display={page.Kind.show}
         ShowNext={ToStoryPic}
         person={person ?? "Girl"}
       />
-    {data!==null &&  <StoryPic
+      {/* <StoryPic
         display={page.StoryPic.show}
         ToBack={ToKind}
         ShowNext={ToAnother}
         kind={page.Kind.kind}
-        data={data}
-      />}
+      /> */}
+      
+      <StoryPic
+        display={page.Born.show}
+        ToBack={ToKind}
+        ShowNext={ToAnother}
+        kind={"Born"}
+      />
+      <StoryPic
+        display={page.Grow.show}
+        ToBack={ToKind}
+        ShowNext={ToAnother}
+        kind={"Grow"}
+      />
+      <StoryPic
+        display={page.Strong.show}
+        ToBack={ToKind}
+        ShowNext={ToAnother}
+        kind={"Strong"}
+      />
       <Another
         other={page.Another.other}
         display={page.Another.show}

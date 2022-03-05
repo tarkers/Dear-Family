@@ -3,6 +3,7 @@ import Shape from "./Shape";
 import ReceivePerson from "./ReceivePerson";
 import Send from "./Send";
 import QRcode from "./QRcode";
+import Intro from "./Intro";
 import { Container } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import { useParams, useSearchParams } from "react-router-dom";
@@ -11,7 +12,8 @@ const Main = () => {
   const person = searchParams.get("person");
   const kind = searchParams.get("kind");
   const [page, SetPage] = useState({
-    Shape: { show: "block", shape: "" },
+    Intro: { show: "block" },
+    Shape: { show: "none", shape: "" },
     /*
     person: send person
     name :receive name
@@ -22,6 +24,13 @@ const Main = () => {
     Letter: { show: "none", link: "" },
     QRcode: { show: "none" },
   });
+  const ToShape = () => {
+    SetPage({
+      ...page,
+      Intro: { show: "none" },
+      Shape: { show: "block", shape: "" },
+    });
+  };
   const ToQRcode = (link) => {
     // console.log(link)
     SetPage({
@@ -52,11 +61,9 @@ const Main = () => {
     });
   };
 
-  // useEffect(() => {
-  //   props.setAuthenticated(true);
-  // }, []);
   return (
     <>
+    <Intro  display={page.Intro.show} ToNext={ToShape}/>
       <Shape
         display={page.Shape.show}
         ShowNext={ToReceivePerson}

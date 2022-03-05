@@ -3,6 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import styles from "./style.module.scss";
 const Another = ({ ToSend, other, ShowNext, display = "block" }) => {
+  // console.log(other)
   return (
     <Container
       fluid

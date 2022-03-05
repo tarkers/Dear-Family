@@ -1,20 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import ReactAudioPlayer from "react-audio-player";
 import styles from "./style.module.scss";
 import CircularProgress from "@mui/material/CircularProgress";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import { useParams } from "react-router-dom";
+import ReactPlayer from "react-player";
 import Born from "../../BornStory.json";
 import Grow from "../../GrowStory.json";
 import Strong from "../../StrongStory.json";
-import { useParams } from "react-router-dom";
-import ReactPlayer from "react-player";
-import {
-  Element,
-  Events,
-  animateScroll as scroll,
-  scroller,
-} from "react-scroll";
-const StoryPic = ({ ShowNext, ToBack,data, kind, display = "block" }) => {
+import { Element, scroller } from "react-scroll";
+import classNames from "classnames";
+const StoryPic = ({ ShowNext, ToBack, kind, display = "block" }) => {
   const soundRef = useRef();
   const { person } = useParams();
   const [move, canMove] = useState(false);
@@ -36,11 +33,11 @@ const StoryPic = ({ ShowNext, ToBack,data, kind, display = "block" }) => {
     for (let i = 0; i < 30; ++i) {
       tmp.push("none");
     }
-    
+
     return tmp;
   };
-  const ClearData=()=>{
-    canMove(false)
+  const ClearData = () => {
+    canMove(false);
     setSound({
       url: null,
       playing: true,
@@ -55,22 +52,21 @@ const StoryPic = ({ ShowNext, ToBack,data, kind, display = "block" }) => {
       loop: true,
     });
     setIndex(initState());
-  }
-  // const InitData = () => {
-  //   switch (kind) {
-  //     case "Born":
-  //       return Born;
-  //     case "Grow":
-  //       return Grow;
-  //     case "Strong":
-  //       return Strong;
-  //     default:
-  //       return Born;
-  //   }
-  // };
+  };
+  const InitData = () => {
+    switch (kind) {
+      case "Born":
+        return Born;
+      case "Grow":
+        return Grow;
+      case "Strong":
+        return Strong;
+      default:
+        return Born;
+    }
+  };
   const [index, setIndex] = useState(initState);
-  const [mute, isMute] = useState(false);
-  // const data = InitData();
+  const data = InitData();
 
   const scrollTo = (element, delay = 200, smooth = "easeOutQuad") => {
     scroller.scrollTo(element, {
@@ -107,7 +103,6 @@ const StoryPic = ({ ShowNext, ToBack,data, kind, display = "block" }) => {
                   alt="next"
                   src={process.env.PUBLIC_URL + "/images/Story/next.png"}
                   onClick={() => {
-                    // console.log("click")
                     setIndex(
                       index.map((_, ti) => (ti <= i * 3 + 1 ? "block" : "none"))
                     );
@@ -136,8 +131,8 @@ const StoryPic = ({ ShowNext, ToBack,data, kind, display = "block" }) => {
               }}
             >
               <img
+                loading="lazy"
                 className={styles[`${kind}Item_${i + 1}`]}
-                // className={styles[`BornItem_${i + 1}`]}
                 src={process.env.PUBLIC_URL + data.Item[i].back}
                 alt="select"
               />
@@ -145,7 +140,7 @@ const StoryPic = ({ ShowNext, ToBack,data, kind, display = "block" }) => {
           </Row>
         </Element>
         {/* HidePage */}
-
+        {console.log(move)}
         <Element name={`hideBack_${i}`} className="element">
           <Row style={{ display: `${index[i * 3 + 2]}` }}>
             <div style={{ position: "relative", padding: "0" }}>
@@ -158,13 +153,14 @@ const StoryPic = ({ ShowNext, ToBack,data, kind, display = "block" }) => {
                 className={styles.NextTriangle}
                 alt="next"
                 src={process.env.PUBLIC_URL + "/images/Story/next.png"}
+                onLoad={()=>console.log("picload!!!")}
                 onClick={() => {
-                  // console.log("click2")
                   setIndex(
                     index.map((_, ti) => (ti <= (i + 1) * 3 ? "block" : "none"))
                   );
                   if (i !== 9) scrollTo(`Intro_${i + 1}`);
                   else {
+                    console.log("toNext");
                     ClearData();
                     ShowNext();
                   }
@@ -176,27 +172,28 @@ const StoryPic = ({ ShowNext, ToBack,data, kind, display = "block" }) => {
       </div>
     );
   };
-  
+
   return (
     <Container
       fluid
       style={{ display: `${display}`, height: "100vh", padding: "0" }}
     >
-     {display==="block" && <ReactPlayer
-        ref={soundRef}
-        url={data.Music}
-        width="0"
-        height="0"
-        loop={sound.loop}
-        playing={sound.playing}
-        // autoPlay={sound.autoPlay}
-        // controls
-        muted={sound.muted ? true : false}
-        onReady={() => setSound({ ...sound, playing: true })}
-        onStart={() => {
-          canMove(true);
-        }}
-      />}
+      {display === "block" && (
+        <ReactPlayer
+          ref={soundRef}
+          url={data.Music}
+          width="0"
+          height="0"
+          loop={sound.loop}
+          playing={sound.playing}
+          
+          muted={sound.muted ? true : false}
+          onReady={() => setSound({ ...sound, playing: true })}
+          onStart={() => {
+            canMove(true);
+          }}
+        />
+      )}
       {/* LeftIcon */}
       <div className={styles.BCIcon + " d-flex justify-content-between"}>
         <img
@@ -206,7 +203,6 @@ const StoryPic = ({ ShowNext, ToBack,data, kind, display = "block" }) => {
             console.log("toback");
             ClearData();
             ToBack();
-           
           }}
         />
         <img
@@ -228,10 +224,19 @@ const StoryPic = ({ ShowNext, ToBack,data, kind, display = "block" }) => {
             src={process.env.PUBLIC_URL + data.Back}
             alt="select"
           />
-          <img
+          {/* <div> */}
+          <LazyLoadImage
             className={styles.PersonPic}
+            loading="lazy"
+            // effect="blur"
             src={process.env.PUBLIC_URL + data.Person}
             alt="select"
+            beforeLoad={()=>console.log("beforeload")}
+            // afterLoad={()=>console.log("afterload")}
+            onLoad={() => {
+              // canMove(move + 1);
+            }}
+            // on={() => canMove(move + 1)}
             onClick={() => {
               if (move) {
                 setIndex(index.map((_, ti) => (ti === 0 ? "block" : "none")));
@@ -239,21 +244,24 @@ const StoryPic = ({ ShowNext, ToBack,data, kind, display = "block" }) => {
               }
             }}
           />
-          {move && (
-            <img
-              className={styles.FirstTitle}
-              // style={{width:"20vw"}}
-              src={process.env.PUBLIC_URL + data.Title}
-              alt="select"
-            />
-          )}
+          <img
+            // loading="lazy"
+            className={
+              move
+                ? classNames(styles.FirstTitle, styles.move)
+                : styles.FirstTitle
+            }
+            // style={{width:"20vw"}}
+            src={process.env.PUBLIC_URL + data.Title}
+            alt="select"
+          />
           <img
             className={styles[`${kind}Text`]}
             // style={{width:"20vw"}}
             src={process.env.PUBLIC_URL + data.Text}
             alt="select"
           />
-          {!move && (
+          {!move  && (
             <div className={styles.loadingDiv}>
               <CircularProgress
                 className={styles.LoadingBar}

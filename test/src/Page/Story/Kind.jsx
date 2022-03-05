@@ -3,6 +3,8 @@ import { Col, Container, Row } from "react-bootstrap";
 import styles from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
 import Draggable from "react-draggable";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 const Kind = ({ ShowNext, person, display = "block" }) => {
   const dragHeightRef = useRef();
   const envelopeRef = useRef();
@@ -74,6 +76,7 @@ const Kind = ({ ShowNext, person, display = "block" }) => {
       </div>
       <div className={styles.KindCenterPic}>
         <img
+        loading="lazy"
           src={process.env.PUBLIC_URL + "/images/Story/Kind/choice.png"}
           alt="select"
         />

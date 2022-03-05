@@ -16,7 +16,7 @@ const Main = () => {
     console.log(a);
     // a.target = "_blank";
     a.click();
-    // navigate(`/`);
+    navigate(`/`);
   };
   const SetLink = () => {
     axios
@@ -30,12 +30,13 @@ const Main = () => {
       .catch((error) => {
         console.log(error);
       });
-    return "100";
+    return true;
   };
 
   return (
     <div>
-    <button onClick={()=>navigate(`/`)}>back to main</button>
+      {SetLink()}
+    {/* <button onClick={()=>navigate(`/`)}>back to main</button>
       <IconButton
         color="primary"
         aria-label="doenload picture"
@@ -43,7 +44,7 @@ const Main = () => {
         onClick={() => SetLink()}
       >
         <DownloadForOfflineIcon sx={{ fontSize: 60 }} />
-      </IconButton>
+      </IconButton> */}
     </div>
   );
 };

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import DownloadForOfflineIcon from "@mui/icons-material/DownloadForOffline";
 import QRCode from "qrcode.react";
 import styles from "./style.module.scss";
-import {  createFileName } from "use-react-screenshot";
 const QRcode = ({imageLink=null,display="block"}) => {
   const navigate =useNavigate();
   return (
@@ -17,8 +15,15 @@ const QRcode = ({imageLink=null,display="block"}) => {
        <div className={styles.QRcodeStyle}>
        <QRCode value={imageLink.tag??""} fgColor="#e5a96b"  style={{ width: "inherit",height:"auto" }}/>
       </div>
-       <div className={styles.downloadDiv} onClick={()=>imageLink.click()}/>
-       <div className={styles.backtoMain} onClick={()=> navigate(`/`)}/>
+       <img className={styles.downloadDiv} 
+       src={process.env.PUBLIC_URL + "/images/Letter/Qrcode/download.png"}
+       alt="download"
+       onClick={()=>imageLink.click()}/>
+       <img className={styles.backtoMain}
+        src={process.env.PUBLIC_URL + "/images/Letter/Qrcode/logo.png"}
+        alt="logo"
+       
+       onClick={()=> navigate(`/`)}/>
 
     </Container>
   );

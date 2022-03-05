@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Input from "@mui/material/Input";
-import { TextField } from "@mui/material";
 import styles from "./style.module.scss";
 import classNames from "classnames";
 import { style } from "@mui/system";
@@ -103,8 +102,8 @@ const ReceivePerson = ({ ShowNext, display = "block" }) => {
       <div className={styles.textStyle}>
         <Input
           placeholder="名字"
-          inputProps={{ maxLength: 7,textAlign:"center", style:{ width: "inherit", fontSize: "2vh", textAlign: "center"} }}
-          style={{ width: "25vw"}}
+          inputProps={{ maxLength: 7, style:{ width: "inherit", fontSize: "2vh", textAlign: "center"} }}
+          style={{ width: "25vw",textAlign:"center"}}
           onChange={(e) =>
             setPersonData({ ...personData, name: e.target.value })
           }

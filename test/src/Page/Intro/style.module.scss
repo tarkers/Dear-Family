@@ -60,14 +60,7 @@
         width: auto;
     }
 }
-.P2img {
-    position: absolute;
-    left: 50%;
-    bottom: 10%;
-    height: 5vh;
-    width: auto;
-    transform: translateX(-50%);
-}
+
 .nextDiv {
     position: absolute;
     left: 50%;
@@ -135,4 +128,35 @@
 .P4NextPic {
     width: 20%;
     margin-left: 1%;
+}
+.EnDiv{
+    .envelopeBack{
+        position: absolute;
+        top: 0;
+        width: 100%;
+        left: 0%;
+    }
+    .P2Next {
+        position: absolute;
+        left: 50%;
+        bottom: 5%;
+        width: 15vw;
+        transform: translateX(-50%);
+        animation: 0.8s linear 1s infinite alternate blink;
+    }
+    .P2Title{
+        position: absolute;
+        left: 50%;
+        top: 10%;
+        height: 6vh;
+        width: auto;
+        transform: translateX(-50%);
+    }
+    .P2Text{
+        position: absolute;
+        left: 50%;
+        top: 35%;
+        height:45vh;
+        transform: translateX(-50%);
+    }
 }

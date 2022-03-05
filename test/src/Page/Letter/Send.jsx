@@ -5,6 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import styles from "./style.module.scss";
 import LoadingButton from "@mui/lab/LoadingButton";
 import style from "./style.module.scss";
+import Input from "@mui/material/Input";
 import { useScreenshot, createFileName } from "use-react-screenshot";
 
 const axios = require("axios");
@@ -40,20 +41,27 @@ const Letter = ({ ShowNext, data, display = "block" }) => {
   };
   const setLineArray = () => {
     var tmp = [];
-    for (let i = 0; i < 3; ++i) {
+    for (let i = 0; i < 4; ++i) {
       tmp.push(
-        <TextField
-          inputProps={{
-            maxLength: 10,
-            textAlign: "center",
-            style: {
-              width: "inherit",
-              fontSize: "1.4vh",
-              textAlign: "center",
-              fontWeight: "bold",
-              color: " #de7641",
-            },
-          }}
+        // <input ></input>
+        <input
+        type="text" 
+        size="15" 
+        className={styles.texttt}
+        maxLength={15}
+          // inputProps={{
+          //   maxLength: 15,
+          //   // textAlign: "center",
+          //   style: {
+          //     height: "2.4vh",
+          //     width: "inherit",
+          //     fontSize: "1vh",
+          //     textAlign: "center",
+          //     fontWeight: "bold",
+          //     
+          //   },
+          // }}
+          // style={{}}
           id={`line_${i}`}
           key={i}
           variant="standard"
@@ -95,6 +103,7 @@ const Letter = ({ ShowNext, data, display = "block" }) => {
       }}
     >
       <div className={styles.SendLetterPic} ref={ref}>
+   
         <img
           className={styles.LetterStyle}
           src={process.env.PUBLIC_URL + `/images/Letter/Send/${data.kind}/${data.person}/${data.shape}.png`}
@@ -115,6 +124,7 @@ const Letter = ({ ShowNext, data, display = "block" }) => {
           {setLineArray()}
         </div>
       </div>
+    
       {loading ? (
         <div className={styles.loadingDiv}>
           <CircularProgress
@@ -137,45 +147,6 @@ const Letter = ({ ShowNext, data, display = "block" }) => {
           />
         </div>
       )}
-      {/* <Row className="justify-content-center" style={{ margin: "3rem" }}>
-      </Row>
-      <Row ref={ref}>
-        <Col className={`${style.letterDiv} mt-5`}>
-          <Row style={{ margin: "1rem" }}>
-            <Col className="justify-content-center">
-              <img
-                style={{ width: "50%" }}
-                src={process.env.PUBLIC_URL + "/images/Letter/select.png"}
-                alt="select"
-              />
-            </Col>
-          </Row>
-          <Row className={"pl-3"}>
-            <Col style={{ fontSize: "18px", textAlign: "left" }}>
-              <label>Dear: {data.name}</label>
-            </Col>
-          </Row>
-          <Row id="linesDiv" className={"p-3 pt-0"}>
-            {setLineArray()}
-          </Row>
-        </Col>
-      </Row>
-      <Row className="justify-content-center" style={{ margin: "2rem" }}>
-        <Col>
-          <LoadingButton
-            onClick={() => {
-              setLoading(true);
-              downloadScreenshot();
-            }}
-            endIcon={<SendIcon />}
-            loading={loading}
-            loadingPosition="end"
-            variant="contained"
-          >
-            Send
-          </LoadingButton>
-        </Col>
-      </Row> */}
     </Container>
   );
 };
