@@ -39,6 +39,7 @@ const StoryPic = ({ ShowNext,test, ToBack, kind, display = "block" }) => {
   };
   const ClearData = () => {
     soundRef.current.pause();
+    soundRef.current.currentTime = 0;
     canMove(false);
     setSound({
       url: null,
@@ -180,29 +181,30 @@ const StoryPic = ({ ShowNext,test, ToBack, kind, display = "block" }) => {
       fluid
       style={{ display: `${display}`, height: "100vh", padding: "0" }}
     >
-      <div>
+      {/* <div>
        {display === "block" && <audio src={test} 
         ref={soundRef}
         onCanPlay={()=>{console.log("canplay");canMove(true);}}
+        onLoadStart={()=>{canMove(false)}}
         muted={sound.muted}
         // controls 
         loop={true}
         autoPlay />} 
-      </div>
+      </div> */}
       {display === "block" && (
         <ReactPlayer
           // ref={soundRef}
           url={data.Music}
-          width="50px"
-          height="50px"
+          width="0px"
+          height="0px"
           loop={sound.loop}
           playing={sound.playing}
-          // muted={sound.muted ? true : false}
-          muted={true}
-          // onReady={() => setSound({ ...sound, playing: true })}
-          // onStart={() => {
-          //   canMove(true);
-          // }}
+          muted={sound.muted ? true : false}
+          // muted={true}
+          onReady={() => setSound({ ...sound, playing: true })}
+          onStart={() => {
+            canMove(true);
+          }}
         />
       )}
       {/* LeftIcon */}
