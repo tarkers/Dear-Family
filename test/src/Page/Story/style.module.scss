@@ -208,7 +208,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
 }
 .BornItem_6 {
     position: absolute;
-    left: 42%;
+    left: 40%;
     top: 50%;
     transform: translateY(-40%);
     animation: $anime;
@@ -235,7 +235,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
     left: 50%;
     top: 0;
     width: 38vw;
-    transform: translate(-45%, 28%);
+    transform: translate(-45%, 31%);
     animation: $anime;
 }
 .BornItem_10 {
@@ -403,10 +403,10 @@ $anime: 0.8s linear 1s infinite alternate blink;
 }
 .GrowItem_6 {
     position: absolute;
-    left: 49%;
+    left: 48%;
     top: 0;
     width: 41vw;
-    transform: translate(-131%, -7%);
+    transform: translate(-131%, -5%);
     animation: $anime;
 }
 .GrowItem_7 {
@@ -421,8 +421,8 @@ $anime: 0.8s linear 1s infinite alternate blink;
     position: absolute;
     left: 0;
     top: 50%;
-    width: 73vw;
-    transform: translate(-17%, -5%);
+    width: 61vw;
+    transform: translate(-2%, -6%);
     animation: $anime;
 }
 .GrowItem_9 {
