@@ -1,5 +1,32 @@
 @import "../style.module.scss";
+@keyframes leftlight_anime {
+    0% {
+        transform: rotate(15deg);
+        transform-origin: left top;
+        opacity: 0.8;
+        // filter: drop-shadow(0 0 15rem rgb(238, 155, 78));
+        // background-color: rebeccapurple;
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(-10deg);
+        transform-origin: left top;
 
+        // background-color: rebeccapurple;
+    }
+}
+@keyframes rightlight_anime {
+    0% {
+        transform: rotate(-15deg);
+        transform-origin: right top;
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(15deg);
+        transform-origin: right top;
+    }
+}
 .maxHeight {
     height: 100vh;
 }
@@ -18,12 +45,203 @@
 }
 .shapeIcon {
     position: absolute;
-    bottom: 1vh;
+    bottom: 0;
 }
 .clickPen {
     width: 7vw;
     height: auto;
-    &:active{
+    margin-bottom: 2vh;
+    &:active {
         width: 10vw;
+    }
+}
+
+.testclick {
+    transform: translate(-20%, -5%);
+    width: 35vw;
+}
+.Receivemom {
+    position: absolute;
+    left: 9.5%;
+    top: 36%;
+    &.notclick {
+        width: 18vw;
+    }
+    img {
+        width: inherit;
+    }
+}
+.Receivedad {
+    position: absolute;
+    left: 30%;
+    top: 36%;
+    &.notclick {
+        width: 18vw;
+    }
+    img {
+        width: inherit;
+    }
+}
+.Receivegrandma {
+    position: absolute;
+    left: 75%;
+    top: 38%;
+    &.notclick {
+        width: 18vw;
+    }
+    img {
+        width: inherit;
+    }
+}
+.Receivegrandpa {
+    position: absolute;
+    left: 53%;
+    top: 38%;
+    &.notclick {
+        width: 18vw;
+    }
+    img {
+        width: inherit;
+    }
+}
+.ReceiveType {
+    position: absolute;
+    left: 50%;
+    bottom: 15%;
+    width: 50vw;
+    transform: translate(-50%, -50%);
+    img {
+        width: inherit;
+    }
+}
+.LeftLight {
+    position: absolute;
+    left: -5%;
+    top: 17%;
+    width: 65vw;
+    z-index: -1;
+    filter: drop-shadow(0 0 5rem #ecad00);
+    img {
+        width: inherit;
+        animation-name: leftlight_anime;
+        animation-duration: 2.8s;
+        animation-iteration-count: infinite;
+        // animation-fill-mode: forwards;
+        animation-direction: alternate;
+        // animation-iteration-count: 2;
+        animation-timing-function: linear;
+    }
+}
+.RightLight {
+    right: -5%;
+    position: absolute;
+    top: 17%;
+    width: 68vw;
+    z-index: -1;
+    filter: drop-shadow(0 0 5rem #ecad00);
+    img {
+        width: inherit;
+        animation-name: rightlight_anime;
+        animation-duration: 3.5s;
+        animation-iteration-count: infinite;
+        // animation-fill-mode: forwards;
+        animation-direction: alternate;
+        // animation-iteration-count: 2;
+        animation-timing-function: linear;
+    }
+}
+.textStyle {
+    position: absolute;
+    left: 50%;
+    bottom: 18%;
+    width: 30vw;
+    transform: translateX(-50%);
+}
+.clickStyle {
+    position: absolute;
+    left: 72%;
+    bottom: 17%;
+    width: 8vw;
+    height: 8vw;
+    // background-color: red;
+    transform: translateX(-50%);
+}
+.QRcodeStyle {
+    position: absolute;
+    left: 50%;
+    top: 47%;
+    width: 25vw;
+    transform: translate(-50%, -50%);
+}
+.downloadDiv {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    width: 10vw;
+    height: 10vw;
+    // background-color: red;
+    transform: translate(-50%, 0%);
+}
+.backtoMain {
+    position: absolute;
+    left: 50%;
+    top: 26vh;
+    width: 20vw;
+    height: 10vw;
+    // background-color: red;
+    transform: translate(-50%, 0%);
+}
+.SendLetterPic {
+    position: absolute;
+    left: 0%;
+    top: 25%;
+    width: 100%;
+    // height: 80vh;
+    // background-color: red;
+    // transform: translate(-50%, 0%);
+    .LetterStyle {
+        width: 98%;
+        // padding: 2vw;
+    }
+    .HeadStyle {
+        top: 23%;
+        position: absolute;
+        left: 61%;
+        width: 13%;
+    }
+    .ReceiveStyle {
+        top: 23%;
+        position: absolute;
+        left: 76%;
+        width: 13%;
+    }
+    .ReceiveName {
+        top: 46%;
+        position: absolute;
+        left: 70%;
+        height: 5%;
+        width: 6vw;
+        color: $red;
+        // text-align: center;
+        white-space: nowrap;
+        font-size: 5%;
+        font-weight: bold;
+        text-size-adjust: auto;
+    }
+    .LineDiv {
+        top: 54%;
+        left: 61%;
+        position: absolute;
+        height: 19%;
+        width: 28%;
+    }
+}
+.SendIcon {
+    bottom: 5%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    img{
+        height: 8vh;
     }
 }

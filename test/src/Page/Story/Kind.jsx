@@ -1,55 +1,149 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "./style.module.scss";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
+import Draggable from "react-draggable";
 const Kind = ({ ShowNext, person, display = "block" }) => {
+  const dragHeightRef = useRef();
+  const envelopeRef = useRef();
+  const [mute, isMute] = useState(false);
+  const [pos, setPos] = useState([
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+    { x: 0, y: 0 },
+  ]);
   const navigate = useNavigate();
+  const StopDrag = (e, ui, name) => {
+    console.log(ui.y, ui.lastY);
+    if (
+      dragHeightRef.current.clientHeight - envelopeRef.current.clientHeight <=
+      ui.y + 15
+    ) {
+      ShowNext(name);
+    }
+  };
+
   return (
     <Container
       fluid
       className={styles.PDiv}
       style={{
         display: `${display}`,
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Story/PB5.png)`,
+        backgroundColor: "#F3C89D",
+        position: "relative",
       }}
     >
       <Row>
-        <Col className="d-flex justify-content-start mt-5"style={{marginBottom:"15%"}} >
+        <Col
+          className="d-flex justify-content-between mt-5"
+          style={{ marginBottom: "15%" }}
+        >
           <img
-            style={{ width: "35px", margin: "10px" }}
-            src={process.env.PUBLIC_URL + "/images/Story/P5.png"}
+            style={{
+              minHeight: "25px",
+              height: "5vw",
+              width: "auto",
+              paddingLeft: "3%",
+            }}
+            src={process.env.PUBLIC_URL + "/images/Story/backIcon.png"}
             alt="back"
-            onClick={()=>navigate("/?section=to-gender")}
+            onClick={() => navigate("/?section=Gender")}
           />
           <img
-            style={{ width: "35px", margin: "10px" }}
-            src={process.env.PUBLIC_URL + "/images/Story/P5-1.png"}
+            style={{
+              minHeight: "25px",
+              height: "5vw",
+              width: "auto",
+              paddingRight: "3%",
+            }}
+            src={
+              mute
+                ? process.env.PUBLIC_URL + "/images/mute.png"
+                : process.env.PUBLIC_URL + "/images/play.png"
+            }
+            alt="test"
+            onClick={() => isMute(!mute)}
+          />
+        </Col>
+      </Row>
+      <div className={styles.LeftCloud}>
+        <img
+          src={process.env.PUBLIC_URL + "/images/Story/Kind/leftcloud.png"}
+          alt="left"
+        />
+      </div>
+      <div className={styles.KindCenterPic}>
+        <img
+          src={process.env.PUBLIC_URL + "/images/Story/Kind/choice.png"}
+          alt="select"
+        />
+      </div>
+      <Row>
+        <Col className={styles.KindBottom + " justify-content-center"}>
+          <img
+            style={{ width: "20vw " }}
+            src={process.env.PUBLIC_URL + "/images/Story/Kind/remind.png"}
             alt="test"
           />
         </Col>
       </Row>
-      <Row>
-        <Col className="justify-content-center mt-3 mb-3">
-          <img
-            style={{ width: "25vw " }}
-            src={process.env.PUBLIC_URL + "/images/Story/P5-2.png"}
-            alt="test"
-          />
-        </Col>
-      </Row>
-      <Row>
-        <Col className="justify-content-center mt-5" style={{position:"relative"}}>
-          <img
-            style={{ width: "80vw", marginLeft: "15vw" }}
-            src={process.env.PUBLIC_URL + "/images/Story/P5-3.png"}
-            alt="select"
-          />
-           <div className={styles.p5BornDiv} onClick={()=>ShowNext("Born")}></div>
-           <div className={styles.p5GrowDiv} onClick={()=>ShowNext("Grow")}></div>
-           <div className={styles.p5StrongDiv} onClick={()=>ShowNext("Strong")}></div>
-        </Col>
-       
-      </Row>
+      {/* cloud */}
+      <div className={styles.RightCloud}>
+        <img
+          src={process.env.PUBLIC_URL + "/images/Story/Kind/rightcloud.png"}
+          alt="right"
+        />
+      </div>
+
+
+      <div className={styles.DragBorn} ref={dragHeightRef}>
+        <Draggable
+          position={pos[0]}
+          bounds="parent"
+          axis="y"
+          onStop={(e, ui) => StopDrag(e, ui, "Born")}
+        >
+          <div ref={envelopeRef}>
+            <img
+              style={{ width: "80% " }}
+              src={process.env.PUBLIC_URL + "/images/Story/Kind/envelope.png"}
+              alt="test"
+            />
+          </div>
+        </Draggable>
+      </div>
+      <div className={styles.DragGrow}>
+        <Draggable
+          position={pos[1]}
+          bounds="parent"
+          axis="y"
+          onStop={(e, ui) => StopDrag(e, ui, "Grow")}
+        >
+          <div>
+            <img
+              style={{ width: "80% " }}
+              src={process.env.PUBLIC_URL + "/images/Story/Kind/envelope.png"}
+              alt="test"
+            />
+          </div>
+        </Draggable>
+      </div>
+      <div className={styles.DragStrong}>
+        <Draggable
+          position={pos[2]}
+          bounds="parent"
+          axis="y"
+          onStop={(e, ui) => StopDrag(e, ui, "Strong")}
+        >
+          <div>
+            <img
+              style={{ width: "80% " }}
+              src={process.env.PUBLIC_URL + "/images/Story/Kind/envelope.png"}
+              alt="test"
+            />
+          </div>
+        </Draggable>
+      </div>
     </Container>
   );
 };

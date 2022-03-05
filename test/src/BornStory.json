@@ -1,8 +1,9 @@
 {
-  "Click":"/images/Story/Born/click.png",
-  "Start":"/images/Story/Born/start.png",
+  "Back":"/images/Story/Born/back.png",
+  "Person":"/images/Story/Born/person.png",
+  "Title":"/images/Story/Born/title.png",
   "Text":"/images/Story/Born/text.png",
-  "Music":"/sound/Born.mp3",
+  "Music":"https://www.youtube.com/watch?v=-Anuz28Nmf4",
   "Boy": [{
       "back": "/images/Story/Born/Boy/1.png",
       "show": false

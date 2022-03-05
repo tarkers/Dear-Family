@@ -3,7 +3,7 @@ import styles from "./style.module.scss";
 import { Container, Row, Col } from "react-bootstrap";
 import { useState } from "react";
 // import { useNavigate } from "react-router-dom";
-const Go = ({toGender}) => {
+const Go = ({display,toGender}) => {
   //   const navigate = useNavigate();
   // const ToStory = () => {
   //   navigate(`/story`);
@@ -12,14 +12,14 @@ const Go = ({toGender}) => {
     <Container
       fluid
       className={styles.containerDiv}
-      style={{ backgroundColor: "#e4acaa" }}
+      style={{ backgroundColor: "#F3C89D" ,display:`${display}`}}
     >
       <div style={{ position: "relative", height: "100%" }}>
         <Row>
           <div
             className={styles.P3IconUp}
             style={{
-              backgroundImage: `url(${process.env.PUBLIC_URL}/images/Loading/P3-1.png)`,
+              backgroundImage: `url(${process.env.PUBLIC_URL}/images/Intro/P3/sun.png)`,
             }}
           ></div>
           <Col
@@ -27,48 +27,24 @@ const Go = ({toGender}) => {
           >
             <img
               style={{ maxWidth: "90vw" }}
-              src={process.env.PUBLIC_URL + "/images/Loading/P3.png"}
+              src={process.env.PUBLIC_URL + "/images/Intro/P3/text.png"}
               alt="logo"
             />
-            <div className={styles.centerDiv}>
-              <Row>
-                <label className={styles.redFont}> 它在彼此間流動著</label>{" "}
-              </Row>
-              <Row>
-                <label className={styles.redFont}>孤獨卻自在地擁抱彼此</label>{" "}
-              </Row>
-              <Row>
-                <label className={styles.redFont}>當相片退去顏色過後</label>{" "}
-              </Row>
-              <Row>
-                <label className={styles.redFont}>你對我笑的樣子</label>{" "}
-              </Row>
-              <Row>
-                <label className={styles.redFont}>在記憶裡卻依然清晰</label>{" "}
-              </Row>
-              <Row>
-                {" "}
-                <label className={styles.redFont}>記著我們的記憶</label>{" "}
-              </Row>
-              <Row>
-                <label className={styles.redFont}>情感將延續—不會老去</label>{" "}
-              </Row>
-            </div>
           </Col>
         </Row>
         <div    className={styles.P3IconDown}>
           <img
-            src={process.env.PUBLIC_URL + "/images/Loading/P3-2.png"}
+            src={process.env.PUBLIC_URL + "/images/Intro/P3/cloud.png"}
             alt="loadPic"
             style={{ height: "8vh", float: "right", width: "auto" }}
           />
         </div>
         <div>
           <img
-            src={process.env.PUBLIC_URL + "/images/Loading/P3-3.png"}
+            src={process.env.PUBLIC_URL + "/images/Intro/P3/go.png"}
             alt="go"
             className={styles.P3Next}
-            onClick={()=>toGender("to-gender")}
+            onClick={()=>toGender("Gender")}
           />
         </div>
       </div>

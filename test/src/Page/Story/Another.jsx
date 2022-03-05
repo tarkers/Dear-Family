@@ -1,37 +1,101 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-const Another = ({ToSend,ShowNext,display="block"}) => {
+import styles from "./style.module.scss";
+const Another = ({ ToSend, other, ShowNext, display = "block" }) => {
   return (
-    <Container style={{display:`${display}`}}>
-    <Row>
-      <Col className="justify-content-center m-2" >
+    <Container
+      fluid
+      className={styles.PDiv}
+      style={{
+        display: `${display}`,
+        padding: "0",
+      }}
+    >
+      <div style={{ position: "relative" }}>
         <img
           style={{ width: "100%" }}
-          src={process.env.PUBLIC_URL+"/images/Story/other.png"}
-          alt="select"
+          src={process.env.PUBLIC_URL + "/images/Story/Another/back.png"}
+          alt="back"
         />
-      </Col>
-      <Col className="justify-content-center m-2">
-        <img
-          style={{ width: "100%" }}
-          src={process.env.PUBLIC_URL+"/images/Story/other.png"}
-          alt="select"
-        />
-      </Col>
-    </Row>
-    <Row>
-      <Col className="justify-content-center m-2">
-        <img
-          style={{ width: "45%" }}
-          src={process.env.PUBLIC_URL+"/images/Story/send.png"}
-          alt="select"
-          onClick={()=>ToSend()}
-        />
-      </Col>
-    </Row>
-  </Container>
-  )
-}
 
-export default Another
+        {/* First */}
+        <div
+          className={styles.AnotherFirst}
+          onClick={() => {
+            ShowNext(other.first);
+          }}
+        >
+          <img
+            style={{ height: "80%" }}
+            // className={styles.letterImg}
+            src={
+              process.env.PUBLIC_URL +
+              `/images/Story/Another/Pic/${other.first}.png`
+            }
+            alt="choose"
+          />
+          <div>
+            <img
+              style={{ height: "3vh", width: "auto", marginTop: "3vh" }}
+              // className={styles.letterImg}
+              src={
+                process.env.PUBLIC_URL +
+                `/images/Story/Another/Text/${other.first}.png`
+              }
+              alt="choose"
+            />
+          </div>
+        </div>
+        {/* Second */}
+        <div
+          className={styles.AnotherSecond}
+          onClick={() => {
+            ShowNext(other.second);
+          }}
+        >
+          <img
+            style={{ height: "80%" }}
+            // className={styles.letterImg}
+            src={
+              process.env.PUBLIC_URL +
+              `/images/Story/Another/Pic/${other.second}.png`
+            }
+            alt="choose"
+          />
+          <div>
+            <img
+              style={{ height: "3vh", width: "auto", marginTop: "3vh" }}
+              // className={styles.letterImg}
+              src={
+                process.env.PUBLIC_URL +
+                `/images/Story/Another/Text/${other.second}.png`
+              }
+              alt="choose"
+            />
+          </div>
+        </div>
+        {/* send */}
+        <div className={styles.AnotherSend} onClick={() => ToSend()}>
+          <img
+            style={{ height: "80%" }}
+            // className={styles.letterImg}
+            src={process.env.PUBLIC_URL + "/images/Story/Another/Pic/Send.png"}
+            alt="choose"
+          />
+          <div>
+            <img
+              style={{ height: "3vh", width: "auto", marginTop: "3vh" }}
+              src={
+                process.env.PUBLIC_URL + "/images/Story/Another/Text/Send.png"
+              }
+              alt="choose"
+            />
+          </div>
+        </div>
+      </div>
+    </Container>
+  );
+};
+
+export default Another;

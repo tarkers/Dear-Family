@@ -13,40 +13,49 @@ import {
 } from "react-scroll";
 const Main = () => {
   const [searchParams] = useSearchParams();
-  const [page, SetPage] = useState({
-    Loading: { show: "block" },
-    Envelope: { show: "none" },
-    Go: { show: "none" },
-    Gender: { show: "none" },
-  });
+  const InitPage=()=>{
+    if(searchParams.get("section")==="Gender"){
+      return {
+        Loading: { show: "block" },
+        Envelope: { show: "block" },
+        Go: { show: "block" },
+        Gender: { show: "block" },
+      }
+    }else{
+      return{
+        Loading: { show: "block" },
+        Envelope: { show: "none" },
+        Go: { show: "none" },
+        Gender: { show: "none" },
+      }
+    }
+  }
+  const [page, SetPage] = useState(InitPage);
   useEffect(() => {
-   scrollTo(searchParams.get("section"),1000)
+    scrollTo(searchParams.get("section"),1000)
   },[]);
   const scrollTo = (element,delay=300,smooth="easeOutQuad") => {
-    console.log(element);
+    SetPage({...page,[element]:{show:"block"}})
     scroller.scrollTo(element, {
       duration: 300,
       delay: delay,
       smooth:smooth,
     });
   };
-  Events.scrollEvent.register("end", function (to, element) {
-    console.log("end", to, element);
-  });
   
   return (
     <>
     {/* {scrollTo(searchParams.get("section"))} */}
       {/* <button onClick={()=>scrollTo(searchParams.get("section"))}>test</button> */}
-      <Loading scrollToEnvelope={scrollTo} />
-      <Element name="to-envelope" className="element">
-        <Envelope scrollToGo={scrollTo} />
+      <Loading display={page.Loading.show} scrollToEnvelope={scrollTo} />
+      <Element  name="Envelope" className="element">
+        <Envelope display={page.Envelope.show} scrollToGo={scrollTo} />
       </Element>
-      <Element name="to-go" className="element">
-        <Go toGender={scrollTo} />
+      <Element name="Go" className="element">
+        <Go display={page.Go.show} toGender={scrollTo} />
       </Element>
-      <Element name="to-gender" className="element">
-        <Gender toGender={scrollTo} />
+      <Element name="Gender" className="element">
+        <Gender  display={page.Gender.show}  toGender={scrollTo} />
       </Element>
     </>
   );

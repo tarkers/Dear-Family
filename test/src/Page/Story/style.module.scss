@@ -1,5 +1,37 @@
 @import "../style.module.scss";
 $anime: 0.8s linear 1s infinite alternate blink;
+@mixin assignAnimation($properties, $value) {
+    @each $property in $properties {
+        #{$property}: $value;
+    }
+}
+@keyframes CloudFloat {
+    from {
+        transform: translateY(0%);
+        opacity: 0.7;
+    }
+    to {
+        transform: translateY(15%);
+        opacity: 1;
+    }
+}
+.KindBottom {
+    position: absolute;
+    bottom: 10vh;
+}
+
+.BCIcon {
+    position: fixed;
+    margin-top: 3vh;
+    z-index: 2;
+    width: 100vw;
+    img {
+        height: 5vw;
+        width: auto;
+        margin: 5vw;
+        min-height: 25px;
+    }
+}
 .maxHeight {
     height: 100vh;
 }
@@ -17,16 +49,16 @@ $anime: 0.8s linear 1s infinite alternate blink;
     left: 0;
     top: -5em;
 }
-.teset {
-    background-image: url("../../../public/images/Story/story.png");
-    background-size: 100vw;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 0;
-    padding: 0;
-    padding-top: 120%; /* (img-height / img-width * container-width) */
-    /* (853 / 1280 * 100) */
-}
+// .teset {
+//     background-image: url("../../../public/images/Story/story.png");
+//     background-size: 100vw;
+//     background-repeat: no-repeat;
+//     width: 100%;
+//     height: 0;
+//     padding: 0;
+//     padding-top: 120%; /* (img-height / img-width * container-width) */
+//     /* (853 / 1280 * 100) */
+// }
 .p5BornDiv {
     position: absolute;
     // background-color: red;
@@ -43,13 +75,71 @@ $anime: 0.8s linear 1s infinite alternate blink;
     left: 17.5%;
     top: 55%;
 }
-.p5StrongDiv {
+.DragBorn {
+    height: 28vh;
+    width: 10vw;
     position: absolute;
-    // background-color: red;
-    width: 25vw;
-    height: 25vw;
-    left: 57.5%;
+    overflow: auto;
+    padding: 0;
+    top: 65%;
+    left: 26%;
+    transform: translate(-50%, -50%);
+    //background-color: rebeccapurple;
+}
+.DragGrow {
+    height: 28vh;
+    width: 10vw;
+    position: absolute;
+    overflow: auto;
+    padding: 0;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    //background-color: rebeccapurple;
+}
+.DragStrong {
+    height: 28vh;
+    width: 10vw;
+    position: absolute;
+    overflow: auto;
+    padding: 0;
+    top: 65%;
+    left: 74%;
+    transform: translate(-50%, -50%);
+    //background-color: rebeccapurple;
+}
+.KindCenterPic {
+    position: absolute;
+    top: 50%;
+    left: 48%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    img {
+        width: 80%;
+    }
+}
+
+.RightCloud {
+    position: absolute;
     top: 55%;
+    right: 0%;
+    transform: translate(-50%, 0%);
+    height: 40vh;
+    animation: 4s ease-in-out 0s infinite alternate CloudFloat;
+    img {
+        height: 80%;
+    }
+}
+.LeftCloud {
+    position: absolute;
+    top: 10%;
+    left: 0%;
+    transform: translate(-50%, 0%);
+    height: 25vh;
+    animation: 3s ease-in-out 0s infinite alternate CloudFloat;
+    img {
+        height: 80%;
+    }
 }
 .BackgroundText {
     position: absolute;
@@ -62,7 +152,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
 
 .NextTriangle {
     position: absolute;
-    width: 5vw;
+    width: 4vw;
     bottom: 3%;
     left: 50%;
     transform: translateX(-50%);
@@ -71,24 +161,17 @@ $anime: 0.8s linear 1s infinite alternate blink;
     // transform: translateX(-50%);
     // border-color: #ffffff transparent transparent transparent;
     &:active {
-        width: 3vw;
+        width: 5vw;
     }
 }
-@mixin assignAnimation($properties, $value) {
-    @each $property in $properties {
-        #{$property}: $value;
-    }
-}
+
 .BornItem_1 {
     position: absolute;
-    left: 50vw;
+    left: 51vw;
     top: 50%;
     transform: translate(-50%, 30%);
-    width: 50vw;
+    width: 55vw;
     animation: $anime;
-    &:active {
-        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
-    }
 }
 .BornItem_2 {
     position: absolute;
@@ -97,9 +180,6 @@ $anime: 0.8s linear 1s infinite alternate blink;
     transform: translate(-50%, -80%);
     width: 15vw;
     animation: $anime;
-    &:active {
-        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
-    }
 }
 .BornItem_3 {
     position: absolute;
@@ -108,9 +188,6 @@ $anime: 0.8s linear 1s infinite alternate blink;
     transform: translate(-50%, -57%);
     width: 45vw;
     animation: $anime;
-    &:active {
-        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
-    }
 }
 .BornItem_4 {
     position: absolute;
@@ -119,9 +196,6 @@ $anime: 0.8s linear 1s infinite alternate blink;
     width: 45vw;
     transform: translate(0%, -22%);
     animation: $anime;
-    &:active {
-        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
-    }
 }
 .BornItem_5 {
     position: absolute;
@@ -130,20 +204,14 @@ $anime: 0.8s linear 1s infinite alternate blink;
     width: 50vw;
     transform: translate(0%, 65%);
     animation: $anime;
-    &:active {
-        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
-    }
 }
 .BornItem_6 {
     position: absolute;
-    left: 40%;
+    left: 42%;
     top: 50%;
     transform: translateY(-40%);
     animation: $anime;
     width: 27vw;
-    &:active {
-        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
-    }
 }
 .BornItem_7 {
     position: absolute;
@@ -152,9 +220,6 @@ $anime: 0.8s linear 1s infinite alternate blink;
     width: 30vw;
     transform: translateY(-63%);
     animation: $anime;
-    &:active {
-        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
-    }
 }
 .BornItem_8 {
     position: absolute;
@@ -163,9 +228,6 @@ $anime: 0.8s linear 1s infinite alternate blink;
     width: 35vw;
     transform: translateY(-67%);
     animation: $anime;
-    &:active {
-        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
-    }
 }
 .BornItem_9 {
     position: absolute;
@@ -174,9 +236,6 @@ $anime: 0.8s linear 1s infinite alternate blink;
     width: 38vw;
     transform: translate(-45%, 28%);
     animation: $anime;
-    &:active {
-        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
-    }
 }
 .BornItem_10 {
     position: absolute;
@@ -185,17 +244,8 @@ $anime: 0.8s linear 1s infinite alternate blink;
     width: 46vw;
     transform: translate(-56%, 22%);
     animation: $anime;
-    &:active {
-        filter: drop-shadow(0 0 3rem rgb(216, 73, 17));
-    }
 }
-.BornText {
-    position: absolute;
-    left: 50%;
-    top: 58%;
-    transform: translate(-50%, -50%);
-    width: 20vw;
-}
+
 .BornClick {
     position: absolute;
     left: 50%;
@@ -203,4 +253,238 @@ $anime: 0.8s linear 1s infinite alternate blink;
     transform: translate(-50%, -50%);
     width: 25vw;
     animation: $anime;
+}
+
+
+.StrongItem_1 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 27vw;
+    transform: translate(-45%, -80%);
+    animation: $anime;
+}
+.StrongItem_2 {
+    position: absolute;
+    left: 30%;
+    top: 50%;
+    width: 55vw;
+    transform: translate(-49%, -46%);
+    animation: $anime;
+}
+.StrongItem_3 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 68vw;
+    transform: translate(-49%, -8%);
+    animation: $anime;
+}
+.StrongItem_4 {
+    position: absolute;
+    left: 72%;
+    top: 0;
+    width: 50vw;
+    transform: translate(-49%, -8%);
+    animation: $anime;
+}
+.StrongItem_5 {
+    position: absolute;
+    left: 72%;
+    top: 50%;
+    width: 80vw;
+    transform: translate(-60%, 37%);
+    animation: $anime;
+}
+
+.StrongItem_6 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 57vw;
+    transform: translate(-48%, 7%);
+    animation: $anime;
+}
+.StrongItem_7 {
+    position: absolute;
+    left: 55%;
+    top: 58%;
+    width: 12vw;
+    transform: translate(-52%, 70%);
+    animation: $anime;
+}
+.StrongItem_8 {
+    position: absolute;
+    left: 42%;
+    top: 50%;
+    width: 60vw;
+    transform: translate(-53%, 19%);
+    animation: $anime;
+}
+.StrongItem_9 {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 99%;
+    transform: translate(-63%, -16%);
+    animation: $anime;
+}
+.StrongItem_10 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 45vw;
+    transform: translate(-70%, -27%);
+    animation: $anime;
+}
+
+.AnotherFirst {
+    position: absolute;
+    left: 0%;
+    top: 50%;
+    height: 25%;
+    transform: translate(27%, -25%);
+}
+.AnotherSecond {
+    position: absolute;
+    left: 35%;
+    top: 50%;
+    height: 25%;
+    transform: translate(10%, -25%);
+}
+.AnotherSend {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 25%;
+    transform: translate(82%, -25%);
+}
+
+.GrowItem_1 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 67vw;
+    transform: translate(-14%, -37%);
+    animation: $anime;
+}
+.GrowItem_2 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 45vw;
+    transform: translate(38%, -14%);
+    animation: $anime;
+}
+.GrowItem_3 {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 40vw;
+    transform: translate(-21%, 19%);
+    animation: $anime;
+}
+.GrowItem_4 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 76vw;
+    transform: translate(-37%, -13%);
+    animation: $anime;
+}
+.GrowItem_5 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 56vw;
+    transform: translate(17%, -38%);
+    animation: $anime;
+}
+.GrowItem_6 {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 41vw;
+    transform: translate(-130%, -7%);
+    animation: $anime;
+}
+.GrowItem_7 {
+    position: absolute;
+    left: 00%;
+    top: 50%;
+    width: 78vw;
+    transform: translate(-16%, -79%);
+    animation: $anime;
+}
+.GrowItem_8 {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 73vw;
+    transform: translate(-17%, -5%);
+    animation: $anime;
+}
+.GrowItem_9 {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 63vw;
+    transform: translate(0%, -33%);
+    animation: $anime;
+}
+.GrowItem_10 {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 42vw;
+    transform: translate(-79%, -76%);
+    animation: $anime;
+}
+.PersonPic {
+    position: absolute;
+    right: 0;
+    top: 13%;
+    width: 70vw;
+    transform: translate(0vw, 0%);
+    animation: $anime;
+}
+.BornText {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(40%, -129%);
+    width: 23vw;
+}
+.StrongText {
+    position: absolute;
+    left: 0;
+    top: 39%;
+    transform: translate(57%, 6%);
+    width: 19vw;
+}
+.GrowText {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(44%, -114%);
+    width: 23vw;
+}
+@keyframes titleSilde {
+    from {
+        left: 0%;
+    }
+    to {
+        left: 52%;
+    }
+}
+.FirstTitle {
+    // animation-delay: 1s;
+    position: absolute;
+    animation-fill-mode: forwards;
+    animation-name: titleSilde;
+    animation-duration: 4s;
+    // animation-iteration-count: 2;
+    animation-timing-function: ease;
+    top: 13%;
+    width: 28vw;
 }

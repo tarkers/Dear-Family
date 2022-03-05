@@ -1,26 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-touch-drag-slider";
 // import { Pagination } from "@mui/material";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "./style.module.scss";
-import BornLetter from "../../BornLetter.json";
-import { useParams, useSearchParams } from "react-router-dom";
+import Born from "../../BornLetter.json";
+import Strong from "../../StrongLetter.json";
+import Grow from "../../GrowLetter.json";
 
-const Shape = ({ ShowNext, display = "block" }) => {
-  const { kind } = useParams();
-  const [searchParams, _] = useSearchParams();
+
+
+const Shape = ({ ShowNext,param, display = "block" }) => {
+  // const { kind } = useParams();
+  // let Data = useRef(Born);
+
+
+
   const [index, setIndex] = useState(0);
-  const person =searchParams.get("person")
-  const changeItem = (e, num) => {
-    setIndex(num - 1);
+  const InitData = () => {
+    switch (param.kind) {
+      case "Born":
+        return Born;
+      case "Grow":
+        return Grow;
+      case "Strong":
+        return Strong;
+      default:
+        return Born;
+    }
   };
+  const data = InitData();
+
+  // useEffect(() => {
+
+  // }, []);
   return (
-    <Container style={{ display: `${display}`, overflowX: "hidden" }} fluid>
+    <Container
+      style={{
+        display: `${display}`,
+        overflowX: "hidden",
+        backgroundColor: "rgb(249, 243, 238)",
+        height:"100vh"
+      }}
+      fluid
+    >
       <Row>
         <Col style={{ padding: 0 }}>
           <img
-            src={process.env.PUBLIC_URL + "/images/Letter/Kind/cloud.png"}
-            alt="bar"
+            src={process.env.PUBLIC_URL + data.Cloud}
+            alt="cloud"
             style={{ height: "5vh" }}
           />
         </Col>
@@ -37,16 +64,17 @@ const Shape = ({ ShowNext, display = "block" }) => {
       <Row>
         <Col style={{ marginTop: "5vh", width: "100%" }}>
           <div className="d-flex flex-row" style={{ overflow: "auto" }}>
-            {BornLetter[person].map((image, i) => (
+            {data[param.person].map((image, i) => (
               <Col
                 key={i}
                 className="justify-content-center d-flex flex-column bd-highlight m-3"
               >
                 <div className="mb-3">
                   <img
-                    src={process.env.PUBLIC_URL + image}
+                    src={process.env.PUBLIC_URL + data.Title[i]}
                     alt="title"
-                    style={{ height: "4vh", width: "auto" }}
+                    style={{ height: "6vh", width: "auto" }}
+                    // style={{ height: "6vh", width: "auto" }}
                     onClick={() => console.log(image)}
                   />
                 </div>

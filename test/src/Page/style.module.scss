@@ -9,8 +9,8 @@ $pink: #e4acaa;
 
 
 @keyframes blink {
-    from {opacity: 0.6;}
-    to {opacity: 1;}
+    from {opacity: 0.7; filter: drop-shadow(0 0 3rem rgb(156, 72, 61))}
+    to {opacity: 1; filter: drop-shadow(0 0 5rem rgb(255, 255, 255))}
   }
 
 @keyframes enlarge {
@@ -49,4 +49,18 @@ $pink: #e4acaa;
     justify-content: center; /* align horizontal */
     align-items: center;
 
+}
+.loadingDiv {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    color: rgb(246, 246, 246);
+    background-color: rgba(0, 0, 0, 0.239);
+    .LoadingBar {
+        // position: relative;
+        margin-top: 70%;
+        // transform: translate(-50%, -50%);
+    }
 }

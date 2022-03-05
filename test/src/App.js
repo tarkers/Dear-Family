@@ -17,7 +17,7 @@ function App() {
           <Route path="story" element={<t.Story />} >
             <Route path=":person" element={<t.Story />} />
           </Route>
-          <Route path="letter/:kind" element={<t.Letter />}/>
+          <Route path="letter" element={<t.Letter />}/>
 
           <Route path="download/:id" element={<t.Download />} />
         </Routes>

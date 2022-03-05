@@ -1,0 +1,223 @@
+{
+  "Back":"/images/Story/Strong/back.png",
+  "Person":"/images/Story/Strong/person.png",
+  "Title":"/images/Story/Strong/title.png",
+  "Text":"/images/Story/Strong/text.png",
+  "Music":"https://www.youtube.com/watch?v=vRL3cRZ0Or4",
+  "Boy": [{
+      "back": "/images/Story/Strong/Boy/1.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Boy/2.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Boy/3.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Boy/4.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Boy/5.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Boy/6.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Boy/7.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Boy/8.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Boy/9.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Boy/10.png",
+      "show": false
+    }
+  ],
+  "Girl": [{
+      "back": "/images/Story/Strong/Girl/1.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Girl/2.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Girl/3.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Girl/4.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Girl/5.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Girl/6.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Girl/7.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Girl/8.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Girl/9.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Girl/10.png",
+      "show": false
+    }
+  ],
+  "Item": [{
+      "back": "/images/Story/Strong/Item/1.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Item/2.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Item/3.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Item/4.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Item/5.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Item/6.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Item/7.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Item/8.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Item/9.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Item/10.png",
+      "show": false
+    }
+  ],
+  "Intro": [{
+      "back": "/images/Story/Strong/Background/1.png",
+      "text": "/images/Story/Strong/Text/1.png",
+      "show": true
+    },
+    {
+      "back": "/images/Story/Strong/Background/2.png",
+      "text": "/images/Story/Strong/Text/2.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Background/3.png",
+      "text": "/images/Story/Strong/Text/3.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Background/4.png",
+      "text": "/images/Story/Strong/Text/4.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Background/5.png",
+      "text": "/images/Story/Strong/Text/5.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Background/6.png",
+      "text": "/images/Story/Strong/Text/6.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Background/7.png",
+      "text": "/images/Story/Strong/Text/7.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Background/8.png",
+      "text": "/images/Story/Strong/Text/8.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Background/9.png",
+      "text": "/images/Story/Strong/Text/9.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/Background/10.png",
+      "text": "/images/Story/Strong/Text/10.png",
+      "show": false
+    }
+
+  ],
+  "BackStory": [{
+      "back": "/images/Story/Strong/BackStory/1.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/BackStory/2.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/BackStory/3.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/BackStory/4.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/BackStory/5.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/BackStory/6.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/BackStory/7.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/BackStory/8.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/BackStory/9.png",
+      "show": false
+    },
+    {
+      "back": "/images/Story/Strong/BackStory/10.png",
+      "show": false
+    }
+  ]
+}
