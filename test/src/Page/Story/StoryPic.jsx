@@ -153,7 +153,7 @@ const StoryPic = ({ ShowNext, ToBack, kind, display = "block" }) => {
                 className={styles.NextTriangle}
                 alt="next"
                 src={process.env.PUBLIC_URL + "/images/Story/next.png"}
-                onLoad={()=>console.log("picload!!!")}
+                // onLoad={()=>console.log("picload!!!")}
                 onClick={() => {
                   setIndex(
                     index.map((_, ti) => (ti <= (i + 1) * 3 ? "block" : "none"))
@@ -182,8 +182,8 @@ const StoryPic = ({ ShowNext, ToBack, kind, display = "block" }) => {
         <ReactPlayer
           ref={soundRef}
           url={data.Music}
-          width="0"
-          height="0"
+          width="100px"
+          height="100px"
           loop={sound.loop}
           playing={sound.playing}
           

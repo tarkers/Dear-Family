@@ -11,28 +11,27 @@ const Main = () => {
   const { person } = useParams();
   const navigate = useNavigate();
   const [page, SetPage] = useState({
-    Kind: { show: "block", kind: "" },
-    Born: { show: "none" },
-    Grow: { show: "none" },
-    Strong: { show: "none" },
+    Kind: { show: "block", kind: "Born" },
+    StoryPic: { show: "none" },
     Another: { show: "none", other: { first: "Born", second: "Grow" } },
   });
 
   const ToKind = () => {
     SetPage({
       Kind: { show: "block", kind: "" },
-      Born: { show: "none" },
-      Grow: { show: "none" },
-      Strong: { show: "none" },
-      Another: { ...page.Another, other: { first: "Born", second: "Grow" }},
+      StoryPic: { ...page.StoryPic, show: "none" },
+      Another: { ...page.Another, show: "none" },
     });
   };
   const ToStoryPic = (kind) => {
     let tmp = { first: "", second: "" };
+    console.log(kind);
+
     switch (kind) {
       case "Born":
         tmp = { first: "Grow", second: "Strong" };
         break;
+
       case "Grow":
         tmp = { first: "Born", second: "Strong" };
         break;
@@ -46,16 +45,14 @@ const Main = () => {
     SetPage({
       ...page,
       Kind: { show: "none", kind: kind },
-      [kind]: { show: "block" },
+      StoryPic: { show: "block" },
       Another: { show: "none", other: tmp },
     });
   };
   const ToAnother = () => {
     SetPage({
       ...page,
-      Born: { show: "none" },
-      Grow: { show: "none" },
-      Strong: { show: "none" },
+      StoryPic: { show: "none" },
       Another: { ...page.Another, show: "block" },
     });
   };
@@ -69,30 +66,11 @@ const Main = () => {
         ShowNext={ToStoryPic}
         person={person ?? "Girl"}
       />
-      {/* <StoryPic
+      <StoryPic
         display={page.StoryPic.show}
         ToBack={ToKind}
         ShowNext={ToAnother}
         kind={page.Kind.kind}
-      /> */}
-      
-      <StoryPic
-        display={page.Born.show}
-        ToBack={ToKind}
-        ShowNext={ToAnother}
-        kind={"Born"}
-      />
-      <StoryPic
-        display={page.Grow.show}
-        ToBack={ToKind}
-        ShowNext={ToAnother}
-        kind={"Grow"}
-      />
-      <StoryPic
-        display={page.Strong.show}
-        ToBack={ToKind}
-        ShowNext={ToAnother}
-        kind={"Strong"}
       />
       <Another
         other={page.Another.other}
