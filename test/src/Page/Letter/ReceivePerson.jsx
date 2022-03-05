@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import {  Container } from "react-bootstrap";
 import Input from "@mui/material/Input";
 import styles from "./style.module.scss";
 import classNames from "classnames";
-import { style } from "@mui/system";
 const ReceivePerson = ({ ShowNext, display = "block" }) => {
   // {ShowNext}
   const [personData, setPersonData] = useState({ name: "", person: "mom" });

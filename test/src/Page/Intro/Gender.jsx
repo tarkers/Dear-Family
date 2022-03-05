@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
-const Gender = ({ ShowNext, display = "block" }) => {
+const Gender = ({ display = "block" }) => {
   const navigate = useNavigate();
   const [mute, isMute] = useState(false);
   const personList = [

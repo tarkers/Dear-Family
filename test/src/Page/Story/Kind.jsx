@@ -47,7 +47,7 @@ const Kind = ({ ShowNext, person, display = "block" }) => {
               width: "auto",
               paddingLeft: "3%",
             }}
-            src={process.env.PUBLIC_URL + "/images/Story/backIcon.png"}
+            src={process.env.PUBLIC_URL + "/images/backIcon.png"}
             alt="back"
             onClick={() => navigate("/?section=Gender")}
           />

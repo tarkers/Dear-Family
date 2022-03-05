@@ -1,8 +1,6 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { createFileName } from "use-react-screenshot";
-import { IconButton } from "@mui/material";
-import DownloadForOfflineIcon from "@mui/icons-material/DownloadForOffline";
 const axios = require("axios");
 
 const Main = () => {
@@ -36,15 +34,6 @@ const Main = () => {
   return (
     <div>
       {SetLink()}
-    {/* <button onClick={()=>navigate(`/`)}>back to main</button>
-      <IconButton
-        color="primary"
-        aria-label="doenload picture"
-        component="span"
-        onClick={() => SetLink()}
-      >
-        <DownloadForOfflineIcon sx={{ fontSize: 60 }} />
-      </IconButton> */}
     </div>
   );
 };

@@ -1,13 +1,7 @@
 import React from "react";
 import styles from "./style.module.scss";
 import { Container, Row, Col } from "react-bootstrap";
-import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 const Go = ({display,toGender}) => {
-  //   const navigate = useNavigate();
-  // const ToStory = () => {
-  //   navigate(`/story`);
-  // };
   return (
     <Container
       fluid

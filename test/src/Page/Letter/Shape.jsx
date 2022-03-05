@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import Slider from "react-touch-drag-slider";
-// import { Pagination } from "@mui/material";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "./style.module.scss";
 import Born from "../../BornLetter.json";
@@ -10,12 +8,6 @@ import Grow from "../../GrowLetter.json";
 
 
 const Shape = ({ ShowNext,param, display = "block" }) => {
-  // const { kind } = useParams();
-  // let Data = useRef(Born);
-
-
-
-  const [index, setIndex] = useState(0);
   const InitData = () => {
     switch (param.kind) {
       case "Born":

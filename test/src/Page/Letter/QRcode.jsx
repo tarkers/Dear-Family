@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import React from "react";
+import { Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import QRCode from "qrcode.react";
 import styles from "./style.module.scss";

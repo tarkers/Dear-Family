@@ -9,9 +9,10 @@ import ReactPlayer from "react-player";
 import Born from "../../BornStory.json";
 import Grow from "../../GrowStory.json";
 import Strong from "../../StrongStory.json";
+
 import { Element, scroller } from "react-scroll";
 import classNames from "classnames";
-const StoryPic = ({ ShowNext, ToBack, kind, display = "block" }) => {
+const StoryPic = ({ ShowNext,test, ToBack, kind, display = "block" }) => {
   const soundRef = useRef();
   const { person } = useParams();
   const [move, canMove] = useState(false);
@@ -37,6 +38,7 @@ const StoryPic = ({ ShowNext, ToBack, kind, display = "block" }) => {
     return tmp;
   };
   const ClearData = () => {
+    soundRef.current.pause();
     canMove(false);
     setSound({
       url: null,
@@ -131,7 +133,7 @@ const StoryPic = ({ ShowNext, ToBack, kind, display = "block" }) => {
               }}
             >
               <img
-                loading="lazy"
+                // loading="lazy"
                 className={styles[`${kind}Item_${i + 1}`]}
                 src={process.env.PUBLIC_URL + data.Item[i].back}
                 alt="select"
@@ -178,20 +180,29 @@ const StoryPic = ({ ShowNext, ToBack, kind, display = "block" }) => {
       fluid
       style={{ display: `${display}`, height: "100vh", padding: "0" }}
     >
+      <div>
+       {display === "block" && <audio src={test} 
+        ref={soundRef}
+        onCanPlay={()=>{console.log("canplay");canMove(true);}}
+        muted={sound.muted}
+        // controls 
+        loop={true}
+        autoPlay />} 
+      </div>
       {display === "block" && (
         <ReactPlayer
-          ref={soundRef}
+          // ref={soundRef}
           url={data.Music}
-          width="100px"
-          height="100px"
+          width="50px"
+          height="50px"
           loop={sound.loop}
           playing={sound.playing}
-          
-          muted={sound.muted ? true : false}
-          onReady={() => setSound({ ...sound, playing: true })}
-          onStart={() => {
-            canMove(true);
-          }}
+          // muted={sound.muted ? true : false}
+          muted={true}
+          // onReady={() => setSound({ ...sound, playing: true })}
+          // onStart={() => {
+          //   canMove(true);
+          // }}
         />
       )}
       {/* LeftIcon */}
@@ -231,7 +242,7 @@ const StoryPic = ({ ShowNext, ToBack, kind, display = "block" }) => {
             // effect="blur"
             src={process.env.PUBLIC_URL + data.Person}
             alt="select"
-            beforeLoad={()=>console.log("beforeload")}
+            beforeLoad={() => console.log("beforeload")}
             // afterLoad={()=>console.log("afterload")}
             onLoad={() => {
               // canMove(move + 1);
@@ -261,7 +272,7 @@ const StoryPic = ({ ShowNext, ToBack, kind, display = "block" }) => {
             src={process.env.PUBLIC_URL + data.Text}
             alt="select"
           />
-          {!move  && (
+          {!move && (
             <div className={styles.loadingDiv}>
               <CircularProgress
                 className={styles.LoadingBar}

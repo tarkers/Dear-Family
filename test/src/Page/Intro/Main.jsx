@@ -4,11 +4,8 @@ import Envelope from "./Envelope";
 import Go from "./Go";
 import Gender from "./Gender";
 import { useSearchParams } from 'react-router-dom';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import {
   Element,
-  Events,
-  animateScroll as scroll,
   scroller,
 } from "react-scroll";
 const Main = () => {
@@ -45,8 +42,6 @@ const Main = () => {
   
   return (
     <>
-    {/* {scrollTo(searchParams.get("section"))} */}
-      {/* <button onClick={()=>scrollTo(searchParams.get("section"))}>test</button> */}
       <Loading display={page.Loading.show} scrollToEnvelope={scrollTo} />
       <Element  name="Envelope" className="element">
         <Envelope display={page.Envelope.show} scrollToGo={scrollTo} />

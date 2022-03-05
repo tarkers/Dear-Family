@@ -2,11 +2,13 @@ import React, { useState, useRef } from "react";
 import Another from "./Another";
 import Kind from "./Kind";
 import { useParams, useNavigate } from "react-router-dom";
-
+import Bornaudio from "../../sound/Born.mp3";
+import Strongaudio from "../../sound/Strong.mp3";
+import Growaudio from "../../sound/Grow.mp3";
 import StoryPic from "./StoryPic";
 const Main = () => {
   // let data=Born
-  const [mute, setMute] = useState(true);
+  const [audio, setAudio] = useState(Bornaudio);
   const [data, setData] = useState(null);
   const { person } = useParams();
   const navigate = useNavigate();
@@ -25,18 +27,21 @@ const Main = () => {
   };
   const ToStoryPic = (kind) => {
     let tmp = { first: "", second: "" };
-    console.log(kind);
+   
 
     switch (kind) {
       case "Born":
+        setAudio(Bornaudio)
         tmp = { first: "Grow", second: "Strong" };
         break;
 
       case "Grow":
+        setAudio(Growaudio)
         tmp = { first: "Born", second: "Strong" };
         break;
 
       case "Strong":
+        setAudio(Strongaudio)
         tmp = { first: "Born", second: "Grow" };
         break;
       default:
@@ -71,6 +76,7 @@ const Main = () => {
         ToBack={ToKind}
         ShowNext={ToAnother}
         kind={page.Kind.kind}
+        test={audio}
       />
       <Another
         other={page.Another.other}

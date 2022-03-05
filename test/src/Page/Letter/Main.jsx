@@ -4,9 +4,8 @@ import ReceivePerson from "./ReceivePerson";
 import Send from "./Send";
 import QRcode from "./QRcode";
 import Intro from "./Intro";
-import { Container } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
-import { useParams, useSearchParams } from "react-router-dom";
+import {  useSearchParams } from "react-router-dom";
 const Main = () => {
   const [searchParams, _] = useSearchParams();
   const person = searchParams.get("person");
