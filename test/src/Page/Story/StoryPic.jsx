@@ -1,19 +1,20 @@
-import React, { useState } from "react";
-import { Container, Row,  } from "react-bootstrap";
+import React, { useState, useRef, useEffect } from "react";
+import { Container, Row } from "react-bootstrap";
 import styles from "./style.module.scss";
 import CircularProgress from "@mui/material/CircularProgress";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
-import Born from "../../BornStory.json";
-import Grow from "../../GrowStory.json";
-import Strong from "../../StrongStory.json";
-
+// import Born from "../../BornStory.json";
+// import Grow from "../../GrowStory.json";
+// import Strong from "../../StrongStory.json";
+import { setData } from "../../sound";
 import { Element, scroller } from "react-scroll";
 import classNames from "classnames";
-const StoryPic = ({ ShowNext,test, ToBack, kind, display = "block" }) => {
-  // const soundRef = useRef();
+const StoryPic = ({ ShowNext, test, ToBack, kind, display = "block" }) => {
+  const soundRef = useRef();
+  const btnRef = useRef();
   const { person } = useParams();
   const [move, canMove] = useState(false);
   const [sound, setSound] = useState({
@@ -22,13 +23,14 @@ const StoryPic = ({ ShowNext,test, ToBack, kind, display = "block" }) => {
     controls: false,
     light: false,
     volume: 0.8,
-    muted: false,
+    muted: true,
     played: 0,
     loaded: 0,
     duration: 0,
     playbackRate: 1.0,
     loop: true,
   });
+
   const initState = () => {
     let tmp = [];
     for (let i = 0; i < 30; ++i) {
@@ -38,12 +40,12 @@ const StoryPic = ({ ShowNext,test, ToBack, kind, display = "block" }) => {
     return tmp;
   };
   const ClearData = () => {
-    // soundRef.current.pause();
+    soundRef.current.pause();
     // soundRef.current.currentTime = 0;
     canMove(false);
     setSound({
       url: null,
-      playing: true,
+      playing: false,
       controls: false,
       light: false,
       volume: 0.8,
@@ -56,20 +58,20 @@ const StoryPic = ({ ShowNext,test, ToBack, kind, display = "block" }) => {
     });
     setIndex(initState());
   };
-  const InitData = () => {
-    switch (kind) {
-      case "Born":
-        return Born;
-      case "Grow":
-        return Grow;
-      case "Strong":
-        return Strong;
-      default:
-        return Born;
-    }
-  };
+  // const InitData = () => {
+  //   switch (kind) {
+  //     case "Born":
+  //       return Born;
+  //     case "Grow":
+  //       return Grow;
+  //     case "Strong":
+  //       return Strong;
+  //     default:
+  //       return Born;
+  //   }
+  // };
   const [index, setIndex] = useState(initState);
-  const data = InitData();
+  const data = setData(kind).json
 
   const scrollTo = (element, delay = 200, smooth = "easeOutQuad") => {
     scroller.scrollTo(element, {
@@ -78,6 +80,20 @@ const StoryPic = ({ ShowNext,test, ToBack, kind, display = "block" }) => {
       smooth: smooth,
     });
   };
+  useEffect(() => {
+    setTimeout(() => {
+      // console.log("timeout!!",kind);
+      // console.log( document.getElementsByClassName("ytp-large-play-button ytp-button"))
+      if(display==="block"){
+        btnRef.current.click();
+      }   
+      // setSound({
+      //   ...sound,
+      //   muted:false
+      // })
+    }, 5500);
+  }, [display]);
+
   const AddBackground = (back, i) => {
     let hideBack = data.BackStory[i].back;
     if (person === "Girl" && "gback" in data.BackStory[i]) {
@@ -143,7 +159,7 @@ const StoryPic = ({ ShowNext,test, ToBack, kind, display = "block" }) => {
           </Row>
         </Element>
         {/* HidePage */}
-        {console.log(move)}
+
         <Element name={`hideBack_${i}`} className="element">
           <Row style={{ display: `${index[i * 3 + 2]}` }}>
             <div style={{ position: "relative", padding: "0" }}>
@@ -181,32 +197,38 @@ const StoryPic = ({ ShowNext,test, ToBack, kind, display = "block" }) => {
       fluid
       style={{ display: `${display}`, height: "100vh", padding: "0" }}
     >
-      {/* <div>
-       {display === "block" && <audio src={test} 
-        ref={soundRef}
-        onCanPlay={()=>{console.log("canplay");canMove(true);}}
-        onLoadStart={()=>{canMove(false)}}
-        muted={sound.muted}
-        // controls 
-        loop={true}
-        autoPlay />} 
-      </div> */}
-      {display === "block" && (
-        <ReactPlayer
-          // ref={soundRef}
-          url={data.Music}
-          width="0px"
-          height="0px"
-          loop={sound.loop}
-          playing={sound.playing}
-          muted={sound.muted ? true : false}
-          // muted={true}
-          onReady={() => setSound({ ...sound, playing: true })}
-          onStart={() => {
+      <button
+        ref={btnRef}
+        onClick={() => {
+          setSound({
+            ...sound,
+            muted: false,
+          });
+          soundRef.current.play();
+          console.log("play");
+        }}
+        style={{display:"none"}}
+      >
+      </button>
+      <div>
+        <audio
+          src={setData(kind).music}
+          ref={soundRef}
+          onCanPlay={() => {
+            console.log("canplay");
             canMove(true);
+            // btnRef.current.click();
           }}
+          onLoadStart={() => {
+            canMove(false);
+          }}
+          muted={sound.muted}
+          // controls
+          loop={true}
+          // autoPlay
         />
-      )}
+      </div>
+
       {/* LeftIcon */}
       <div className={styles.BCIcon + " d-flex justify-content-between"}>
         <img
