@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Dear-Family/static/css/main.e47ee418.css",
-    "main.js": "/Dear-Family/static/js/main.00768eb9.js",
+    "main.css": "/Dear-Family/static/css/main.74a432c7.css",
+    "main.js": "/Dear-Family/static/js/main.7b86e408.js",
     "static/js/787.0c3f432a.chunk.js": "/Dear-Family/static/js/787.0c3f432a.chunk.js",
     "static/media/Grow.mp3": "/Dear-Family/static/media/Grow.a9ca2888eda9ec432d7f.mp3",
     "static/media/Strong.mp3": "/Dear-Family/static/media/Strong.5af5ca98f282e0028a63.mp3",
     "static/media/Born.mp3": "/Dear-Family/static/media/Born.30381948abe397b67a20.mp3",
-    "static/media/Intro.mp3": "/Dear-Family/static/media/Intro.3de045f99306cfc0f245.mp3",
+    "static/media/Intro.mp3": "/Dear-Family/static/media/Intro.095b8fb3ab7304c978f1.mp3",
     "static/media/Click.mp3": "/Dear-Family/static/media/Click.a21c317b9cbce9d254ff.mp3",
     "index.html": "/Dear-Family/index.html",
-    "main.e47ee418.css.map": "/Dear-Family/static/css/main.e47ee418.css.map",
-    "main.00768eb9.js.map": "/Dear-Family/static/js/main.00768eb9.js.map",
+    "main.74a432c7.css.map": "/Dear-Family/static/css/main.74a432c7.css.map",
+    "main.7b86e408.js.map": "/Dear-Family/static/js/main.7b86e408.js.map",
     "787.0c3f432a.chunk.js.map": "/Dear-Family/static/js/787.0c3f432a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e47ee418.css",
-    "static/js/main.00768eb9.js"
+    "static/css/main.74a432c7.css",
+    "static/js/main.7b86e408.js"
   ]
 }
