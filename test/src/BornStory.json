@@ -1,6 +1,7 @@
 {
   "Back":"/images/Story/Born/back.png",
-  "Person":"/images/Story/Born/person.png",
+  "BoyPerson":"/images/Story/Born/person.png",
+  "GirlPerson":"/images/Story/Born/person-1.png",
   "Title":"/images/Story/Born/title.png",
   "Text":"/images/Story/Born/text.png",
   "Music":"https://www.youtube.com/watch?v=-Anuz28Nmf4",

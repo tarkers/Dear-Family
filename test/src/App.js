@@ -15,7 +15,7 @@ function App() {
           </Route>
           <Route path="*" element={<t.Intro />} />
           <Route path="story" element={<t.Story />} >
-            <Route path=":person" element={<t.Story />} />
+            {/* <Route path=":person" element={<t.Story />} /> */}
           </Route>
           <Route path="letter" element={<t.Letter />}/>
 

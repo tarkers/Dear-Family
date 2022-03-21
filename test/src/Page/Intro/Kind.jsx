@@ -1,13 +1,13 @@
 import React, { useRef, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Modal } from "react-bootstrap";
 import styles from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
 import Draggable from "react-draggable";
-const Kind = ({ ShowNext, person, display = "block" }) => {
+const Kind = ({ ToStory, display = "block" }) => {
   const dragHeightRef = useRef();
+  const [modal, setModal] = useState(false);
   const envelopeRef = useRef();
-  const [mute, isMute] = useState(false);
-  const [pos, setPos] = useState([
+  const [pos, _] = useState([
     { x: 0, y: 0 },
     { x: 0, y: 0 },
     { x: 0, y: 0 },
@@ -19,7 +19,9 @@ const Kind = ({ ShowNext, person, display = "block" }) => {
       dragHeightRef.current.clientHeight - envelopeRef.current.clientHeight <=
       ui.y + 15
     ) {
-      ShowNext(name);
+      ToStory(name);
+    } else {
+      setModal(true);
     }
   };
 
@@ -33,39 +35,6 @@ const Kind = ({ ShowNext, person, display = "block" }) => {
         position: "relative",
       }}
     >
-      {/* <Row>
-        <Col
-          className="d-flex justify-content-between mt-5"
-          style={{ marginBottom: "15%" }}
-        >
-          <img
-            style={{
-              minHeight: "25px",
-              height: "5vw",
-              width: "auto",
-              paddingLeft: "3%",
-            }}
-            src={process.env.PUBLIC_URL + "/images/backIcon.png"}
-            alt="back"
-            onClick={() => navigate("/?section=Gender")}
-          />
-          <img
-            style={{
-              minHeight: "25px",
-              height: "5vw",
-              width: "auto",
-              paddingRight: "3%",
-            }}
-            src={
-              mute
-                ? process.env.PUBLIC_URL + "/images/mute.png"
-                : process.env.PUBLIC_URL + "/images/play.png"
-            }
-            alt="test"
-            onClick={() => isMute(!mute)}
-          />
-        </Col>
-      </Row> */}
       <div className={styles.LeftCloud}>
         <img
           src={process.env.PUBLIC_URL + "/images/Story/Kind/leftcloud.png"}
@@ -81,7 +50,7 @@ const Kind = ({ ShowNext, person, display = "block" }) => {
       <Row>
         <Col className={styles.KindBottom + " justify-content-center"}>
           <img
-            style={{ width: "20vw " }}
+            style={{ width: "25vw " }}
             src={process.env.PUBLIC_URL + "/images/Story/Kind/remind.png"}
             alt="test"
           />
@@ -94,7 +63,6 @@ const Kind = ({ ShowNext, person, display = "block" }) => {
           alt="right"
         />
       </div>
-
 
       <div className={styles.DragBorn} ref={dragHeightRef}>
         <Draggable
@@ -144,6 +112,23 @@ const Kind = ({ ShowNext, person, display = "block" }) => {
           </div>
         </Draggable>
       </div>
+      <Modal
+        size="sm"
+        className={styles.ModalStyle}
+        centered={true}
+        show={modal}
+        onHide={() => setModal(false)}
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
+        {/* <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-sm">
+            Small Modal
+          </Modal.Title>
+        </Modal.Header> */}
+        <Modal.Body closeButton style={{ textAlign: "center",fontSize:"25px",fontWeight:"bold" }}>
+          請下拉至最底部
+        </Modal.Body>
+      </Modal>
     </Container>
   );
 };

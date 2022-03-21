@@ -1,6 +1,8 @@
 import Born from "./sound/Born.mp3"
 import Grow from "./sound/Grow.mp3"
 import Strong from "./sound/Strong.mp3"
+import Intro from "./sound/Intro.mp3"
+import Click from "./sound/Click.mp3"
 import Bornjson from "./BornStory.json";
 import Growjson from "./GrowStory.json";
 import Strongjson from "./StrongStory.json";
@@ -12,8 +14,10 @@ const setData = (kind) => {
             return {music:Grow,json:Growjson}
         case "Strong":
             return {music:Strong,json:Strongjson}
+        case "Click":
+            return  {music:Click}
         default:
-            return{music:Born,json:Bornjson}
+            return{music:Intro,json:null}
     }
 }
 export { setData }

@@ -202,55 +202,122 @@
 .SendLetterPic {
     position: absolute;
     left: 0%;
-    top: 25%;
-    width: 100%;
+    top: 0%;
+    width: fit-content;
+    .PicStyle {
+        position: absolute;
+        width: auto;
+        top: 25%;
+        left: 50%;
+        /* height: fit-content; */
+        transform: translateX(-50%);
+    }
     .LetterStyle {
-        width: 98%;
-        // padding: 2vw;
+        // position: absolute;
+        // left: 50%;
+        // top: 25%;
+        // width: 98%;
+        // padding: 2px;
+        // transform: translateX(-50%);
     }
     .HeadStyle {
+        // top: 36%;
+        // position: absolute;
+        // left: 61%;
+        // width: 13%;
+        // transform: translateY(10px);
         top: 23%;
         position: absolute;
         left: 61%;
         width: 13%;
+        transform: translate(5%,2%);
     }
     .ReceiveStyle {
         top: 23%;
         position: absolute;
         left: 76%;
         width: 13%;
+        transform: translate(7%,2%);
     }
-    .ReceiveName {
+    .ReceiveTitle {
+        // top: 47%;
+        // position: absolute;
+        // display: flex;
+        // // align-items: center;
+        // justify-content: center;
+        // left: 57%;
+        // height: 56px;
+        // width: 750px;
+        // transform: translate(-11%, 22%);
+        // color: #ae4439;
+        // background-color: #fce1b9;
+        // white-space: nowrap;
+        // font-size: 35px;
+        // font-weight: bold;
+        // text-size-adjust: auto;
         top: 45%;
         position: absolute;
-        left: 70%;
-        height: 5%;
-        width: 6vw;
-        color: $red;
-        // text-align: center;
+        display: flex;
+        justify-content: center;
+        left: 56%;
+        height: 56px;
+        width: 49%;
+        transform: translate(-11%, 22%);
+        color: #ae4439;
+        background-color: #fce1b9;
         white-space: nowrap;
-        font-size: 20px;
+        font-size: 35px;
         font-weight: bold;
         text-size-adjust: auto;
+        u {
+            font-size: 45px;
+            padding-left: 10px;
+            padding-right: 10px;
+            text-decoration-thickness: 5px;
+        }
     }
     .LineDiv {
         top: 54%;
-        left: 61%;
+        left: 62%;
         position: absolute;
         text-align: center;
         height: 19%;
         width: 28%;
     }
-}
-.SendIcon {
-    bottom: 5%;
-    left: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    img {
-        height: 8vh;
+    .TypeText {
+        text-align: center;
+        margin-top: 5px;
+        border: 1px;
+        border-bottom-style: solid;
+        border-top-style: none;
+        border-left-style: none;
+        border-right-style: none;
+        color: #de7641;
+        font-weight: bold;
+        // font-size: 25px;
+        // height: 35px;
+        width: 80%;
+        background-color: transparent;
+        &:focus {
+            outline: none;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(97, 97, 243);
+            // border-bottom-width: 2px;
+        }
+    }
+    .SendIcon {
+        bottom: 10%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        img {
+            width: auto;
+            height: 25%;
+        }
     }
 }
+
+
 
 .IntroText {
     top: 32%;
@@ -258,10 +325,9 @@
     position: absolute;
     height: 32%;
     width: auto;
-    &.show{
+    &.show {
         animation: 5s ease-out 0s 1 alternate opText;
     }
- 
 }
 
 .texttt {
@@ -271,14 +337,30 @@
     border-top-style: none;
     border-left-style: none;
     border-right-style: none;
-    color:#de7641;
+    color: #de7641;
     font-weight: bold;
-    width:80%;
+    width: 80%;
     background-color: transparent;
-    &:focus{
+    &:focus {
         outline: none;
         border-bottom-style: solid;
         border-bottom-color: rgb(97, 97, 243);
         border-bottom-width: 2px;
+    }
+}
+
+.ShapeOther {
+    filter: grayscale(40%);
+    img{
+        width: 80%;
+        margin: auto;
+    }
+  
+}
+.ShapeCenter {
+    filter:  drop-shadow(0 0 0.75rem rgb(255, 235, 203));
+    img{
+        width: 90%;
+        margin: auto;
     }
 }

@@ -2,140 +2,87 @@ import React, { useState, useRef, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import styles from "./style.module.scss";
 import CircularProgress from "@mui/material/CircularProgress";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+// import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
-// import Born from "../../BornStory.json";
-// import Grow from "../../GrowStory.json";
-// import Strong from "../../StrongStory.json";
 import { setData } from "../../sound";
 import { Element, scroller } from "react-scroll";
 import classNames from "classnames";
-const StoryPic = ({ ShowNext, test, ToBack, kind, display = "block" }) => {
-  const soundRef = useRef();
-  const btnRef = useRef();
-  const { person } = useParams();
-  const [move, canMove] = useState(false);
-  const [sound, setSound] = useState({
-    url: null,
-    playing: true,
-    controls: false,
-    light: false,
-    volume: 0.8,
-    muted: true,
-    played: 0,
-    loaded: 0,
-    duration: 0,
-    playbackRate: 1.0,
-    loop: true,
-  });
-
+const StoryPic = ({ ShowNext, playMusic, params, data, display = "block" }) => {
+  const clickRef = useRef();
+  const [backG, setbackG] = useState(false);
   const initState = () => {
     let tmp = [];
-    for (let i = 0; i < 30; ++i) {
+    for (let i = 0; i < 20; ++i) {
       tmp.push("none");
     }
 
     return tmp;
   };
   const ClearData = () => {
-    soundRef.current.pause();
-    // soundRef.current.currentTime = 0;
-    canMove(false);
-    setSound({
-      url: null,
-      playing: false,
-      controls: false,
-      light: false,
-      volume: 0.8,
-      muted: false,
-      played: 0,
-      loaded: 0,
-      duration: 0,
-      playbackRate: 1.0,
-      loop: true,
-    });
     setIndex(initState());
   };
-  // const InitData = () => {
-  //   switch (kind) {
-  //     case "Born":
-  //       return Born;
-  //     case "Grow":
-  //       return Grow;
-  //     case "Strong":
-  //       return Strong;
-  //     default:
-  //       return Born;
-  //   }
-  // };
   const [index, setIndex] = useState(initState);
-  const data = setData(kind).json
 
-  const scrollTo = (element, delay = 200, smooth = "easeOutQuad") => {
+  const scrollTo = (element, delay = 500, smooth = "easeOutCubic") => {
     scroller.scrollTo(element, {
-      duration: 100,
+      duration: 300,
       delay: delay,
       smooth: smooth,
     });
   };
-  useEffect(() => {
-    setTimeout(() => {
-      // console.log("timeout!!",kind);
-      // console.log( document.getElementsByClassName("ytp-large-play-button ytp-button"))
-      if(display==="block"){
-        btnRef.current.click();
-      }   
-      // setSound({
-      //   ...sound,
-      //   muted:false
-      // })
-    }, 5500);
-  }, [display]);
 
   const AddBackground = (back, i) => {
     let hideBack = data.BackStory[i].back;
-    if (person === "Girl" && "gback" in data.BackStory[i]) {
-      hideBack = data.BackStory[i].gback;
+    let itemBack = process.env.PUBLIC_URL + data.Item[i].back;
+    let itemStyle = styles[`${params.kind}Item_${i + 1}`];
+    if (params.gender === "Girl") {
+      if ("gback" in data.BackStory[i]) {
+        hideBack = data.BackStory[i].gback;
+      } else if (params.kind === "Strong" && i === 0) {
+        itemStyle = styles[`${params.kind}Item_${i + 1}-1`];
+        itemBack = process.env.PUBLIC_URL + data.Item[i].gback;
+      }
     }
     return (
       <div key={i}>
         {/* BackgroundPage */}
 
         <Element name={`Intro_${i}`} className="element">
-          <Row style={{ display: `${index[i * 3]}` }}>
+          <Row style={{ display: `${index[i * 2]}` }}>
             <div style={{ position: "relative", padding: "0" }}>
               <img
                 style={{ width: "100%" }}
                 src={process.env.PUBLIC_URL + data.Intro[i].back}
-                alt="select"
+                alt="back"
+                onClick={() => {
+                  clickRef.current.play();
+                  setIndex(
+                    index.map((_, ti) => (ti <= i * 2 + 1 ? "block" : "none"))
+                  );
+                  scrollTo(`StoryPage_${i}`);
+                }}
               />
               <img
                 className={styles.BackgroundText}
                 src={process.env.PUBLIC_URL + data.Intro[i].text}
-                alt="select"
+                alt="text"
+                onClick={() => {
+                  clickRef.current.play();
+                  setIndex(
+                    index.map((_, ti) => (ti <= i * 2 + 1 ? "block" : "none"))
+                  );
+                  scrollTo(`StoryPage_${i}`);
+                }}
               />
-              <div>
-                <img
-                  className={styles.NextTriangle}
-                  alt="next"
-                  src={process.env.PUBLIC_URL + "/images/Story/next.png"}
-                  onClick={() => {
-                    setIndex(
-                      index.map((_, ti) => (ti <= i * 3 + 1 ? "block" : "none"))
-                    );
-                    scrollTo(`StoryPage_${i}`);
-                  }}
-                />
-              </div>
             </div>
           </Row>
         </Element>
         {/* StoryPage */}
 
         <Element name={`StoryPage_${i}`} className="element">
-          <Row style={{ display: `${index[i * 3 + 1]}`, position: "relative" }}>
+          <Row style={{ display: `${index[i * 2 + 1]}`, position: "relative" }}>
             <img
               style={{ width: "100%", padding: "0" }}
               src={process.env.PUBLIC_URL + back}
@@ -143,49 +90,42 @@ const StoryPic = ({ ShowNext, test, ToBack, kind, display = "block" }) => {
             />
             <div
               onClick={() => {
-                setIndex(
-                  index.map((_, ti) => (ti <= i * 3 + 2 ? "block" : "none"))
-                );
-                scrollTo(`hideBack_${i}`);
+                clickRef.current.play();
+                setbackG(true);
               }}
             >
               <img
                 // loading="lazy"
-                className={styles[`${kind}Item_${i + 1}`]}
-                src={process.env.PUBLIC_URL + data.Item[i].back}
-                alt="select"
+                className={itemStyle}
+                src={itemBack}
+                alt="item"
               />
             </div>
-          </Row>
-        </Element>
-        {/* HidePage */}
-
-        <Element name={`hideBack_${i}`} className="element">
-          <Row style={{ display: `${index[i * 3 + 2]}` }}>
-            <div style={{ position: "relative", padding: "0" }}>
-              <img
-                style={{ width: "100%", padding: "0" }}
-                src={process.env.PUBLIC_URL + hideBack}
-                alt="select"
-              />
-              <img
-                className={styles.NextTriangle}
-                alt="next"
-                src={process.env.PUBLIC_URL + "/images/Story/next.png"}
-                // onLoad={()=>console.log("picload!!!")}
-                onClick={() => {
-                  setIndex(
-                    index.map((_, ti) => (ti <= (i + 1) * 3 ? "block" : "none"))
-                  );
-                  if (i !== 9) scrollTo(`Intro_${i + 1}`);
-                  else {
-                    console.log("toNext");
-                    ClearData();
-                    ShowNext();
-                  }
-                }}
-              />
-            </div>
+            {/* HidePage */}
+            {backG && (
+              <div className={styles.BackgroundStyle}>
+                <img
+                  src={process.env.PUBLIC_URL + hideBack}
+                  alt="back"
+                  onClick={() => {
+                    clickRef.current.play();
+                    if (i !== 9) {
+                      setbackG(false);
+                      setIndex(
+                        index.map((_, ti) =>
+                          ti <= (i + 1) * 2 ? "block" : "none"
+                        )
+                      );
+                      scrollTo(`Intro_${i + 1}`);
+                    } else {
+                      console.log("toNext");
+                      ClearData();
+                      ShowNext();
+                    }
+                  }}
+                />
+              </div>
+            )}
           </Row>
         </Element>
       </div>
@@ -197,60 +137,13 @@ const StoryPic = ({ ShowNext, test, ToBack, kind, display = "block" }) => {
       fluid
       style={{ display: `${display}`, height: "100vh", padding: "0" }}
     >
-      <button
-        ref={btnRef}
-        onClick={() => {
-          setSound({
-            ...sound,
-            muted: false,
-          });
-          soundRef.current.play();
-          console.log("play");
-        }}
-        style={{display:"none"}}
-      >
-      </button>
-      <div>
-        <audio
-          src={setData(kind).music}
-          ref={soundRef}
-          onCanPlay={() => {
-            console.log("canplay");
-            canMove(true);
-            // btnRef.current.click();
-          }}
-          onLoadStart={() => {
-            canMove(false);
-          }}
-          muted={sound.muted}
-          // controls
-          loop={true}
-          // autoPlay
-        />
-      </div>
-
-      {/* LeftIcon */}
-      <div className={styles.BCIcon + " d-flex justify-content-between"}>
-        <img
-          src={process.env.PUBLIC_URL + "/images/backIcon.png"}
-          alt="back"
-          onClick={() => {
-            console.log("toback");
-            ClearData();
-            ToBack();
-          }}
-        />
-        <img
-          src={
-            sound.muted
-              ? process.env.PUBLIC_URL + "/images/mute.png"
-              : process.env.PUBLIC_URL + "/images/play.png"
-          }
-          alt="volume"
-          onClick={() => setSound({ ...sound, muted: !sound.muted })}
-        />
-      </div>
-
+      <audio
+        className={styles.audioStyle}
+        src={setData("Click").music}
+        ref={clickRef}
+        controls
+        muted={false}
+      />
       <Row>
         {/* Start Page */}
         <div style={{ position: "relative", padding: "0", color: "white" }}>
@@ -260,56 +153,38 @@ const StoryPic = ({ ShowNext, test, ToBack, kind, display = "block" }) => {
             alt="select"
           />
           {/* <div> */}
-          <LazyLoadImage
-            className={styles.PersonPic}
-            loading="lazy"
-            // effect="blur"
-            src={process.env.PUBLIC_URL + data.Person}
+          <img
+            className={styles[`${params.gender}PersonPic`]}
+            src={
+              params.gender === "Boy"
+                ? process.env.PUBLIC_URL + data.BoyPerson
+                : process.env.PUBLIC_URL + data.GirlPerson
+            }
             alt="select"
-            beforeLoad={() => console.log("beforeload")}
-            // afterLoad={()=>console.log("afterload")}
-            onLoad={() => {
-              // canMove(move + 1);
-            }}
-            // on={() => canMove(move + 1)}
             onClick={() => {
-              if (move) {
-                setIndex(index.map((_, ti) => (ti === 0 ? "block" : "none")));
-                scrollTo(`Intro_0`);
-              }
+              playMusic();
+              setIndex(index.map((_, ti) => (ti === 0 ? "block" : "none")));
+              scrollTo(`Intro_0`);
             }}
           />
           <img
-            // loading="lazy"
             className={
-              move
+              display === "block"
                 ? classNames(styles.FirstTitle, styles.move)
                 : styles.FirstTitle
             }
-            // style={{width:"20vw"}}
             src={process.env.PUBLIC_URL + data.Title}
-            alt="select"
+            alt="firsttitle"
           />
           <img
-            className={styles[`${kind}Text`]}
-            // style={{width:"20vw"}}
+            className={styles[`${params.kind}Text`]}
             src={process.env.PUBLIC_URL + data.Text}
-            alt="select"
+            alt="firsttext"
           />
-          {!move && (
-            <div className={styles.loadingDiv}>
-              <CircularProgress
-                className={styles.LoadingBar}
-                color="inherit"
-                thickness={5}
-                size={150}
-              />
-            </div>
-          )}
         </div>
       </Row>
       {/* StoryPage */}
-      {data[person].map(({ back }, i) => AddBackground(back, i))}
+      {data[params.gender].map(({ back }, i) => AddBackground(back, i))}
     </Container>
   );
 };

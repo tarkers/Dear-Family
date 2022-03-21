@@ -4,10 +4,13 @@ import styles from "./style.module.scss";
 import Born from "../../BornLetter.json";
 import Strong from "../../StrongLetter.json";
 import Grow from "../../GrowLetter.json";
+import Slider from "react-slick";
 
-
-
-const Shape = ({ ShowNext,param, display = "block" }) => {
+// import required modules
+import { EffectCoverflow, Pagination } from "swiper";
+const Shape = ({ ShowNext, param, display = "block" }) => {
+  const Picref = useRef();
+  const [shapeCenter, setShapeCenter] = useState(5);
   const InitData = () => {
     switch (param.kind) {
       case "Born":
@@ -20,18 +23,28 @@ const Shape = ({ ShowNext,param, display = "block" }) => {
         return Born;
     }
   };
+  useEffect(() => {
+    Picref.current.slickGoTo(shapeCenter);
+  }, [shapeCenter]);
+
   const data = InitData();
-
-  // useEffect(() => {
-
-  // }, []);
+  const settings = {
+    dots:true,
+    // fade: true,
+    className: "center",
+    centerMode: true,
+    slidesToScroll: 1,
+    infinite: true,
+    speed: 300,
+    slidesToShow: 3,
+  };
   return (
     <Container
       style={{
         display: `${display}`,
         overflowX: "hidden",
-        backgroundColor: "rgb(249, 243, 238)",
-        height:"100vh"
+        backgroundColor: "rgb(255, 255, 255)",
+        height: "100vh",
       }}
       fluid
     >
@@ -53,43 +66,44 @@ const Shape = ({ ShowNext,param, display = "block" }) => {
           />
         </Col>
       </Row>
-      <Row>
-        <Col style={{ marginTop: "5vh", width: "100%" }}>
-          <div className="d-flex flex-row" style={{ overflow: "auto" }}>
-            {data[param.person].map((image, i) => (
-              <Col
-                key={i}
-                className="justify-content-center d-flex flex-column bd-highlight m-3"
-              >
-                <div className="mb-3">
-                  <img
-                    src={process.env.PUBLIC_URL + data.Title[i]}
-                    alt="title"
-                    style={{ height: "6vh", width: "auto" }}
-                    // style={{ height: "6vh", width: "auto" }}
-                    onClick={() => console.log(image)}
-                  />
-                </div>
-                <div className="mb-3">
-                  <img
-                    src={process.env.PUBLIC_URL + image}
-                    alt="picurl"
-                    style={{ width: "28vw", height: "auto" }}
-                  />
-                </div>
-                <div>
-                  <img
-                    src={process.env.PUBLIC_URL + "/images/Letter/Kind/pen.png"}
-                    alt="pen"
-                    className={styles.clickPen}
-                    onClick={() => ShowNext(i)}
-                  />
-                </div>
-              </Col>
-              // <img src={process.env.PUBLIC_URL+url} key={i} alt={title}  onClick={(e)=>{ShowNext(title)}} />
-            ))}
-          </div>
-        </Col>
+      <Row className="d-flex p-2 bd-highlight">
+        <Col></Col>
+      </Row>
+      <Row style={{ marginTop: 50, position: "relative" }}>
+        <Slider
+          ref={Picref}
+          {...settings}
+          afterChange={(index) => {
+            // console.log(index);
+            setShapeCenter(index);
+            // if (index === 9) {
+            //   setShapeCenter(0);
+            // } else {
+            //   setShapeCenter(index + 1);
+            // }
+          }}
+        >
+          {data[param.gender].map((image, i) => (
+            <div
+              className={
+                shapeCenter === i ? styles.ShapeCenter : styles.ShapeOther
+              }
+              style={{ position: "relative" }}
+            >
+              <img
+                src={process.env.PUBLIC_URL + data.Title[i]}
+                alt="title"
+                // style={{ width: "6vh", margin: "auto" }}
+                onClick={() => console.log(image)}
+              />
+              <img
+                src={process.env.PUBLIC_URL + image}
+                alt="picurl"
+                // style={{ width: "90%", margin: "auto" }}
+              />
+            </div>
+          ))}
+        </Slider>
       </Row>
       <Row>
         <Col className={styles.shapeIcon}>

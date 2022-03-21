@@ -1,6 +1,7 @@
 {
   "Back":"/images/Story/Grow/back.png",
-  "Person":"/images/Story/Grow/person.png",
+  "BoyPerson":"/images/Story/Grow/person.png",
+  "GirlPerson":"/images/Story/Grow/person-1.png",
   "Title":"/images/Story/Grow/title.png",
   "Text":"/images/Story/Grow/text.png",
   "Music":"https://www.youtube.com/watch?v=OBx_Bs8eg-E",

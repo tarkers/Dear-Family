@@ -1,10 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "./style.module.scss";
-import { useNavigate } from "react-router-dom";
-const Gender = ({ display = "block" }) => {
-  const navigate = useNavigate();
-  const [mute, isMute] = useState(false);
+const Gender = ({ToKind, display = "block" }) => {
   const personList = [
     {
       name: "Boy",
@@ -27,17 +24,7 @@ const Gender = ({ display = "block" }) => {
         backgroundImage: `url(${process.env.PUBLIC_URL}/images/Intro/P4/back.png)`,
       }}
     >
-      <div className={styles.BCIcon + " d-flex justify-content-end"}>
-        <img
-          src={
-            mute
-              ? process.env.PUBLIC_URL + "/images/mute.png"
-              : process.env.PUBLIC_URL + "/images/play.png"
-          }
-          alt="volume"
-          onClick={() => isMute(!mute)}
-        />
-      </div>
+     
       <Row style={{ height: "30%" }}></Row>
       <Row className={styles.alignCenter} style={{ margin: "1em" }}>
         {personList.map((person, index) => {
@@ -50,7 +37,10 @@ const Gender = ({ display = "block" }) => {
                   // className={styles.letterImg}
                   src={process.env.PUBLIC_URL + person.img}
                   alt="choose"
-                  onClick={() => navigate(`/story/${person.name}`)}
+                  onClick={() => 
+                    ToKind(person.name)
+                    // navigate(`/story/${person.name}`)
+                  }
                 />
               </div>
               <div>

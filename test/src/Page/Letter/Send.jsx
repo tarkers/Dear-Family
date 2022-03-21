@@ -1,11 +1,11 @@
-import React, { createRef, useState } from "react";
-import { Container} from "react-bootstrap";
+import React, { createRef, useState, useLayoutEffect, useEffect } from "react";
+import { Container } from "react-bootstrap";
 import CircularProgress from "@mui/material/CircularProgress";
 import styles from "./style.module.scss";
 import { useScreenshot, createFileName } from "use-react-screenshot";
 
 const axios = require("axios");
-const Letter = ({ ShowNext, data, display = "block" }) => {
+const Send = ({ ShowNext, data, display = "block" }) => {
   const [backline, setBackLine] = useState(false);
   const [loading, setLoading] = React.useState(false);
   const ref = createRef(null);
@@ -13,11 +13,20 @@ const Letter = ({ ShowNext, data, display = "block" }) => {
     type: "image/jpeg",
     quality: 1.0,
   });
-  // const Download = (image, { name = "img", extension = "jpg" } = {}) => {
-  //   SaveData(image, "123");
-  // };
+ 
+  // useEffect(() => {
+  //   if (display === "block") {
+  //     document.body.style.zoom = `${(window.screen.width / 1641) * 100}%`;
+  //   }
+  // }, [display]);
   const downloadScreenshot = () => takeScreenShot(ref.current).then(SaveData);
-  const SaveData = (image, { name = `to_${data.name}_${new Date().toLocaleTimeString()}`, extension = "jpg" } = {}) => {
+  const SaveData = (
+    image,
+    {
+      name = `to_${data.name}_${new Date().toLocaleTimeString()}`,
+      extension = "jpg",
+    } = {}
+  ) => {
     axios
       .post("https://dear-family-server.herokuapp.com/letters", {
         image: image,
@@ -29,7 +38,12 @@ const Letter = ({ ShowNext, data, display = "block" }) => {
         a.href = image;
         a.tag = `https://tarkers.github.io/Dear-Family/#/download/${resp.data.id}`;
         a.download = createFileName("jpg", name);
+        // a.click()
+        // console.log(image)
+        setLoading(false);
+        // document.body.style.zoom = `100%`;
         ShowNext(a);
+        
       })
       .catch((error) => {
         console.log(error);
@@ -37,27 +51,15 @@ const Letter = ({ ShowNext, data, display = "block" }) => {
   };
   const setLineArray = () => {
     var tmp = [];
-    for (let i = 0; i < 4; ++i) {
+    for (let i = 0; i < 6; ++i) {
       tmp.push(
         // <input ></input>
         <input
-        type="text" 
-        size="15" 
-        className={styles.texttt}
-        maxLength={15}
-          // inputProps={{
-          //   maxLength: 15,
-          //   // textAlign: "center",
-          //   style: {
-          //     height: "2.4vh",
-          //     width: "inherit",
-          //     fontSize: "1vh",
-          //     textAlign: "center",
-          //     fontWeight: "bold",
-          //     
-          //   },
-          // }}
-          // style={{}}
+          type="text"
+          // size="25"
+          autoComplete="off"
+          className={styles.TypeText}
+          maxLength={20}
           id={`line_${i}`}
           key={i}
           variant="standard"
@@ -88,52 +90,62 @@ const Letter = ({ ShowNext, data, display = "block" }) => {
   };
 
   return (
-    <Container
-      fluid
-      className={styles.PDiv}
-      style={{
-        display: `${display}`,
-        position: "relative",
-        width: "100vw",
-        backgroundImage: `url(${process.env.PUBLIC_URL}/images/Letter/Send/back.png)`,
-      }}
-    >
-      <div className={styles.SendLetterPic} ref={ref}>
-   
+    <>
+      {/* // <Container
+    //   fluid
+    //   className={styles.PDiv}
+    //   style={{
+    //     display: `${display}`,
+    //     position: "relative",
+    //     width: "100vw",
+    //     backgroundImage: `url(${process.env.PUBLIC_URL}/images/Letter/Send/back.png)`,
+    //   }}
+    // > */}
+      <div className={styles.SendLetterPic} style={{ display: `${display}` }}>
         <img
-          className={styles.LetterStyle}
-          src={process.env.PUBLIC_URL + `/images/Letter/Send/${data.kind}/${data.person}/${data.shape}.png`}
+          style={{ width: "inherit" }}
+          // className={styles.LetterStyle}
+          src={process.env.PUBLIC_URL + `/images/Letter/Send/back.png`}
           alt="back"
         />
-        <img
-          className={styles.HeadStyle}
-          src={process.env.PUBLIC_URL + `/images/Letter/Send/Head/${data.person}.png`}
-          alt="head"
-        />
-        <img
-          className={styles.ReceiveStyle}
-          src={process.env.PUBLIC_URL +  `/images/Letter/Send/Head/${data.reveivePerson}.png`}
-          alt="head"
-        />
-        <div className={styles.ReceiveName}>{data.name}</div>
-        <div className={styles.LineDiv} id="linesDiv">
-          {setLineArray()}
-        </div>
-      </div>
-    
-      {loading ? (
-        <div className={styles.loadingDiv}>
-          <CircularProgress
-            className={styles.LoadingBar}
-            color="inherit"
-            thickness={5}
-            size={150}
+        <div ref={ref} className={styles.PicStyle}>
+          <img
+            className={styles.LetterStyle}
+            src={
+              process.env.PUBLIC_URL +
+              `/images/Letter/Send/${data.kind}/${data.gender}/${data.shape}.png`
+            }
+            alt="back"
           />
-        </div>
-      ) : (
-        <div className={styles.SendIcon}>
+
+          <img
+            className={styles.HeadStyle}
+            src={
+              process.env.PUBLIC_URL +
+              `/images/Letter/Send/Head/${data.gender}.png`
+            }
+            alt="head"
+          />
           <img
             className={styles.ReceiveStyle}
+            src={
+              process.env.PUBLIC_URL +
+              `/images/Letter/Send/Head/${data.reveivePerson}.png`
+            }
+            alt="head"
+          />
+          <div className={styles.ReceiveTitle}>
+            <label>
+              與<u>{data.name}</u>的悄悄話
+            </label>
+          </div>
+          <div className={styles.LineDiv} id="linesDiv">
+            {setLineArray()}
+          </div>
+        </div>
+        <div className={styles.SendIcon}>
+          <img
+            // className={styles.ReceiveStyle}
             src={process.env.PUBLIC_URL + "/images/Letter/Send/send.png"}
             alt="send"
             onClick={() => {
@@ -142,9 +154,21 @@ const Letter = ({ ShowNext, data, display = "block" }) => {
             }}
           />
         </div>
+      </div>
+
+      {loading && (
+        <div className={styles.loadingDiv}>
+          <CircularProgress
+            className={styles.LoadingBar}
+            color="inherit"
+            thickness={5}
+            size={150}
+          />
+        </div>
       )}
-    </Container>
+    </>
+    // </Container>
   );
 };
 
-export default Letter;
+export default Send;

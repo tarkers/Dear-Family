@@ -1,6 +1,7 @@
 {
   "Back":"/images/Story/Strong/back.png",
-  "Person":"/images/Story/Strong/person.png",
+  "BoyPerson":"/images/Story/Strong/person.png",
+  "GirlPerson":"/images/Story/Strong/person-1.png",
   "Title":"/images/Story/Strong/title.png",
   "Text":"/images/Story/Strong/text.png",
   "Music":"https://www.youtube.com/watch?v=vRL3cRZ0Or4",
@@ -88,6 +89,7 @@
   ],
   "Item": [{
       "back": "/images/Story/Strong/Item/1.png",
+      "gback": "/images/Story/Strong/Item/1-1.png",
       "show": false
     },
     {

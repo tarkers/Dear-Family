@@ -1,59 +1,118 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Another from "./Another";
 import Kind from "./Kind";
+import styles from "./style.module.scss";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useParams, useNavigate } from "react-router-dom";
-// import Bornaudio from "../../sound/Born.mp3";
-// import Strongaudio from "../../sound/Strong.mp3";
-// import Growaudio from "../../sound/Grow.mp3";
+import { useSearchParams } from "react-router-dom";
+import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 import StoryPic from "./StoryPic";
+import { setData } from "../../sound";
 const Main = () => {
-  // let data=Born
-  // const [audio, setAudio] = useState(Bornaudio);
-  // const [data, setData] = useState(null);
-  const { person } = useParams();
-  const navigate = useNavigate();
-  const [page, SetPage] = useState({
-    Kind: { show: "block", kind: "Born" },
-    StoryPic: { show: "none" },
-    Another: { show: "none", other: { first: "Born", second: "Grow" } },
+  const [searchParams, setSearchParams] = useSearchParams();
+  const gender = searchParams.get("gender");
+  const kind = searchParams.get("kind");
+  // const [gender, _] = useState(true);
+  // const [kind, _] = useState(null);
+  const [move, canMove] = useState(null);
+  const soundRef = useRef();
+  const btnRef = useRef();
+  const [sound, setSound] = useState({
+    url: setData(kind).music,
+    playing: false,
+    controls: false,
+    light: false,
+    volume: 0.7,
+    muted: true,
+    loop: true,
   });
-
-  const ToKind = () => {
-    SetPage({
-      Kind: { show: "block", kind: "" },
-      StoryPic: { ...page.StoryPic, show: "none" },
-      Another: { ...page.Another, show: "none" },
+  useEffect(() => {
+    setTimeout(() => {
+      btnRef.current.click();
+      setSound({
+        ...sound,
+        muted: false,
+      });
+    }, 4000);
+  }, []);
+  const ClearData = (newkind) => {
+    // soundRef.current.pause();
+    // soundRef.current.currentTime = 0;
+    canMove(true);
+    setSound({
+      url: setData(newkind).music,
+      playing: false,
+      controls: false,
+      light: false,
+      volume: 0.8,
+      muted: true,
+      loop: true,
     });
+    // setIndex(initState());
   };
-  const ToStoryPic = (kind) => {
-    let tmp = { first: "", second: "" };
-   
-
-    switch (kind) {
+  const initSetup = (newkind) => {
+    let tmp = {};
+    switch (newkind) {
       case "Born":
-        // setAudio(Bornaudio)
         tmp = { first: "Grow", second: "Strong" };
         break;
 
       case "Grow":
-        // setAudio(Growaudio)
         tmp = { first: "Born", second: "Strong" };
         break;
 
       case "Strong":
-        // setAudio(Strongaudio)
         tmp = { first: "Born", second: "Grow" };
         break;
       default:
         tmp = { first: "Grow", second: "Strong" };
+        break;
     }
-    SetPage({
-      ...page,
-      Kind: { show: "none", kind: kind },
-      StoryPic: { show: "block" },
-      Another: { show: "none", other: tmp },
-    });
+    return tmp;
   };
+  const navigate = useNavigate();
+  const [page, SetPage] = useState({
+    // Kind: { show: "block", kind: null },
+    StoryPic: { show: "block" },
+    Another: { show: "none", other: initSetup(kind) },
+  });
+
+  const ToKind = () => {
+    navigate("/?section=Gender");
+    // SetPage({
+    //   Kind: { show: "block", kind: null },
+    //   StoryPic: { ...page.StoryPic, show: "none" },
+    //   Another: { ...page.Another, show: "none" },
+    // });
+  };
+  const ToStoryPic = (newkind) => {
+    setSearchParams({
+      kind:newkind,
+      gender:gender
+  })
+    ClearData(newkind)
+    SetPage({
+      // Kind: { show: "block", kind: null },
+      StoryPic: { show: "block" },
+      Another: { show: "none", other: initSetup(newkind) },
+    });
+    scroll.scrollToTop();
+    // navigate();
+    // setSearchParams({
+    //   gender: gender,
+    //   kind: newkind,
+    // });
+    // SetPage({
+    //   ...page,
+    //   // Kind: { show: "none", kind: kind },
+    //   StoryPic: { show: "block" },
+    //   Another: { show: "none", other: tmp },
+    // });
+  };
+  const playMusic=()=>{
+    setSound({...sound,muted:false});
+    soundRef.current.play()
+  }
   const ToAnother = () => {
     SetPage({
       ...page,
@@ -62,22 +121,99 @@ const Main = () => {
     });
   };
   const ToSend = () => {
-    navigate(`/letter?kind=${page.Kind.kind ?? "Born"}&person=${person}`);
+    navigate(`/letter?kind=${kind ?? "Born"}&gender=${gender}`);
   };
   return (
     <>
-      <Kind
+      <div className={styles.BCIcon + " d-flex justify-content-between"}>
+        <img
+          src={process.env.PUBLIC_URL + "/images/backIcon.png"}
+          alt="back"
+          onClick={() => {
+            navigate("/?section=Gender");
+          }}
+        />
+        <img
+          src={
+            sound.muted
+              ? process.env.PUBLIC_URL + "/images/mute.png"
+              : process.env.PUBLIC_URL + "/images/play.png"
+          }
+          alt="volume"
+          onClick={() => {
+            if(sound.muted){
+              soundRef.current.play()
+            }
+            setSound({ ...sound, muted: !sound.muted })
+          }}
+        />
+      </div>
+      <button
+        ref={btnRef}
+        onClick={() => {
+          canMove(true);
+          // setSound({
+          //   ...sound,
+          //   // muted: false,
+          // });
+          soundRef.current.play();
+          console.log("play");
+        }}
+        style={{ display: "none" }}
+      ></button>
+      <div>
+        <audio
+        className={styles.audioStyle}
+          src={setData(kind).music}
+          ref={soundRef}
+          controls
+          onCanPlay={() => {
+            console.log("canplay");         
+            setTimeout(() => {
+              canMove(true);
+              console.log("play");
+              soundRef.current.play();
+              // setSound({...sound,muted:false});
+            }, 2000);
+          }}
+          onLoadedData={
+            ()=>{
+              canMove(true);
+              console.log("load!!!")
+            }
+          }
+          onLoadStart={() => {
+            // canMove(false);
+          }}
+          muted={sound.muted}
+          loop={true}
+        />
+      </div>
+      {!move && (
+        <div className={styles.loadingDiv}>
+          <CircularProgress
+            className={styles.LoadingBar}
+            color="inherit"
+            thickness={5}
+            size={150}
+          />
+        </div>
+      )}
+      {/* <Kind
         display={page.Kind.show}
         ShowNext={ToStoryPic}
-        person={person ?? "Girl"}
-      />
-      <StoryPic
-        display={page.StoryPic.show}
-        ToBack={ToKind}
-        ShowNext={ToAnother}
-        kind={page.Kind.kind}
-        // test={audio}
-      />
+        person={gender ?? "Girl"}
+      /> */}
+      {console.log(kind)}
+      {move && (
+        <StoryPic
+          display={page.StoryPic.show}
+          ShowNext={ToAnother}
+          data={setData(kind).json}
+          params={{ gender: gender, kind: kind }}
+          playMusic={playMusic}
+        />
+      )}
       <Another
         other={page.Another.other}
         display={page.Another.show}
