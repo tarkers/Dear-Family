@@ -4,19 +4,16 @@ import Envelope from "./Envelope";
 import Go from "./Go";
 import Gender from "./Gender";
 import Kind from "./Kind";
-import { setData } from "../../sound";
+import Swiper from "react-id-swiper";
 import { useSearchParams } from "react-router-dom";
 import { Element, scroller } from "react-scroll";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./style.module.scss";
-import CircularProgress from "@mui/material/CircularProgress";
-const Main = () => {
+const Main = ({ setMusic, InitPlay }) => {
   const navigate = useNavigate();
-  const soundRef = useRef();
-  const btnRef = useRef();
   const [searchParams] = useSearchParams();
-   /* IF Get The Gender Link auto scroll to link*/
-   const InitPage = () => {
+  /* IF Get The Gender Link auto scroll to link*/
+  const InitPage = () => {
     if (searchParams.get("section") === "Gender") {
       return {
         Loading: { show: "block" },
@@ -35,22 +32,9 @@ const Main = () => {
       };
     }
   };
-  const [move, canMove] = useState(false);
-  const [muted, setmuted] = useState(false);
   const [page, SetPage] = useState(InitPage);
-  useEffect(() => {
-    scrollTo(searchParams.get("section"), 1000);
-    setTimeout(() => {
-      // setmuted(false)
-      console.log("click_Button")
-      btnRef.current.click();
-    }, 5000);
-  }, []);
-  useEffect(() => {
-   if(!muted){
-     soundRef.current.play()
-   }
-  }, [muted]);
+
+
   const scrollTo = (element, delay = 300, smooth = "easeOutQuad") => {
     SetPage({ ...page, [element]: { show: "block" } });
     scroller.scrollTo(element, {
@@ -73,8 +57,6 @@ const Main = () => {
     });
   };
   const ToEnvelope = () => {
-    setmuted(false)
-    soundRef.current.play();
     SetPage({ ...page, Envelope: { show: "block" } });
     scroller.scrollTo("Envelope", {
       duration: 300,
@@ -82,83 +64,57 @@ const Main = () => {
       smooth: "easeOutQuad",
     });
   };
-
+  const ToGender = () => {
+    SetPage({
+      ...page,
+      Loading: { show: "none" },
+      Envelope: { show: "none" },
+      Go: { show: "none" },
+      Gender: {...page.Gender, show: "block"},
+      Kind: {show: "none" },
+    });
+  };
   const ToStory = (name) => {
     navigate(`/story?kind=${name ?? "Born"}&gender=${page.Gender.gender}`);
   };
+  useEffect(() => {
+    setMusic();  
+    if(searchParams.get("section")==="Gender"){
+      console.log(searchParams.get("section"))
+      SetPage({
+        ...page,
+        Loading: { show: "none" },
+        Envelope: { show: "none" },
+        Go: { show: "none" },
+        Gender: {...page.Gender, show: "block"},
+      });
+    }
+    
+  }, []);
   return (
     <>
-      <div>
-        <button
-          ref={btnRef}
-          onClick={() => {
-            canMove(true);
-            // setmuted(false)
-            soundRef.current.play();
-            console.log("playbyClick");
-          }}
-          style={{ display: "none" }}
-        ></button>
-        <audio
-         className={styles.audioStyle}
-          src={setData().music}
-          ref={soundRef}
-          onCanPlay={() => {
-            console.log("canplay");
-            canMove(true);
-            setTimeout(() => {
-              console.log("play");
-              soundRef.current.play();
-              // setmuted(false);
-            }, 1000);
-          }}
-          onLoadStart={() => {
-            canMove(false);
-          }}
-          muted={muted}
-          // controls
-          loop={true}
-        />
-      </div>
-      {!move && (
-        <div className={styles.loadingDiv}>
-          <CircularProgress
-            className={styles.LoadingBar}
-            color="inherit"
-            thickness={5}
-            size={150}
-          />
-        </div>
-      )}
-      <div className={styles.BCIcon + " d-flex justify-content-end"}>
-        <img
-          src={
-            muted
-              ? process.env.PUBLIC_URL + "/images/mute.png"
-              : process.env.PUBLIC_URL + "/images/play.png"
-          }
-          alt="volume"
-          onClick={() => {
-            if(muted){
-              soundRef.current.play()
-            }
-            setmuted(!muted)
-          }}
-        />
-      </div>
-
-      <Loading display={page.Loading.show} scrollToEnvelope={scrollTo} ToEnvelope={ToEnvelope}/>
+      <Loading
+        display={page.Loading.show}
+        ToEnvelope={(e) => {
+          ToEnvelope();
+          InitPlay();
+        }}
+      />
       <Element name="Envelope" className="element">
         <Envelope display={page.Envelope.show} scrollToGo={scrollTo} />
       </Element>
       <Element name="Go" className="element">
-        <Go display={page.Go.show} toGender={scrollTo} />
+        <Go display={page.Go.show} toGender={()=>ToGender()} />
       </Element>
       <Element name="Gender" className="element">
         <Gender display={page.Gender.show} ToKind={ToKind} />
       </Element>
       <Element name="Kind" className="element">
-        <Kind display={page.Kind.show} ToStory={ToStory} />
+        <Kind
+          display={page.Kind.show}
+          gender={page.Gender.gender ?? "Boy"}
+          ToStory={ToStory}
+        />
       </Element>
     </>
   );

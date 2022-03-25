@@ -4,13 +4,17 @@ import styles from "./style.module.scss";
 import Born from "../../BornLetter.json";
 import Strong from "../../StrongLetter.json";
 import Grow from "../../GrowLetter.json";
-import Slider from "react-slick";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+
+import "./style.css";
 
 // import required modules
-import { EffectCoverflow, Pagination } from "swiper";
+import { Pagination } from "swiper";
 const Shape = ({ ShowNext, param, display = "block" }) => {
-  const Picref = useRef();
-  const [shapeCenter, setShapeCenter] = useState(5);
   const InitData = () => {
     switch (param.kind) {
       case "Born":
@@ -23,21 +27,14 @@ const Shape = ({ ShowNext, param, display = "block" }) => {
         return Born;
     }
   };
-  useEffect(() => {
-    Picref.current.slickGoTo(shapeCenter);
-  }, [shapeCenter]);
+  const pagination = {
+    clickable: true,
+    renderBullet: function (index, className) {
+      return '<span class="' + className + '">' + (index + 1) + "</span>";
+    },
+  };
 
   const data = InitData();
-  const settings = {
-    dots:true,
-    // fade: true,
-    className: "center",
-    centerMode: true,
-    slidesToScroll: 1,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 3,
-  };
   return (
     <Container
       style={{
@@ -66,44 +63,41 @@ const Shape = ({ ShowNext, param, display = "block" }) => {
           />
         </Col>
       </Row>
-      <Row className="d-flex p-2 bd-highlight">
-        <Col></Col>
-      </Row>
-      <Row style={{ marginTop: 50, position: "relative" }}>
-        <Slider
-          ref={Picref}
-          {...settings}
-          afterChange={(index) => {
-            // console.log(index);
-            setShapeCenter(index);
-            // if (index === 9) {
-            //   setShapeCenter(0);
-            // } else {
-            //   setShapeCenter(index + 1);
-            // }
-          }}
+      <Row style={{ marginTop: 20, position: "relative" }}>
+        <Swiper
+          slidesPerView={3}
+          spaceBetween={30}
+          modules={[Pagination]}
+          className="mySwiper"
+          pagination={pagination}
         >
           {data[param.gender].map((image, i) => (
-            <div
-              className={
-                shapeCenter === i ? styles.ShapeCenter : styles.ShapeOther
-              }
-              style={{ position: "relative" }}
+            <SwiperSlide
+              key={i}
+              style={{ padding: "15px" }}
+              onClick={() => ShowNext(i)}
             >
-              <img
-                src={process.env.PUBLIC_URL + data.Title[i]}
-                alt="title"
-                // style={{ width: "6vh", margin: "auto" }}
-                onClick={() => console.log(image)}
-              />
-              <img
-                src={process.env.PUBLIC_URL + image}
-                alt="picurl"
-                // style={{ width: "90%", margin: "auto" }}
-              />
-            </div>
+              <div style={{width:"25vw"}}>
+                <img
+                  src={process.env.PUBLIC_URL + data.Title[i]}
+                  alt="title"
+                  style={{ height: "6vh", width: "auto", margin: "auto" }}
+                  onClick={() => console.log(image)}
+                />
+                <img
+                  src={process.env.PUBLIC_URL + image}
+                  alt="picurl"
+                  style={{
+                    height: "auto",
+                    width: "inherit",
+                    margin: "auto",
+                    marginTop: "0px",
+                  }}
+                />
+              </div>
+            </SwiperSlide>
           ))}
-        </Slider>
+        </Swiper>
       </Row>
       <Row>
         <Col className={styles.shapeIcon}>

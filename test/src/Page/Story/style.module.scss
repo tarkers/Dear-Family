@@ -141,16 +141,41 @@ $anime: 0.8s linear 1s infinite alternate blink;
         height: 80%;
     }
 }
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 .BackgroundText {
     position: absolute;
-    // background-color: red;
-    // left: 50%;
+    opacity: 0;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 50vw;
+    top:  34%;
+    transform: translate(-50%, 0);
+    width: 70vw;
+    &.move{
+        animation: 2s ease-out 5s 1 fade-in;
+        animation-fill-mode: forwards;  
+    }
+ 
 }
-
+.BackgroundTitle {
+    position: absolute;
+    height: auto;
+    opacity: 0;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%,0);
+    height: 9vh;
+    &.move{
+        animation: 2s ease-out 2.5s 1 fade-in;
+        animation-fill-mode: forwards;  
+    }
+   
+}
 .NextTriangle {
     position: absolute;
     width: 4vw;
@@ -168,7 +193,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
 
 .BornItem_1 {
     position: absolute;
-    left: 51vw;
+    left: 52vw;
     top: 50%;
     transform: translate(-50%, 30%);
     width: 55vw;
@@ -542,3 +567,4 @@ $anime: 0.8s linear 1s infinite alternate blink;
     // }
     
 }
+

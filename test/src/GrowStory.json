@@ -1,224 +1,183 @@
 {
-  "Back":"/images/Story/Grow/back.png",
-  "BoyPerson":"/images/Story/Grow/person.png",
-  "GirlPerson":"/images/Story/Grow/person-1.png",
-  "Title":"/images/Story/Grow/title.png",
-  "Text":"/images/Story/Grow/text.png",
-  "Music":"https://www.youtube.com/watch?v=OBx_Bs8eg-E",
+  "Back": "/images/Story/Grow/back.png",
+  "BoyPerson": "/images/Story/Grow/person.png",
+  "GirlPerson": "/images/Story/Grow/person-1.png",
+  "Title": "/images/Story/Grow/title.png",
+  "Text": "/images/Story/Grow/text.png",
+  "Music": "https://www.youtube.com/watch?v=OBx_Bs8eg-E",
   "Boy": [{
-      "back": "/images/Story/Grow/Boy/1.png",
-      "show": false
+      "back": "/images/Story/Grow/Boy/1.png"
     },
     {
-      "back": "/images/Story/Grow/Boy/2.png",
-      "show": false
+      "back": "/images/Story/Grow/Boy/2.png"
     },
     {
-      "back": "/images/Story/Grow/Boy/3.png",
-      "show": false
+      "back": "/images/Story/Grow/Boy/3.png"
     },
     {
-      "back": "/images/Story/Grow/Boy/4.png",
-      "show": false
+      "back": "/images/Story/Grow/Boy/4.png"
     },
     {
-      "back": "/images/Story/Grow/Boy/5.png",
-      "show": false
+      "back": "/images/Story/Grow/Boy/5.png"
     },
     {
-      "back": "/images/Story/Grow/Boy/6.png",
-      "show": false
+      "back": "/images/Story/Grow/Boy/6.png"
     },
     {
-      "back": "/images/Story/Grow/Boy/7.png",
-      "show": false
+      "back": "/images/Story/Grow/Boy/7.png"
     },
     {
-      "back": "/images/Story/Grow/Boy/8.png",
-      "show": false
+      "back": "/images/Story/Grow/Boy/8.png"
     },
     {
-      "back": "/images/Story/Grow/Boy/9.png",
-      "show": false
+      "back": "/images/Story/Grow/Boy/9.png"
     },
     {
-      "back": "/images/Story/Grow/Boy/10.png",
-      "show": false
+      "back": "/images/Story/Grow/Boy/10.png"
     }
   ],
   "Girl": [{
-      "back": "/images/Story/Grow/Girl/1.png",
-      "show": false
+      "back": "/images/Story/Grow/Girl/1.png"
     },
     {
-      "back": "/images/Story/Grow/Girl/2.png",
-      "show": false
+      "back": "/images/Story/Grow/Girl/2.png"
     },
     {
-      "back": "/images/Story/Grow/Girl/3.png",
-      "show": false
+      "back": "/images/Story/Grow/Girl/3.png"
     },
     {
-      "back": "/images/Story/Grow/Girl/4.png",
-      "show": false
+      "back": "/images/Story/Grow/Girl/4.png"
     },
     {
-      "back": "/images/Story/Grow/Girl/5.png",
-      "show": false
+      "back": "/images/Story/Grow/Girl/5.png"
     },
     {
-      "back": "/images/Story/Grow/Girl/6.png",
-      "show": false
+      "back": "/images/Story/Grow/Girl/6.png"
     },
     {
-      "back": "/images/Story/Grow/Girl/7.png",
-      "show": false
+      "back": "/images/Story/Grow/Girl/7.png"
     },
     {
-      "back": "/images/Story/Grow/Girl/8.png",
-      "show": false
+      "back": "/images/Story/Grow/Girl/8.png"
     },
     {
-      "back": "/images/Story/Grow/Girl/9.png",
-      "show": false
+      "back": "/images/Story/Grow/Girl/9.png"
     },
     {
-      "back": "/images/Story/Grow/Girl/10.png",
-      "show": false
+      "back": "/images/Story/Grow/Girl/10.png"
     }
   ],
   "Item": [{
-      "back": "/images/Story/Grow/Item/1.png",
-      "show": false
+      "back": "/images/Story/Grow/Item/1.png"
     },
     {
-      "back": "/images/Story/Grow/Item/2.png",
-      "show": false
+      "back": "/images/Story/Grow/Item/2.png"
     },
     {
-      "back": "/images/Story/Grow/Item/3.png",
-      "show": false
+      "back": "/images/Story/Grow/Item/3.png"
     },
     {
-      "back": "/images/Story/Grow/Item/4.png",
-      "show": false
+      "back": "/images/Story/Grow/Item/4.png"
     },
     {
-      "back": "/images/Story/Grow/Item/5.png",
-      "show": false
+      "back": "/images/Story/Grow/Item/5.png"
     },
     {
-      "back": "/images/Story/Grow/Item/6.png",
-      "show": false
+      "back": "/images/Story/Grow/Item/6.png"
     },
     {
-      "back": "/images/Story/Grow/Item/7.png",
-      "show": false
+      "back": "/images/Story/Grow/Item/7.png"
     },
     {
-      "back": "/images/Story/Grow/Item/8.png",
-      "show": false
+      "back": "/images/Story/Grow/Item/8.png"
     },
     {
-      "back": "/images/Story/Grow/Item/9.png",
-      "show": false
+      "back": "/images/Story/Grow/Item/9.png"
     },
     {
-      "back": "/images/Story/Grow/Item/10.png",
-      "show": false
+      "back": "/images/Story/Grow/Item/10.png"
     }
   ],
   "Intro": [{
       "back": "/images/Story/Grow/Background/1.png",
       "text": "/images/Story/Grow/Text/1.png",
-      "show": true
+      "title": "/images/Story/Grow/Title/1.png"
     },
     {
       "back": "/images/Story/Grow/Background/2.png",
       "text": "/images/Story/Grow/Text/2.png",
-      "show": false
+      "title": "/images/Story/Grow/Title/2.png"
     },
     {
       "back": "/images/Story/Grow/Background/3.png",
       "text": "/images/Story/Grow/Text/3.png",
-      "show": false
+      "title": "/images/Story/Grow/Title/3.png"
     },
     {
       "back": "/images/Story/Grow/Background/4.png",
       "text": "/images/Story/Grow/Text/4.png",
-      "show": false
+      "title": "/images/Story/Grow/Title/4.png"
     },
     {
       "back": "/images/Story/Grow/Background/5.png",
       "text": "/images/Story/Grow/Text/5.png",
-      "show": false
+      "title": "/images/Story/Grow/Title/5.png"
     },
     {
       "back": "/images/Story/Grow/Background/6.png",
       "text": "/images/Story/Grow/Text/6.png",
-      "show": false
+      "title": "/images/Story/Grow/Title/6.png"
     },
     {
       "back": "/images/Story/Grow/Background/7.png",
       "text": "/images/Story/Grow/Text/7.png",
-      "show": false
+      "title": "/images/Story/Grow/Title/7.png"
     },
     {
       "back": "/images/Story/Grow/Background/8.png",
       "text": "/images/Story/Grow/Text/8.png",
-      "show": false
+      "title": "/images/Story/Grow/Title/8.png"
     },
     {
       "back": "/images/Story/Grow/Background/9.png",
       "text": "/images/Story/Grow/Text/9.png",
-      "show": false
+      "title": "/images/Story/Grow/Title/9.png"
     },
     {
       "back": "/images/Story/Grow/Background/10.png",
       "text": "/images/Story/Grow/Text/10.png",
-      "show": false
+      "title": "/images/Story/Grow/Title/10.png"
     }
-
   ],
   "BackStory": [{
-      "back": "/images/Story/Grow/BackStory/1.png",
-      "show": false
+      "back": "/images/Story/Grow/BackStory/1.png"
     },
     {
-      "back": "/images/Story/Grow/BackStory/2.png",
-      "show": false
+      "back": "/images/Story/Grow/BackStory/2.png"
     },
     {
-      "back": "/images/Story/Grow/BackStory/3.png",
-      "show": false
+      "back": "/images/Story/Grow/BackStory/3.png"
     },
     {
-      "back": "/images/Story/Grow/BackStory/4.png",
-      "show": false
+      "back": "/images/Story/Grow/BackStory/4.png"
     },
     {
-      "back": "/images/Story/Grow/BackStory/5.png",
-      "show": false
+      "back": "/images/Story/Grow/BackStory/5.png"
     },
     {
-      "back": "/images/Story/Grow/BackStory/6.png",
-      "show": false
+      "back": "/images/Story/Grow/BackStory/6.png"
     },
     {
-      "back": "/images/Story/Grow/BackStory/7.png",
-      "show": false
+      "back": "/images/Story/Grow/BackStory/7.png"
     },
     {
-      "back": "/images/Story/Grow/BackStory/8.png",
-      "show": false
+      "back": "/images/Story/Grow/BackStory/8.png"
     },
     {
-      "back": "/images/Story/Grow/BackStory/9.png",
-      "show": false
+      "back": "/images/Story/Grow/BackStory/9.png"
     },
     {
-      "back": "/images/Story/Grow/BackStory/10.png",
-      "show": false
+      "back": "/images/Story/Grow/BackStory/10.png"
     }
   ]
 }

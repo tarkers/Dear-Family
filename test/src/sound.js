@@ -16,6 +16,8 @@ const setData = (kind) => {
             return {music:Strong,json:Strongjson}
         case "Click":
             return  {music:Click}
+        case "Intro":
+            return  {music:Intro}
         default:
             return{music:Intro,json:null}
     }

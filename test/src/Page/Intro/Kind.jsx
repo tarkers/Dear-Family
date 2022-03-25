@@ -3,8 +3,15 @@ import { Col, Container, Row, Modal } from "react-bootstrap";
 import styles from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
 import Draggable from "react-draggable";
-const Kind = ({ ToStory, display = "block" }) => {
+import './styles.scss'
+const Kind = ({ gender,ToStory, display = "block" }) => {
   const dragHeightRef = useRef();
+  const Pic_Dict = {
+    Upcloud: "/images/Intro/P5/upcloud.png",
+    Lowcloud: "/images/Intro/P5/lowcloud.png",
+    Boy: "/images/Intro/P5/Boy.png",
+    Girl: "/images/Intro/P5/Girl.png",
+  };
   const [modal, setModal] = useState(false);
   const envelopeRef = useRef();
   const [pos, _] = useState([
@@ -12,7 +19,6 @@ const Kind = ({ ToStory, display = "block" }) => {
     { x: 0, y: 0 },
     { x: 0, y: 0 },
   ]);
-  const navigate = useNavigate();
   const StopDrag = (e, ui, name) => {
     console.log(ui.y, ui.lastY);
     if (
@@ -33,34 +39,13 @@ const Kind = ({ ToStory, display = "block" }) => {
         display: `${display}`,
         backgroundColor: "#F3C89D",
         position: "relative",
+       
       }}
     >
-      <div className={styles.LeftCloud}>
+      <div className={styles.KindCenterPic} >
         <img
-          src={process.env.PUBLIC_URL + "/images/Story/Kind/leftcloud.png"}
-          alt="left"
-        />
-      </div>
-      <div className={styles.KindCenterPic}>
-        <img
-          src={process.env.PUBLIC_URL + "/images/Story/Kind/choice.png"}
+          src={process.env.PUBLIC_URL + Pic_Dict[gender]}
           alt="select"
-        />
-      </div>
-      <Row>
-        <Col className={styles.KindBottom + " justify-content-center"}>
-          <img
-            style={{ width: "25vw " }}
-            src={process.env.PUBLIC_URL + "/images/Story/Kind/remind.png"}
-            alt="test"
-          />
-        </Col>
-      </Row>
-      {/* cloud */}
-      <div className={styles.RightCloud}>
-        <img
-          src={process.env.PUBLIC_URL + "/images/Story/Kind/rightcloud.png"}
-          alt="right"
         />
       </div>
 
@@ -112,22 +97,33 @@ const Kind = ({ ToStory, display = "block" }) => {
           </div>
         </Draggable>
       </div>
+      <div className={styles.P4Cloud}>
+        <img
+          className={styles.Up}
+          src={process.env.PUBLIC_URL + Pic_Dict.Upcloud}
+          alt="Upcloud"
+        />
+        <img
+          className={styles.Low}
+          src={process.env.PUBLIC_URL + Pic_Dict.Lowcloud}
+          alt="Lowcloud"
+        />
+      </div>
       <Modal
-        size="sm"
         className={styles.ModalStyle}
         centered={true}
         show={modal}
         onHide={() => setModal(false)}
         aria-labelledby="example-modal-sizes-title-sm"
+        dialogClassName="modal-90w"
       >
-        {/* <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-sm">
-            Small Modal
-          </Modal.Title>
-        </Modal.Header> */}
-        <Modal.Body closeButton style={{ textAlign: "center",fontSize:"25px",fontWeight:"bold" }}>
-          請下拉至最底部
-        </Modal.Body>
+        {/* <Modal.Body  style={{background:"#F9eed6"}}> */}
+        <img
+          src={process.env.PUBLIC_URL +"/images/Intro/P5/Remind.png"}
+          alt="remind"
+          style={{width:"100%"}}
+        />
+        {/* </Modal.Body> */}
       </Modal>
     </Container>
   );

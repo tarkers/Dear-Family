@@ -4,26 +4,22 @@
         transform: rotate(15deg);
         transform-origin: left top;
         opacity: 0.8;
-        // filter: drop-shadow(0 0 15rem rgb(238, 155, 78));
-        // background-color: rebeccapurple;
     }
     100% {
         opacity: 1;
         transform: rotate(-10deg);
         transform-origin: left top;
-
-        // background-color: rebeccapurple;
     }
 }
 @keyframes rightlight_anime {
     0% {
-        transform: rotate(-15deg);
+        transform: rotate(-25deg);
         transform-origin: right top;
         opacity: 0.8;
     }
     100% {
         opacity: 1;
-        transform: rotate(15deg);
+        transform: rotate(5deg);
         transform-origin: right top;
     }
 }
@@ -130,7 +126,7 @@
     z-index: -1;
     filter: drop-shadow(0 0 5rem #ecad00);
     img {
-        width: inherit;
+        width: 65vw;
         animation-name: leftlight_anime;
         animation-duration: 2.8s;
         animation-iteration-count: infinite;
@@ -141,14 +137,18 @@
     }
 }
 .RightLight {
-    right: -5%;
     position: absolute;
-    top: 17%;
+    top: 0%;
+    right:0;
     width: 68vw;
-    z-index: -1;
-    filter: drop-shadow(0 0 5rem #ecad00);
+    height: 2vh;
+    z-index: -2;
+    padding-top: 17%;
+    // padding-right: 15vw;
+    filter: drop-shadow(0 0 5rem #fd9d4e);
     img {
-        width: inherit;
+        width: 68vw;
+        height: 68vh;  
         animation-name: rightlight_anime;
         animation-duration: 3.5s;
         animation-iteration-count: infinite;
@@ -199,123 +199,123 @@
     // background-color: red;
     transform: translate(-50%, 0%);
 }
-.SendLetterPic {
-    position: absolute;
-    left: 0%;
-    top: 0%;
-    width: fit-content;
-    .PicStyle {
-        position: absolute;
-        width: auto;
-        top: 25%;
-        left: 50%;
-        /* height: fit-content; */
-        transform: translateX(-50%);
-    }
-    .LetterStyle {
-        // position: absolute;
-        // left: 50%;
-        // top: 25%;
-        // width: 98%;
-        // padding: 2px;
-        // transform: translateX(-50%);
-    }
-    .HeadStyle {
-        // top: 36%;
-        // position: absolute;
-        // left: 61%;
-        // width: 13%;
-        // transform: translateY(10px);
-        top: 23%;
-        position: absolute;
-        left: 61%;
-        width: 13%;
-        transform: translate(5%,2%);
-    }
-    .ReceiveStyle {
-        top: 23%;
-        position: absolute;
-        left: 76%;
-        width: 13%;
-        transform: translate(7%,2%);
-    }
-    .ReceiveTitle {
-        // top: 47%;
-        // position: absolute;
-        // display: flex;
-        // // align-items: center;
-        // justify-content: center;
-        // left: 57%;
-        // height: 56px;
-        // width: 750px;
-        // transform: translate(-11%, 22%);
-        // color: #ae4439;
-        // background-color: #fce1b9;
-        // white-space: nowrap;
-        // font-size: 35px;
-        // font-weight: bold;
-        // text-size-adjust: auto;
-        top: 45%;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        left: 56%;
-        height: 56px;
-        width: 49%;
-        transform: translate(-11%, 22%);
-        color: #ae4439;
-        background-color: #fce1b9;
-        white-space: nowrap;
-        font-size: 35px;
-        font-weight: bold;
-        text-size-adjust: auto;
-        u {
-            font-size: 45px;
-            padding-left: 10px;
-            padding-right: 10px;
-            text-decoration-thickness: 5px;
-        }
-    }
-    .LineDiv {
-        top: 54%;
-        left: 62%;
-        position: absolute;
-        text-align: center;
-        height: 19%;
-        width: 28%;
-    }
-    .TypeText {
-        text-align: center;
-        margin-top: 5px;
-        border: 1px;
-        border-bottom-style: solid;
-        border-top-style: none;
-        border-left-style: none;
-        border-right-style: none;
-        color: #de7641;
-        font-weight: bold;
-        // font-size: 25px;
-        // height: 35px;
-        width: 80%;
-        background-color: transparent;
-        &:focus {
-            outline: none;
-            border-bottom-style: solid;
-            border-bottom-color: rgb(97, 97, 243);
-            // border-bottom-width: 2px;
-        }
-    }
-    .SendIcon {
-        bottom: 10%;
-        left: 50%;
-        position: absolute;
-        transform: translate(-50%, -50%);
-        img {
-            width: auto;
-            height: 25%;
-        }
-    }
-}
+// .SendLetterPic {
+//     position: absolute;
+//     left: 0%;
+//     top: 0%;
+//     width: fit-content;
+//     .PicStyle {
+//         position: absolute;
+//         width: auto;
+//         top: 25%;
+//         left: 50%;
+//         /* height: fit-content; */
+//         transform: translateX(-50%);
+//     }
+//     .LetterStyle {
+//         // position: absolute;
+//         // left: 50%;
+//         // top: 25%;
+//         // width: 98%;
+//         // padding: 2px;
+//         // transform: translateX(-50%);
+//     }
+//     .HeadStyle {
+//         // top: 36%;
+//         // position: absolute;
+//         // left: 61%;
+//         // width: 13%;
+//         // transform: translateY(10px);
+//         top: 23%;
+//         position: absolute;
+//         left: 61%;
+//         width: 13%;
+//         transform: translate(5%,2%);
+//     }
+//     .ReceiveStyle {
+//         top: 23%;
+//         position: absolute;
+//         left: 76%;
+//         width: 13%;
+//         transform: translate(7%,2%);
+//     }
+//     .ReceiveTitle {
+//         // top: 47%;
+//         // position: absolute;
+//         // display: flex;
+//         // // align-items: center;
+//         // justify-content: center;
+//         // left: 57%;
+//         // height: 56px;
+//         // width: 750px;
+//         // transform: translate(-11%, 22%);
+//         // color: #ae4439;
+//         // background-color: #fce1b9;
+//         // white-space: nowrap;
+//         // font-size: 35px;
+//         // font-weight: bold;
+//         // text-size-adjust: auto;
+//         top: 45%;
+//         position: absolute;
+//         display: flex;
+//         justify-content: center;
+//         left: 56%;
+//         height: 56px;
+//         width: 49%;
+//         transform: translate(-11%, 22%);
+//         color: #ae4439;
+//         background-color: #fce1b9;
+//         white-space: nowrap;
+//         font-size: 35px;
+//         font-weight: bold;
+//         text-size-adjust: auto;
+//         u {
+//             font-size: 45px;
+//             padding-left: 10px;
+//             padding-right: 10px;
+//             text-decoration-thickness: 5px;
+//         }
+//     }
+//     .LineDiv {
+//         top: 54%;
+//         left: 62%;
+//         position: absolute;
+//         text-align: center;
+//         height: 19%;
+//         width: 28%;
+//     }
+//     .TypeText {
+//         text-align: center;
+//         margin-top: 5px;
+//         border: 1px;
+//         border-bottom-style: solid;
+//         border-top-style: none;
+//         border-left-style: none;
+//         border-right-style: none;
+//         color: #de7641;
+//         font-weight: bold;
+//         // font-size: 25px;
+//         // height: 35px;
+//         width: 80%;
+//         background-color: transparent;
+//         &:focus {
+//             outline: none;
+//             border-bottom-style: solid;
+//             border-bottom-color: rgb(97, 97, 243);
+//             // border-bottom-width: 2px;
+//         }
+//     }
+//     .SendIcon {
+//         bottom: 10%;
+//         left: 50%;
+//         position: absolute;
+//         transform: translate(-50%, -50%);
+//         img {
+//             width: auto;
+//             height: 25%;
+//         }
+//     }
+// }
 
 
 
@@ -362,5 +362,36 @@
     img{
         width: 90%;
         margin: auto;
+    }
+}
+.SendInputStyle{
+    color: #A44338;
+    font-weight: bold;
+    font-size: large; 
+}
+.test{
+    color: #A44338;
+    font-weight: bold;
+    font-size: large;  
+}
+.TypeText {
+    // text-align: center;
+    margin-top: 5px;
+    border: 1px;
+    border-bottom-style: solid;
+    border-bottom-color:#de7641;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    color: #A44338;
+    font-weight: bold;
+    font-size: smaller;
+    width: 80%;
+    background-color: transparent;
+    &:focus {
+        outline: none;
+        border-bottom-style: solid;
+        border-bottom-color: rgb(97, 97, 243);
+        // border-bottom-width: 2px;
     }
 }

@@ -82,12 +82,16 @@ const ReceivePerson = ({ ShowNext, display = "block" }) => {
 
       <div className={styles.LeftLight}>
         <img
+        // className={styles.teseeeft}
           src={process.env.PUBLIC_URL + "/images/Letter/Receive/leftlight.png"}
           alt="back"
         />
       </div>
-      <div className={styles.RightLight}>
+      <div 
+      className={styles.RightLight}
+      >
         <img
+         className={styles.teseeeft}
           src={process.env.PUBLIC_URL + "/images/Letter/Receive/rightlight.png"}
           alt="rightlight"
         />

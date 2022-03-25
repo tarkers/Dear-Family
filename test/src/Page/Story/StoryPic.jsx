@@ -1,26 +1,26 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import styles from "./style.module.scss";
-import CircularProgress from "@mui/material/CircularProgress";
-// import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import { useParams } from "react-router-dom";
-import ReactPlayer from "react-player";
 import { setData } from "../../sound";
 import { Element, scroller } from "react-scroll";
 import classNames from "classnames";
-const StoryPic = ({ ShowNext, playMusic, params, data, display = "block" }) => {
-  const clickRef = useRef();
+const StoryPic = ({ ShowNext, params, data, display = "block" }) => {
+  const soundRef = useRef();
   const [backG, setbackG] = useState(false);
   const initState = () => {
     let tmp = [];
     for (let i = 0; i < 20; ++i) {
-      tmp.push("none");
+      tmp.push("block");
     }
 
     return tmp;
   };
+  useEffect(() => {
+    // soundRef.current.volume = 0.2;
+  }, []);
+
   const ClearData = () => {
+    setbackG(false);
     setIndex(initState());
   };
   const [index, setIndex] = useState(initState);
@@ -33,7 +33,7 @@ const StoryPic = ({ ShowNext, playMusic, params, data, display = "block" }) => {
     });
   };
 
-  const AddBackground = (back, i) => {
+  const StoryPage = (back, i) => {
     let hideBack = data.BackStory[i].back;
     let itemBack = process.env.PUBLIC_URL + data.Item[i].back;
     let itemStyle = styles[`${params.kind}Item_${i + 1}`];
@@ -46,88 +46,101 @@ const StoryPic = ({ ShowNext, playMusic, params, data, display = "block" }) => {
       }
     }
     return (
-      <div key={i}>
-        {/* BackgroundPage */}
-
-        <Element name={`Intro_${i}`} className="element">
-          <Row style={{ display: `${index[i * 2]}` }}>
-            <div style={{ position: "relative", padding: "0" }}>
+      <Element name={`StoryPage_${i}`} className="element">
+        <Row
+          style={{
+            display: `${index[i * 2 + 1]}`,
+            position: "relative",
+            overflow: "hidden",
+          }}
+        >
+          <img
+            style={{ width: "100%", padding: "0" }}
+            src={process.env.PUBLIC_URL + back}
+            alt="select"
+          />
+          <div
+            onClick={() => {
+              soundRef.current.play();
+              setbackG(true);
+            }}
+          >
+            <img className={itemStyle} src={itemBack} alt="item" />
+          </div>
+          {/* HidePage */}
+          {backG && (
+            <div className={styles.BackgroundStyle}>
               <img
-                style={{ width: "100%" }}
-                src={process.env.PUBLIC_URL + data.Intro[i].back}
+                src={process.env.PUBLIC_URL + hideBack}
                 alt="back"
                 onClick={() => {
-                  clickRef.current.play();
-                  setIndex(
-                    index.map((_, ti) => (ti <= i * 2 + 1 ? "block" : "none"))
-                  );
-                  scrollTo(`StoryPage_${i}`);
-                }}
-              />
-              <img
-                className={styles.BackgroundText}
-                src={process.env.PUBLIC_URL + data.Intro[i].text}
-                alt="text"
-                onClick={() => {
-                  clickRef.current.play();
-                  setIndex(
-                    index.map((_, ti) => (ti <= i * 2 + 1 ? "block" : "none"))
-                  );
-                  scrollTo(`StoryPage_${i}`);
+                  soundRef.current.play();
+                  if (i !== 9) {
+                    setbackG(false);
+                    setIndex(
+                      index.map((_, ti) =>
+                        ti <= (i + 1) * 2 ? "block" : "none"
+                      )
+                    );
+                    scrollTo(`Intro_${i + 1}`);
+                  } else {
+                    console.log("toNext");
+                    ClearData();
+                    ShowNext();
+                  }
                 }}
               />
             </div>
-          </Row>
-        </Element>
-        {/* StoryPage */}
-
-        <Element name={`StoryPage_${i}`} className="element">
-          <Row style={{ display: `${index[i * 2 + 1]}`, position: "relative" }}>
+          )}
+        </Row>
+      </Element>
+    );
+  };
+  const BackgroundPage = (i) => {
+    return (
+      <Element name={`Intro_${i}`} className="element">
+        <Row
+          style={{ display: `${index[i * 2]}` }}
+          onClick={() => {
+            soundRef.current.play();
+            setIndex(
+              index.map((_, ti) => (ti <= i * 2 + 1 ? "block" : "none"))
+            );
+            scrollTo(`StoryPage_${i}`);
+          }}
+        >
+          <div style={{ position: "relative", padding: "0" }}>
             <img
-              style={{ width: "100%", padding: "0" }}
-              src={process.env.PUBLIC_URL + back}
-              alt="select"
+              style={{ width: "100%" }}
+              src={process.env.PUBLIC_URL + data.Intro[i].back}
+              alt="back"
             />
-            <div
-              onClick={() => {
-                clickRef.current.play();
-                setbackG(true);
-              }}
-            >
-              <img
-                // loading="lazy"
-                className={itemStyle}
-                src={itemBack}
-                alt="item"
-              />
-            </div>
-            {/* HidePage */}
-            {backG && (
-              <div className={styles.BackgroundStyle}>
-                <img
-                  src={process.env.PUBLIC_URL + hideBack}
-                  alt="back"
-                  onClick={() => {
-                    clickRef.current.play();
-                    if (i !== 9) {
-                      setbackG(false);
-                      setIndex(
-                        index.map((_, ti) =>
-                          ti <= (i + 1) * 2 ? "block" : "none"
-                        )
-                      );
-                      scrollTo(`Intro_${i + 1}`);
-                    } else {
-                      console.log("toNext");
-                      ClearData();
-                      ShowNext();
-                    }
-                  }}
-                />
-              </div>
-            )}
-          </Row>
-        </Element>
+            <img
+              className={
+                index[i * 2] === "block"
+                  ? classNames(styles.BackgroundTitle, styles.move)
+                  : styles.BackgroundTitle
+              }
+              src={process.env.PUBLIC_URL + data.Intro[i].title}
+              alt="text"
+            />
+            <img
+              className={classNames(styles.BackgroundText, styles.move)}
+              src={process.env.PUBLIC_URL + data.Intro[i].text}
+              alt="text"
+            />
+          </div>
+        </Row>
+      </Element>
+    );
+  };
+  const AddBackground = (back, i) => {
+    return (
+      <div key={i}>
+        {/* BackgroundPage */}
+        {BackgroundPage(i)}
+        {/* StoryPage */}
+        {StoryPage(back, i)}
       </div>
     );
   };
@@ -139,14 +152,32 @@ const StoryPic = ({ ShowNext, playMusic, params, data, display = "block" }) => {
     >
       <audio
         className={styles.audioStyle}
+        volume={"0.5"}
         src={setData("Click").music}
-        ref={clickRef}
-        controls
+        ref={soundRef}
         muted={false}
       />
       <Row>
         {/* Start Page */}
-        <div style={{ position: "relative", padding: "0", color: "white" }}>
+        <div
+          style={{
+            position: "relative",
+            padding: "0",
+            color: "white",
+            // ,backgroundImage"url(" + process.env.PUBLIC_URL + data.Back + ")"
+          }}
+        >
+          <img
+            style={{
+              position: "absolute",
+              zIndex: "-1",
+              opacity: 0.9,
+              height: "100vh",
+              width: "100%",
+            }}
+            src={process.env.PUBLIC_URL + data.Back}
+            alt="select"
+          />
           <img
             style={{ width: "100%" }}
             src={process.env.PUBLIC_URL + data.Back}
@@ -162,7 +193,6 @@ const StoryPic = ({ ShowNext, playMusic, params, data, display = "block" }) => {
             }
             alt="select"
             onClick={() => {
-              playMusic();
               setIndex(index.map((_, ti) => (ti === 0 ? "block" : "none")));
               scrollTo(`Intro_0`);
             }}

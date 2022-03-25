@@ -64,11 +64,28 @@ $pink: #e4acaa;
         // transform: translate(-50%, -50%);
     }
 }
-.audioStyle{
+.BCIcon {
+    position: fixed;
+    // margin-top: 2vh;
+    z-index: 2;
+    right: 0;
+    width: 50vw;
+    img {
+        height: 4vh;
+        width: auto;
+        margin: 5vw;
+        min-height: 25px;
+    }
+}
+.BackIcon {
     position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-    opacity: 0;
-    z-index: 3;
+    z-index: 1;
+    left: 0;
+    width: 50vw;
+    img {
+        height: 4vh;
+        width: auto;
+        margin: 5vw;
+        min-height: 25px;
+    }
 }
