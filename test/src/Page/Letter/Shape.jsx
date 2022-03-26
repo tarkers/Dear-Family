@@ -14,7 +14,8 @@ import "./style.css";
 
 // import required modules
 import { Pagination } from "swiper";
-const Shape = ({ ShowNext, param, display = "block" }) => {
+const Shape = ({ ShowNext, ChangeKind, param, display = "block" }) => {
+  const [btnhape, setBtnShape] = useState(param.gender);
   const InitData = () => {
     switch (param.kind) {
       case "Born":
@@ -33,14 +34,18 @@ const Shape = ({ ShowNext, param, display = "block" }) => {
       return '<span class="' + className + '">' + (index + 1) + "</span>";
     },
   };
-
+  const setBtn = (kind) => {
+    return kind === param.kind
+      ? process.env.PUBLIC_URL + `/images/Letter/Shape/${kind}_Click.png`
+      : process.env.PUBLIC_URL + `/images/Letter/Shape/${kind}.png`
+  };
   const data = InitData();
   return (
     <Container
       style={{
         display: `${display}`,
         overflowX: "hidden",
-        backgroundColor: "rgb(255, 255, 255)",
+        backgroundColor: "#F4EBE6",
         height: "100vh",
       }}
       fluid
@@ -63,7 +68,32 @@ const Shape = ({ ShowNext, param, display = "block" }) => {
           />
         </Col>
       </Row>
-      <Row style={{ marginTop: 20, position: "relative" }}>
+      <Row>
+        <Col className="d-flex justify-content-center mt-2">
+          <img
+            src={setBtn("Born")}
+            alt="Born"
+            className="p-1"
+            style={{ height: "5vh" }}
+            onClick={()=>ChangeKind("Born")}
+          />
+          <img
+            src={setBtn("Grow")}
+            alt="Grow"
+            className="p-1"
+            style={{ height: "5vh" }}
+            onClick={()=>ChangeKind("Grow")}
+          />
+          <img
+            src={setBtn("Strong")}
+            alt="Strong"
+            className="p-1"
+            style={{ height: "5vh" }}
+            onClick={()=>ChangeKind("Strong")}
+          />
+        </Col>
+      </Row>
+      <Row style={{ position: "relative" }}>
         <Swiper
           slidesPerView={3}
           spaceBetween={30}
@@ -74,16 +104,10 @@ const Shape = ({ ShowNext, param, display = "block" }) => {
           {data[param.gender].map((image, i) => (
             <SwiperSlide
               key={i}
-              style={{ padding: "15px" }}
+              style={{ padding: "10px" }}
               onClick={() => ShowNext(i)}
             >
-              <div style={{width:"25vw"}}>
-                <img
-                  src={process.env.PUBLIC_URL + data.Title[i]}
-                  alt="title"
-                  style={{ height: "6vh", width: "auto", margin: "auto" }}
-                  onClick={() => console.log(image)}
-                />
+              <div style={{ width: "25vw" }}>
                 <img
                   src={process.env.PUBLIC_URL + image}
                   alt="picurl"
@@ -91,8 +115,14 @@ const Shape = ({ ShowNext, param, display = "block" }) => {
                     height: "auto",
                     width: "inherit",
                     margin: "auto",
-                    marginTop: "0px",
+                    paddingBottom:"20%"
                   }}
+                />
+                <img
+                  src={process.env.PUBLIC_URL + data.Title[i]}
+                  alt="title"
+                  style={{ height: "6vh", width: "auto", margin: "auto" }}
+                  onClick={() => console.log(image)}
                 />
               </div>
             </SwiperSlide>

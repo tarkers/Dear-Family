@@ -10,6 +10,7 @@ const Main = ({setMusic}) => {
   // const btnRef = useRef();
   // const soundRef = useRef();
   const [searchParams, _] = useSearchParams();
+  const [GK,SetGK]=useState({gender:searchParams.get("gender"),kind: searchParams.get("kind")})
   const gender = searchParams.get("gender");
   const kind = searchParams.get("kind");
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const Main = ({setMusic}) => {
     reveivePerson : reveivePerson
     shape: card shape
     */
-    ReceivePerson: { show: "none", name: "", reveivePerson: "" },
+    ReceivePerson: { show: "none", name: "user", reveivePerson: "mom" },
     Send: { show: "none", link: "" },
     QRcode: { show: "none" },
   });
@@ -46,7 +47,7 @@ const Main = ({setMusic}) => {
       Shape: { show: "none", shape: (shape + 1).toString() },
       ReceivePerson: { ...page.ReceivePerson, show: "block" },
     });
-    console.log(shape, "ttt");
+    // console.log(shape, "ttt");
   };
   const ToLetter = (name, reveivePerson) => {
     console.log(name, reveivePerson);
@@ -109,7 +110,8 @@ const Main = ({setMusic}) => {
       <Shape
         display={page.Shape.show}
         ShowNext={ToReceivePerson}
-        param={{ gender: gender, kind: kind }}
+        param={GK}
+        ChangeKind={(v)=>SetGK({...GK,kind:v})}
       />
       <ReceivePerson display={page.ReceivePerson.show} ShowNext={ToLetter} />
       <Send
@@ -117,8 +119,8 @@ const Main = ({setMusic}) => {
         data={{
           name: page.ReceivePerson.name,
           reveivePerson: page.ReceivePerson.reveivePerson,
-          kind: kind,
-          gender: gender,
+          kind: GK.kind,
+          gender: GK.gender,
           shape: page.Shape.shape,
         }}
         ShowNext={ToQRcode}

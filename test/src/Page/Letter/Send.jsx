@@ -161,7 +161,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
           <Col xs={7}>
             <img
               style={{ width: "100%", height: "auto" }}
-              src={process.env.PUBLIC_URL + `/images/Letter/Send/test.png`}
+              src={process.env.PUBLIC_URL +`/images/Letter/Send/${data.kind}/${data.gender}/${data.shape}.png`}
               alt="test"
             />
             <Row>
