@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Dear-Family/static/css/main.e2f3c862.css",
-    "main.js": "/Dear-Family/static/js/main.b4d736f0.js",
+    "main.js": "/Dear-Family/static/js/main.47f1dc96.js",
     "static/js/787.0c3f432a.chunk.js": "/Dear-Family/static/js/787.0c3f432a.chunk.js",
     "static/media/Grow.mp3": "/Dear-Family/static/media/Grow.a9ca2888eda9ec432d7f.mp3",
     "static/media/Strong.mp3": "/Dear-Family/static/media/Strong.5af5ca98f282e0028a63.mp3",
@@ -10,11 +10,11 @@
     "static/media/Click.mp3": "/Dear-Family/static/media/Click.a21c317b9cbce9d254ff.mp3",
     "index.html": "/Dear-Family/index.html",
     "main.e2f3c862.css.map": "/Dear-Family/static/css/main.e2f3c862.css.map",
-    "main.b4d736f0.js.map": "/Dear-Family/static/js/main.b4d736f0.js.map",
+    "main.47f1dc96.js.map": "/Dear-Family/static/js/main.47f1dc96.js.map",
     "787.0c3f432a.chunk.js.map": "/Dear-Family/static/js/787.0c3f432a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e2f3c862.css",
-    "static/js/main.b4d736f0.js"
+    "static/js/main.47f1dc96.js"
   ]
 }
