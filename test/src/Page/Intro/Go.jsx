@@ -1,47 +1,64 @@
 import React from "react";
 import styles from "./style.module.scss";
 import { Container, Row, Col } from "react-bootstrap";
-const Go = ({display,toGender}) => {
+const Go = ({ display, toGender }) => {
   return (
     <Container
       fluid
-      className={styles.containerDiv}
-      style={{ backgroundColor: "#F3C89D" ,display:`${display}`}}
+      className={styles.P3D}
+      style={{
+        display: `${display}`,
+        position: "relative",
+        backgroundColor: "#ae4439",
+        height: " 100vh",
+        width: "100vw",
+      }}
     >
-      <div style={{ position: "relative", height: "100%" }}>
-        <Row>
-          <div
-            className={styles.P3IconUp}
-            style={{
-              backgroundImage: `url(${process.env.PUBLIC_URL}/images/Intro/P3/sun.png)`,
-            }}
-          ></div>
-          <Col
-            style={{ marginTop: "10%", position: "relative", height: "70%" }}
-          >
-            <img
-              style={{ maxWidth: "90vw" }}
-              src={process.env.PUBLIC_URL + "/images/Intro/P3/text.png"}
-              alt="logo"
-            />
-          </Col>
-        </Row>
-        <div    className={styles.P3IconDown}>
+      <img
+        className={styles.Back}
+        src={`${process.env.PUBLIC_URL}/images/Intro/P3/back.png`}
+        alt="back"
+      />
+      <img
+        className={styles.middle}
+        src={`${process.env.PUBLIC_URL}/images/Intro/P3/middle.png`}
+        alt="middle"
+      />
+      <img
+        className={styles.lleaf}
+        src={`${process.env.PUBLIC_URL}/images/Intro/P3/lleaf.png`}
+        alt="middle"
+      />
+      <img
+        className={styles.rleaf}
+        src={`${process.env.PUBLIC_URL}/images/Intro/P3/rleaf.png`}
+        alt="middle"
+      />
+      <Row>
+        <Col className="d-flex justify-content-center">
           <img
-            src={process.env.PUBLIC_URL + "/images/Intro/P3/cloud.png"}
-            alt="loadPic"
-            style={{ height: "8vh", float: "right", width: "auto" }}
+            style={{ height: "8vh", marginTop: "10vh" }}
+            src={`${process.env.PUBLIC_URL}/images/Intro/P3/text.png`}
+            alt="back"
           />
-        </div>
-        <div>
+        </Col>
+      </Row>
+      <Row style={{ marginTop: "27vh",position:"relative",zIndex:3 }}>
+        <Col className="d-flex justify-content-center">
           <img
-            src={process.env.PUBLIC_URL + "/images/Intro/P3/go.png"}
-            alt="go"
-            className={styles.P3Next}
-            onClick={()=>toGender("Gender")}
+            style={{ height: "8vh" }}
+            src={`${process.env.PUBLIC_URL}/images/Intro/P3/text2.png`}
+            alt="back"
           />
-        </div>
-      </div>
+        </Col>
+      </Row>
+      <img
+        className={styles.P3Click}
+        // style={{position: "relative", zIndex: 1 }}
+        src={`${process.env.PUBLIC_URL}/images/Intro/P3/click.png`}
+        alt="click"
+        onClick={() => toGender("Gender")}
+      />
     </Container>
   );
 };

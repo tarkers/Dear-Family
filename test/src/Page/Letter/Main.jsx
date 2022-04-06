@@ -69,6 +69,7 @@ const Main = ({setMusic}) => {
     ToShape();
   }
   const ToBack=()=>{
+    console.log("back")
     if(page.QRcode.show==="block"){
       SetPage({
         ...page,
@@ -125,7 +126,7 @@ const Main = ({setMusic}) => {
         }}
         ShowNext={ToQRcode}
       />
-      <QRcode display={page.QRcode.show} imageLink={page.Send.link} />
+      <QRcode display={page.QRcode.show} imageLink={page.Send.link} ToBack={ToBack}/>
       <Outlet />
     </>
   );

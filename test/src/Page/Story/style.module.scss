@@ -157,7 +157,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
     transform: translate(-50%, 0);
     width: 70vw;
     &.move{
-        animation: 2s ease-out 5s 1 fade-in;
+        animation: 1s ease-out 2.0s 1 fade-in;
         animation-fill-mode: forwards;  
     }
  
@@ -171,7 +171,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
     transform: translate(-50%,0);
     height: 9vh;
     &.move{
-        animation: 2s ease-out 2.5s 1 fade-in;
+        animation: 1s ease-out 1.5s 1 fade-in;
         animation-fill-mode: forwards;  
     }
    
@@ -373,24 +373,31 @@ $anime: 0.8s linear 1s infinite alternate blink;
 
 .AnotherFirst {
     position: absolute;
-    left: 0%;
-    top: 50%;
-    height: 25%;
-    transform: translate(27%, -25%);
+    left: 12%;
+    top: 45%;
+    height: 40%;
+    // transform: translate(27%, -25%);
+}
+.AnotherNext{
+    position: absolute;
+    left: 15%;
+    top: 35%;
+    height: 4vh;
+    // transform: translate(10%, -25%);
 }
 .AnotherSecond {
     position: absolute;
-    left: 35%;
-    top: 50%;
-    height: 25%;
-    transform: translate(10%, -25%);
+    left: 45%;
+    top: 45%;
+    height: 40%;
+    // transform: translate(10%, -25%);
 }
 .AnotherSend {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    height: 25%;
-    transform: translate(82%, -25%);
+    left: 35%;
+    top: 90%;
+    height: 12%;
+    // transform: translate(82%, -25%);
 }
 
 .GrowItem_1 {

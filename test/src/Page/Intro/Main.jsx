@@ -19,7 +19,7 @@ const Main = ({ setMusic, InitPlay }) => {
         Loading: { show: "block" },
         Envelope: { show: "block" },
         Go: { show: "block" },
-        Gender: { show: "block" },
+        Gender: { show: "block", gender: null },
         Kind: { show: "none" },
       };
     } else {
@@ -33,7 +33,6 @@ const Main = ({ setMusic, InitPlay }) => {
     }
   };
   const [page, SetPage] = useState(InitPage);
-
 
   const scrollTo = (element, delay = 300, smooth = "easeOutQuad") => {
     SetPage({ ...page, [element]: { show: "block" } });
@@ -70,27 +69,39 @@ const Main = ({ setMusic, InitPlay }) => {
       Loading: { show: "none" },
       Envelope: { show: "none" },
       Go: { show: "none" },
-      Gender: {...page.Gender, show: "block"},
-      Kind: {show: "none" },
+      Gender: { ...page.Gender, show: "block" },
+      Kind: { show: "none" },
     });
   };
   const ToStory = (name) => {
     navigate(`/story?kind=${name ?? "Born"}&gender=${page.Gender.gender}`);
   };
+  // const turnBack = () => {
+  //   // Loading: { show: "block" },
+  //   // Envelope: { show: "none" },
+  //   // Go: { show: "none" },
+  //   // Gender: { show: "none", gender: null },
+  //   // Kind: { show: "none" },
+  //   if (page.Kind.show === "block") {
+  //     ToGender();
+  //   }else if(page.gender.show==="block"){
+  //     to 
+  //   }
+  // };
   useEffect(() => {
-    setMusic();  
-    if(searchParams.get("section")==="Gender"){
-      console.log(searchParams.get("section"))
+    setMusic();
+    if (searchParams.get("section") === "Gender") {
+      console.log(searchParams.get("section"));
       SetPage({
         ...page,
         Loading: { show: "none" },
         Envelope: { show: "none" },
         Go: { show: "none" },
-        Gender: {...page.Gender, show: "block"},
+        Gender: { ...page.Gender, show: "block" },
       });
     }
-    
   }, []);
+
   return (
     <>
       <Loading
@@ -104,7 +115,7 @@ const Main = ({ setMusic, InitPlay }) => {
         <Envelope display={page.Envelope.show} scrollToGo={scrollTo} />
       </Element>
       <Element name="Go" className="element">
-        <Go display={page.Go.show} toGender={()=>ToGender()} />
+        <Go display={page.Go.show} toGender={() => ToGender()} />
       </Element>
       <Element name="Gender" className="element">
         <Gender display={page.Gender.show} ToKind={ToKind} />
@@ -114,6 +125,7 @@ const Main = ({ setMusic, InitPlay }) => {
           display={page.Kind.show}
           gender={page.Gender.gender ?? "Boy"}
           ToStory={ToStory}
+          ToGender={ToGender}
         />
       </Element>
     </>

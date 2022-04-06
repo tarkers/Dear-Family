@@ -45,14 +45,14 @@
     transform: translate(-50%, -50%);
     animation: 1s ease-out 0s 1 slideInFromLeft;
 }
-.logoPic{
+.logoPic {
     position: absolute;
     width: 40%;
     left: 53%;
     top: 50%;
     transform: translate(-80%, -50%);
 }
-.envelopePic{
+.envelopePic {
     position: absolute;
     width: 15%;
     left: 73%;
@@ -65,7 +65,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    .img{
+    .img {
         width: inherit;
     }
 }
@@ -149,40 +149,82 @@
     width: 20%;
     margin-left: 1%;
 }
-.EnDiv{
-    .envelopeBack{
+.P3D{
+    .rleaf{
+        position: absolute;
+        top: -20vh;
+        left: 55%;
+        transform: translateX(-50%);
+        width: auto;
+        height: 55vh;
+        z-index: 3;
+        color: beige;
+    }
+    .lleaf{
+        position: absolute;
+        top: -20vh;
+        left: 10vw;
+        // transform: translateX(-50%);
+        width: auto;
+        height: 55vh;
+        z-index: 3;
+    }
+    position: relative;
+    .Back {
         position: absolute;
         top: 0;
-        width: 100%;
-        left: 0%;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        // z-index: -2;
     }
-    .P2Next {
+    .middle{
         position: absolute;
+        top: 35vh;
         left: 50%;
-        bottom: 5%;
-        width: 15vw;
         transform: translateX(-50%);
-        animation: 0.8s linear 1s infinite alternate blink;
-    }
-    .P2Title{
-        position: absolute;
-        left: 50%;
-        top: 10%;
-        height: 6vh;
         width: auto;
-        transform: translateX(-50%);
+        height: 55vh;
+        z-index: 2;
     }
-    .P2Text{
+    .P3Click {
         position: absolute;
+        top: 70vh;
         left: 50%;
-        top: 35%;
-        height:45vh;
         transform: translateX(-50%);
+        width: auto;
+        height: 7vh;
+        z-index: 5;
     }
 }
-
-
-
+.EnDiv {
+    position: relative;
+    // z-index: -2;
+    .envelopeBack {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        // z-index: -2;
+    }
+    .P2Text {
+        margin-top: 27vh;
+        img{
+            height: 4vh;
+            width:auto;
+            margin-left:11vw
+        }
+    }
+    .P2Click {
+        position: absolute;
+        right: 20%;
+        bottom: 6%;
+        height: 8vh;
+        width: auto;
+        // z-index: -1;
+    }
+}
 
 .KindCenterPic {
     position: absolute;
@@ -243,7 +285,7 @@
         transform: rotate(-5deg);
     }
 }
-.ModalStyle{
+.ModalStyle {
     transform-origin: center;
     // transform: rotate(20deg);
     animation-name: shake;
@@ -262,21 +304,21 @@
         transform: translateX(5vw);
     }
 }
-.P4UpperText{
+.P4UpperText {
     width: auto;
     height: 12vh;
     margin-bottom: 12vh;
     margin-top: 5vh;
 }
-.P4Cloud{
+.P4Cloud {
     position: absolute;
-    top:0;
+    top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
     display: flexbox;
     z-index: 0;
-    .Up{
+    .Up {
         position: relative;
         height: 10vh;
         left: 0;
@@ -290,7 +332,7 @@
         // animation-iteration-count: 2;
         animation-timing-function: linear;
     }
-    .Low{
+    .Low {
         position: relative;
         height: 10vh;
         left: 0;
@@ -304,4 +346,11 @@
         // animation-iteration-count: 2;
         animation-timing-function: linear;
     }
+}
+.P1Click {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10vw;
 }

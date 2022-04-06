@@ -24,7 +24,7 @@ const Gender = ({ ToKind, display = "block" }) => {
     <Container
       fluid
       className={styles.PDiv}
-      style={{ backgroundColor: "#F3c89D", position: "relative" }}
+      style={{ backgroundColor: "#F3c89D", position: "relative",display:`${display}` }}
     >
       <Row className=" d-flex justify-content-center">
         <img

@@ -11,6 +11,7 @@ const Another = ({ ToSend, other, ShowNext, display = "block" }) => {
       style={{
         display: `${display}`,
         padding: "0",
+        backgroundColor: "#ae4439",
       }}
     >
       <div style={{ position: "relative" }}>
@@ -19,7 +20,16 @@ const Another = ({ ToSend, other, ShowNext, display = "block" }) => {
           src={process.env.PUBLIC_URL + "/images/Story/Another/back.png"}
           alt="back"
         />
-
+        
+        <img
+            className={styles.AnotherNext}
+            // className={styles.letterImg}
+            src={
+              process.env.PUBLIC_URL +
+              `/images/Story/Another/next.png`
+            }
+            alt="choose"
+          />
         {/* First */}
         <div
           className={styles.AnotherFirst}
@@ -32,7 +42,7 @@ const Another = ({ ToSend, other, ShowNext, display = "block" }) => {
             // className={styles.letterImg}
             src={
               process.env.PUBLIC_URL +
-              `/images/Story/Another/Pic/${other.first}.png`
+              `/images/Story/Another/${other.gender}/${other.first}.png`
             }
             alt="choose"
           />
@@ -60,7 +70,7 @@ const Another = ({ ToSend, other, ShowNext, display = "block" }) => {
             // className={styles.letterImg}
             src={
               process.env.PUBLIC_URL +
-              `/images/Story/Another/Pic/${other.second}.png`
+              `/images/Story/Another/${other.gender}/${other.second}.png`
             }
             alt="choose"
           />
@@ -86,7 +96,7 @@ const Another = ({ ToSend, other, ShowNext, display = "block" }) => {
           />
           <div>
             <img
-              style={{ height: "3vh", width: "auto", marginTop: "3vh" }}
+              style={{ height: "3vh", width: "auto", marginTop: "1vh" }}
               src={
                 process.env.PUBLIC_URL + "/images/Story/Another/Text/Send.png"
               }

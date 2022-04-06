@@ -5,18 +5,24 @@ import { setData } from "../../sound";
 import { Element, scroller } from "react-scroll";
 import classNames from "classnames";
 const StoryPic = ({ ShowNext, params, data, display = "block" }) => {
+  const clickRef = useRef();
   const soundRef = useRef();
   const [backG, setbackG] = useState(false);
+  useEffect(() => {
+    clickRef.current.volume=0.4
+    soundRef.current.volume=0.8
+  }, [])
+  
   const initState = () => {
     let tmp = [];
     for (let i = 0; i < 20; ++i) {
-      tmp.push("block");
+      tmp.push("none");
     }
 
     return tmp;
   };
   useEffect(() => {
-    // soundRef.current.volume = 0.2;
+    // clickRef.current.volume = 0.2;
   }, []);
 
   const ClearData = () => {
@@ -61,8 +67,10 @@ const StoryPic = ({ ShowNext, params, data, display = "block" }) => {
           />
           <div
             onClick={() => {
-              soundRef.current.play();
+              clickRef.current.play();
               setbackG(true);
+              soundRef.current.src=process.env.PUBLIC_URL+`/images/Story/${params.kind}/Audio/BackStory/${i+1}.mp3`
+              // setsoundsrc(process.env.PUBLIC_URL+`/images/Story/${params.kind}/BackStory/${i}.mp3`)
             }}
           >
             <img className={itemStyle} src={itemBack} alt="item" />
@@ -74,7 +82,8 @@ const StoryPic = ({ ShowNext, params, data, display = "block" }) => {
                 src={process.env.PUBLIC_URL + hideBack}
                 alt="back"
                 onClick={() => {
-                  soundRef.current.play();
+                  soundRef.current.pause();
+                  clickRef.current.play();
                   if (i !== 9) {
                     setbackG(false);
                     setIndex(
@@ -102,11 +111,13 @@ const StoryPic = ({ ShowNext, params, data, display = "block" }) => {
         <Row
           style={{ display: `${index[i * 2]}` }}
           onClick={() => {
-            soundRef.current.play();
+            clickRef.current.play();
             setIndex(
               index.map((_, ti) => (ti <= i * 2 + 1 ? "block" : "none"))
             );
             scrollTo(`StoryPage_${i}`);
+            soundRef.current.src=process.env.PUBLIC_URL+`/images/Story/${params.kind}/Audio/Story/${i+1}.mp3`
+            // setsoundsrc(process.env.PUBLIC_URL+`/images/Story/${params.kind}/Story/${i}.mp3`)
           }}
         >
           <div style={{ position: "relative", padding: "0" }}>
@@ -152,10 +163,17 @@ const StoryPic = ({ ShowNext, params, data, display = "block" }) => {
     >
       <audio
         className={styles.audioStyle}
-        volume={"0.5"}
+        // volume="0.1"
         src={setData("Click").music}
+        ref={clickRef}
+        muted={false}
+      />
+      <audio
+        // src={process.env.PUBLIC_URL+`/images/Story/${params.kind}/Audio/Story/1.mp3`}
+        autoPlay
         ref={soundRef}
         muted={false}
+        onCanPlay={()=>soundRef.current.play()}
       />
       <Row>
         {/* Start Page */}
@@ -195,6 +213,7 @@ const StoryPic = ({ ShowNext, params, data, display = "block" }) => {
             onClick={() => {
               setIndex(index.map((_, ti) => (ti === 0 ? "block" : "none")));
               scrollTo(`Intro_0`);
+              // soundRef.current.pause()
             }}
           />
           <img

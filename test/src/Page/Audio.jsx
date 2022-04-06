@@ -6,28 +6,29 @@ const Audio = forwardRef((props, ref) => {
   const { src, LoadingComplete, navigateBack } = props;
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
+  const timerRef = useRef();
   useEffect(() => {
-    let timer1 = setInterval(() => {
-       ref.current.play();
+    timerRef.current = setInterval(() => {
+      if (ref.current != null) ref.current.play();
     }, 4000);
-    if(playing){
-        clearInterval(timer1)
+    if (playing) {
+      clearInterval(timerRef.current);
     }
     // this will clear Timeout
     // when component unmount like in willComponentUnmount
     // and show will not change to true
     return () => {
-      if (playing) clearInterval(timer1);
+      if (playing) clearInterval(timerRef.current);
     };
-  }, [ref,playing]);
+  }, [ref, playing]);
   useEffect(() => {
-    ref.current.load()
-  }, [src,ref])
-  
+    ref.current.load();
+    ref.current.volume = 0.7;
+  }, [src, ref]);
 
   return (
-    <div className={styles.BCIcon }>
-      <div className={ " d-flex justify-content-end"}>
+    <div className={styles.BCIcon}>
+      <div className={" d-flex justify-content-end"}>
         <img
           src={
             muted
@@ -42,10 +43,13 @@ const Audio = forwardRef((props, ref) => {
       </div>
       <div>
         <audio
-        //   controls
+          //   controls
           playsInline
-         style={{width:0}}
-          onPause={() => {console.log("pause");setPlaying(false)}}
+          style={{ width: 0 }}
+          onPause={() => {
+            console.log("pause");
+            setPlaying(false);
+          }}
           onPlay={() => setPlaying(true)}
           ref={ref}
           onCanPlay={() => {
@@ -53,15 +57,14 @@ const Audio = forwardRef((props, ref) => {
             // ref.current.play();
           }}
           onLoadStart={() => {
-            console.log("onloadstatr!")
+            console.log("onloadstatr!");
             ref.current.pause();
           }}
-          onChange={()=>console.log("change")}
-          onLoadedData={()=>console.log("loadeddatat")}
-          onLoadedMetadata={()=>console.log("loadedmetadatat")}
-          onLoad={()=>{
-            console.log("onload!")
-           
+          onChange={() => console.log("change")}
+          onLoadedData={() => console.log("loadeddatat")}
+          onLoadedMetadata={() => console.log("loadedmetadatat")}
+          onLoad={() => {
+            console.log("onload!");
           }}
           muted={muted}
           // controls

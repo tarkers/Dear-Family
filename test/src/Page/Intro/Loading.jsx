@@ -8,7 +8,7 @@ const Loading = ({ display, ToEnvelope }) => {
       className={styles.containerDiv}
       style={{ backgroundColor: "#ae4439", display: `${display}` }}
     >
-      <div  >
+      <div>
         <img
           className={styles.logoPic}
           src={process.env.PUBLIC_URL + "/images/Intro/P1/name.png"}
@@ -19,7 +19,6 @@ const Loading = ({ display, ToEnvelope }) => {
           className={styles.envelopePic}
           src={process.env.PUBLIC_URL + "/images/Intro/P1/envelope.png"}
           alt="envelope"
-          onClick={ToEnvelope}
         />
         <img
           className={styles.HeartPic}
@@ -27,30 +26,12 @@ const Loading = ({ display, ToEnvelope }) => {
           alt="heart"
         />
       </div>
-
-      {/* <div
-        className={styles.P1Pic + " d-flex justify-content-center"}
+      <img
+        className={styles.P1Click}
+        src={process.env.PUBLIC_URL + "/images/Intro/P1/click.png"}
+        alt="heart"
         onClick={ToEnvelope}
-      >
-        <img
-          src={process.env.PUBLIC_URL + "/images/Intro/P1/name.png"}
-          alt="loadPic"
-        />
-
-        <div className="d-flex " style={{ position: "relative" }}>
-        <img
-            className={styles.P1Heart}
-            src={process.env.PUBLIC_URL + "/images/Intro/P1/heart.png"}
-            alt="heart"
-          />
-          <img
-            className="align-self-end"
-            style={{ height: "60%" }}
-            src={process.env.PUBLIC_URL + "/images/Intro/P1/envelope.png"}
-            alt="envelope"
-          />
-        </div>
-      </div> */}
+      />
     </Container>
     // <Envelope/>
   );

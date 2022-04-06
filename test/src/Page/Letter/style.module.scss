@@ -186,18 +186,25 @@
     left: 50%;
     top: 62%;
     width: auto;
-    height: 15vw;
+    // height: 10vh;
     // background-color: red;
     transform: translate(-50%, 0%);
 }
-.backtoMain {
+// .backtoMain {
+//     position: absolute;
+//     left: 50%;
+//     top: 20%;
+//     width: auto;
+//     height: 10vh;
+//     // background-color: red;
+//     transform: translate(-50%, 0%);
+// }
+.QRBack{
     position: absolute;
-    left: 50%;
-    top: 20%;
-    width: auto;
-    height: 10vh;
-    // background-color: red;
-    transform: translate(-50%, 0%);
+    left: 0;
+    top: 40%;
+    height: 15%;
+    // z-index: 2;
 }
 // .SendLetterPic {
 //     position: absolute;

@@ -4,7 +4,7 @@ import styles from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
 import Draggable from "react-draggable";
 import './styles.scss'
-const Kind = ({ gender,ToStory, display = "block" }) => {
+const Kind = ({ToGender, gender,ToStory, display = "block" }) => {
   const dragHeightRef = useRef();
   const Pic_Dict = {
     Upcloud: "/images/Intro/P5/upcloud.png",
@@ -42,6 +42,13 @@ const Kind = ({ gender,ToStory, display = "block" }) => {
        
       }}
     >
+      <div className={styles.BackIcon + " d-flex justify-content-start"}>
+        <img
+          src={process.env.PUBLIC_URL + "/images/backIcon.png"}
+          alt="back"
+          onClick={() =>  ToGender()}
+        />
+      </div>
       <div className={styles.KindCenterPic} >
         <img
           src={process.env.PUBLIC_URL + Pic_Dict[gender]}

@@ -1,30 +1,65 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import QRCode from "qrcode.react";
 import styles from "./style.module.scss";
-const QRcode = ({imageLink=null,display="block"}) => {
-  const navigate =useNavigate();
+const QRcode = ({ imageLink = null, display = "block",ToBack }) => {
+  const navigate = useNavigate();
   return (
-    <Container  style={{display:`${display}`,position:"relative"}}>
-       <img
+    <Container style={{ display: `${display}`, position: "relative" }}>
+      <img
         style={{ width: "100%" }}
-        src={process.env.PUBLIC_URL + "/images/Letter/Qrcode/back.png"}
+        src={process.env.PUBLIC_URL + "/images/Letter/Qrcode/background.png"}
         alt="back"
       />
-       <div className={styles.QRcodeStyle}>
-       <QRCode value={imageLink.tag??""} fgColor="#e5a96b"  style={{ width: "inherit",height:"auto" }}/>
-      </div>
-       <img className={styles.downloadDiv} 
-       src={process.env.PUBLIC_URL + "/images/Letter/Qrcode/download.png"}
-       alt="download"
-       onClick={()=>imageLink.click()}/>
-       <img className={styles.backtoMain}
-        src={process.env.PUBLIC_URL + "/images/Letter/Qrcode/logo.png"}
-        alt="logo"
-       
-       onClick={()=> navigate(`/`)}/>
 
+      <div className={styles.QRcodeStyle}>
+        <QRCode
+          value={imageLink.tag ?? ""}
+          fgColor="#e5a96b"
+          style={{ width: "inherit", height: "auto" }}
+        />
+      </div>
+
+      {/* <Row> */}
+      <div className={styles.downloadDiv}>
+        <img
+          className="m-4"
+          style={{height:"3vh"}}
+          src={process.env.PUBLIC_URL + "/images/Letter/Qrcode/fade.png"}
+          alt="fade"
+        />
+        <div
+          className=" d-flex justify-content-center"
+          style={{ height: "12vh" }}
+        >
+          <img
+            className="p-3"
+            src={process.env.PUBLIC_URL + "/images/Letter/Qrcode/download.png"}
+            alt="download"
+            onClick={() => imageLink.click()}
+          />
+          <img
+            className="p-3"
+            src={process.env.PUBLIC_URL + "/images/Letter/Qrcode/board.png"}
+            alt="download"
+            onClick={() => navigate(`/board`)}
+          />
+          <img
+            className="p-3"
+            src={process.env.PUBLIC_URL + "/images/Letter/Qrcode/back.png"}
+            alt="download"
+            onClick={() => navigate(`/`)}
+          />
+        </div>
+      </div>
+      {/* </Row> */}
+      <img
+       className={styles.QRBack}
+        src={process.env.PUBLIC_URL + "/images/Letter/Qrcode/backBtn.png"}
+        alt="back"
+        onClick={()=>ToBack()}
+      />
     </Container>
   );
 };

@@ -30,18 +30,18 @@ const Main = ({ setMusic }) => {
     let tmp = {};
     switch (newkind) {
       case "Born":
-        tmp = { first: "Grow", second: "Strong" };
+        tmp = { first: "Grow", second: "Strong" ,gender:gender};
         break;
 
       case "Grow":
-        tmp = { first: "Born", second: "Strong" };
+        tmp = { first: "Born", second: "Strong" ,gender:gender};
         break;
 
       case "Strong":
-        tmp = { first: "Born", second: "Grow" };
+        tmp = { first: "Born", second: "Grow" ,gender:gender};
         break;
       default:
-        tmp = { first: "Grow", second: "Strong" };
+        tmp = { first: "Grow", second: "Strong" ,gender:gender};
         break;
     }
     return tmp;

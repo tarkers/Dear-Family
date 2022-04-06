@@ -28,13 +28,19 @@ const Send = ({ ShowNext, data, display = "block" }) => {
       extension = "jpg",
     } = {}
   ) => {
+    const headers = {
+      // 'Content-Type': 'application/json',
+    }
     axios
       .post("https://dear-family-server.herokuapp.com/letters", {
         image: image,
         name: name,
         text: getAllText(),
         person: data.name,
-      })
+        gender:data.gender,
+        receive:data.reveivePerson,
+        month: new Date().getMonth()+1,
+      },{headers:headers})
       .then((resp) => {
         console.log(
           resp.data.id,

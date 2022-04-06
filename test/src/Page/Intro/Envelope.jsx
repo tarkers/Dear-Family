@@ -1,8 +1,7 @@
 import React from "react";
-import { Container} from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import styles from "./style.module.scss";
 const Envelope = ({ display, scrollToGo }) => {
-
   return (
     <Container
       fluid
@@ -10,33 +9,54 @@ const Envelope = ({ display, scrollToGo }) => {
       style={{
         display: `${display}`,
         position: "relative",
-        backgroundColor:"#F3C89D",
-        height:" 100vh",
+        backgroundColor: "#ae4439",
+        height: " 100vh",
         width: "100vw",
       }}
     >
-         <img
-          className={styles.envelopeBack}
-          src={`${process.env.PUBLIC_URL}/images/Intro/P2/back.png`}
-          alt="back"
-
-        />
-         <img
-          className={styles.P2Title}
-          src={`${process.env.PUBLIC_URL}/images/Intro/P2/title.png`}
-          alt="title"
-        />
-         <img
-          className={styles.P2Text}
-          src={`${process.env.PUBLIC_URL}/images/Intro/P2/text.png`}
-          alt="text"
-        />
-         <img
-          className={styles.P2Next}
-          src={process.env.PUBLIC_URL + "/images/Intro/P2/next.png"}
-          alt="next"
-          onClick={()=>scrollToGo("Go")}
-        />
+      <img
+        className={styles.envelopeBack}
+        src={`${process.env.PUBLIC_URL}/images/Intro/P2/back.png`}
+        alt="back"
+      />
+      <Row>
+        <Col className={styles.P2Text}>
+          <Row>
+            <img
+              style={{ height: "4vh" }}
+              src={`${process.env.PUBLIC_URL}/images/Intro/P2/text.png`}
+              alt="back"
+            />
+          </Row>
+          <Row>
+            <img
+              style={{ height: "7vh",marginTop:"5vh" }}
+              src={`${process.env.PUBLIC_URL}/images/Intro/P2/text2.png`}
+              alt="back"
+            />
+          </Row>
+          <Row>
+            <img
+              style={{position:"relative",zIndex:'2', height: "7vh",marginLeft:"45vw",marginTop:"15vh" }}
+              src={`${process.env.PUBLIC_URL}/images/Intro/P2/text3.png`}
+              alt="back"
+            />
+          </Row>
+          <Row>
+            <img
+              style={{ height: "7vh",marginTop:"18vh" }}
+              src={`${process.env.PUBLIC_URL}/images/Intro/P2/text4.png`}
+              alt="back"
+            />
+          </Row>
+        </Col>
+        <img
+            className={styles.P2Click}
+            src={`${process.env.PUBLIC_URL}/images/Intro/P2/click.png`}
+            alt="back"
+            onClick={()=>scrollToGo("Go")}
+          />
+      </Row>
     </Container>
   );
 };
