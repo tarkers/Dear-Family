@@ -10,86 +10,120 @@ const Board = ({ setBoard }) => {
   const [loading, setLoading] = useState(true);
   const [nomore, setNomore] = useState(false);
   const [page, setPage] = useState(1);
-  const [month, setMonth] = useState(3);
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
   const navigate = useNavigate();
   const ref = useRef();
   const isVisible = useOnScreen(ref);
-  useEffect(() => {
-    setBoard(true);
-    // getThing();
-  }, []);
+
   useEffect(() => {
     setLoading(false);
+    console.log(inform);
   }, [inform]);
   useEffect(() => {
-
-    if (isVisible && !nomore) {
-      setLoading(true);
+    console.log(isVisible);
+    if (isVisible) {
+      // setLoading(true);
       getThing();
     }
-  }, [isVisible, nomore]);
+  }, [isVisible]);
 
   const cardBoard = (
     gender = "Boy",
     receive = "dad",
     text = "",
-    person = ""
+    person = "",
+    id = ""
   ) => {
     return (
       <div
+        key={id}
         className={styles.boardDiv}
-        style={{
-          background: `no-repeat center/90%  url("${
-            process.env.PUBLIC_URL + "/images/Board/border.png"
-          }")`,
-        }}
+        // style={{
+        //   background: `no-repeat center/70%  url("${
+        //     process.env.PUBLIC_URL + "/images/Board/border.png"
+        //   }")`,
+        // }}
       >
-        <Row>
-          <Col className={" d-flex justify-content-center"}>
-            <img
-              src={process.env.PUBLIC_URL + `/images/Board/${gender}.png`}
-              alt="gender"
-            />
-            {/* </Col> */}
-            <Col xs={5}>
-              <label className={styles.labelBig}>{`我想對${person}說`}</label>
-              <br></br>
-              <label className={styles.labelSmall}>{text}</label>
+        <div className={styles.childDiv}>
+          <img
+            className={styles.imgBack}
+            src={process.env.PUBLIC_URL + "/images/Board/border.png"}
+            alt="gender"
+          />
+          <Row>
+            <Col  className={" d-flex justify-content-center"}>
+              <img
+                style={{height:"150px",width:"auto"}}
+                src={process.env.PUBLIC_URL + `/images/Board/${gender}.png`}
+                alt="gender"
+              />
+              {/* </Col> */}
+              <Col xs={9} style={{ maxWidth: "200px" }}>
+                <label className={styles.labelBig}>{`我想對${person}說`}</label>
+                <br></br>
+                <label className={styles.labelSmall}>{text}</label>
+              </Col>
+              {/* <Col xs={3}> */}
+              <img
+               style={{height:"150px",width:"auto"}}
+                src={process.env.PUBLIC_URL + `/images/Board/${receive}.png`}
+                alt="receive"
+              />
             </Col>
-            {/* <Col xs={3}> */}
-            <img
-              src={process.env.PUBLIC_URL + `/images/Board/${receive}.png`}
-              alt="receive"
-            />
-          </Col>
-        </Row>
+          </Row>
+        </div>
       </div>
     );
   };
-  const getThing = async (newmonth = false,searchMonth=month) => {
-    setLoading(true)
-    let limit = 4;
-    let url =`https://dear-family-server.herokuapp.com/letters/?month=${searchMonth}&_page=${page}&_limit=${limit}`
-    if(newmonth){
-      setPage(1)
-     url =`https://dear-family-server.herokuapp.com/letters/?month=${searchMonth}&_page=${1}&_limit=${limit}`
-    }
+  const newMonthGet = async (searchMonth = month) => {
+    let limit = 5;
+    const url = `https://dear-family-server.herokuapp.com/letters/?month=${searchMonth}&_page=${1}&_limit=${limit}`;
+    console.log("newmonth: ", url);
     await axios
-      .get(
-        url
-      )
+      .get(url)
       .then((resp) => {
         let data = "";
         data = resp.data;
         const orderCount = resp.headers["x-total-count"];
         let tmp = [];
         data.forEach((e) => {
-          // console.log(e.gender)
-          tmp.push(cardBoard(e.gender, e.receive, e.text, e.person));
+          tmp.push(cardBoard(e.gender, e.receive, e.text, e.person, e.id));
         });
-        newmonth ? setInform(tmp) : setInform([...inform, tmp]);
+        setInform([...tmp]);
+        if (limit > orderCount) {
+          setNomore(true);
+          setLoading(false);
+        }
+        setPage(1);
+        console.log(orderCount);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return true;
+  };
+  const getThing = async () => {
+    if (nomore) {
+      return;
+    }
+    setLoading(true);
+    let limit = 5;
+    let url = `https://dear-family-server.herokuapp.com/letters/?month=${month}&_page=${page}&_limit=${limit}`;
+    console.log(url);
+    await axios
+      .get(url)
+      .then((resp) => {
+        let data = "";
+        data = resp.data;
+        const orderCount = resp.headers["x-total-count"];
+        let tmp = [];
+        data.forEach((e) => {
+          tmp.push(cardBoard(e.gender, e.receive, e.text, e.person, e.id));
+        });
+        setInform([...inform, tmp]);
 
         if (page * limit > orderCount) {
+          console.log("nomore", page, limit);
           setNomore(true);
           setLoading(false);
         } else {
@@ -107,8 +141,11 @@ const Board = ({ setBoard }) => {
       fluid
       style={{
         padding: "0",
-        // backgroundColor: "#ae4439",
+        width: "100vw",
+        height: "100%",
+        overflow: "hidden",
         position: "relative",
+        margin: 0,
       }}
     >
       <img
@@ -132,15 +169,16 @@ const Board = ({ setBoard }) => {
             src={process.env.PUBLIC_URL + `/images/Board/Month/${month}.png`}
             alt="month"
             onClick={() => {
+              setNomore(false);
+              setPage(1);
               if (month === 6) {
+                console.log("test");
+                newMonthGet(3);
                 setMonth(3);
-                getThing(true,3)
               } else {
+                newMonthGet(month + 1);
                 setMonth(month + 1);
-                getThing(true,month+1)
               }
-             
-             
             }}
           />
           {/* {month} */}
@@ -150,7 +188,7 @@ const Board = ({ setBoard }) => {
             alt="letter"
             onClick={() => {
               setBoard(false);
-              navigate(`/letter?kind=Born&gender=Boy`);
+              navigate(`/letter?kind=Born&gender=Boy&write=true`);
             }}
           />
         </Col>

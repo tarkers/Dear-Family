@@ -44,7 +44,7 @@ const Envelope = ({ display, scrollToGo }) => {
           </Row>
           <Row>
             <img
-              style={{ height: "7vh",marginTop:"18vh" }}
+              style={{ height: "8vh",marginTop:"13vh",position:"relative",zIndex:"2" }}
               src={`${process.env.PUBLIC_URL}/images/Intro/P2/text4.png`}
               alt="back"
             />

@@ -1,32 +1,45 @@
-import React, { useState, useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Shape from "./Shape";
 import ReceivePerson from "./ReceivePerson";
 import Send from "./Send";
 import QRcode from "./QRcode";
 import Intro from "./Intro";
-import styles from './style.module.scss'
-import { Outlet, useSearchParams,useNavigate } from "react-router-dom";
-const Main = ({setMusic}) => {
+import styles from "./style.module.scss";
+import { Outlet, useSearchParams, useNavigate } from "react-router-dom";
+const Main = ({ setMusic }) => {
   // const btnRef = useRef();
   // const soundRef = useRef();
   const [searchParams, _] = useSearchParams();
-  const [GK,SetGK]=useState({gender:searchParams.get("gender"),kind: searchParams.get("kind")})
+  const [GK, SetGK] = useState({
+    gender: searchParams.get("gender"),
+    kind: searchParams.get("kind"),
+  });
   const gender = searchParams.get("gender");
   const kind = searchParams.get("kind");
+  const towrite = searchParams.get("write");
+  console.log(towrite);
   const navigate = useNavigate();
-  const [page, SetPage] = useState({
-    Intro: { show: "block" },
-    Shape: { show: "none", shape: "" },
-    /*
-    gender: send gender
-    name :receive name
-    reveivePerson : reveivePerson
-    shape: card shape
-    */
-    ReceivePerson: { show: "none", name: "user", reveivePerson: "mom" },
-    Send: { show: "none", link: "" },
-    QRcode: { show: "none" },
-  });
+  const initPage = () => {
+    window.scroll(0, 0);
+    if (towrite) {
+      return {
+        Intro: { show: "none" },
+        Shape: { show: "block", shape: "" },
+        ReceivePerson: { show: "none", name: "user", reveivePerson: "mom" },
+        Send: { show: "none", link: "" },
+        QRcode: { show: "none" },
+      };
+    } else {
+      return {
+        Intro: { show: "block" },
+        Shape: { show: "none", shape: "" },
+        ReceivePerson: { show: "none", name: "user", reveivePerson: "mom" },
+        Send: { show: "none", link: "" },
+        QRcode: { show: "none" },
+      };
+    }
+  };
+  const [page, SetPage] = useState(initPage());
   const ToShape = () => {
     SetPage({
       ...page,
@@ -63,56 +76,56 @@ const Main = ({setMusic}) => {
     });
   };
   useEffect(() => {
-    setMusic("Intro")
+    setMusic("Intro");
   }, []);
-  const playMusic=()=>{
+  const playMusic = () => {
     ToShape();
-  }
-  const ToBack=()=>{
-    console.log("back")
-    if(page.QRcode.show==="block"){
+  };
+  const ToBack = () => {
+    console.log("back");
+    if (page.QRcode.show === "block") {
       SetPage({
         ...page,
         Send: { ...page.Send, show: "block" },
-        QRcode: {...page.QRcode, show: "none" },
+        QRcode: { ...page.QRcode, show: "none" },
       });
-    }else if(page.Send.show==="block"){
+    } else if (page.Send.show === "block") {
       SetPage({
         ...page,
         ReceivePerson: { ...page.ReceivePerson, show: "block" },
-        Send: {...page.Send, show: "none" },
+        Send: { ...page.Send, show: "none" },
       });
-    }else if(page.ReceivePerson.show==="block"){
+    } else if (page.ReceivePerson.show === "block") {
       SetPage({
         ...page,
         Shape: { ...page.Shape, show: "block" },
-        ReceivePerson: {...page.ReceivePerson, show: "none" },
+        ReceivePerson: { ...page.ReceivePerson, show: "none" },
       });
-    }else if(page.Shape.show==="block"){
+    } else if (page.Shape.show === "block") {
       SetPage({
         ...page,
         Intro: { ...page.Intro, show: "block" },
-        Shape: {...page.Shape, show: "none" },
+        Shape: { ...page.Shape, show: "none" },
       });
-    }else if(page.Intro.show==="block"){
-      navigate(`/story?kind=${kind ?? "Born"}&gender=${gender}`)
+    } else if (page.Intro.show === "block") {
+      navigate(`/story?kind=${kind ?? "Born"}&gender=${gender}`);
     }
-  }
+  };
   return (
-    <> 
-       <div className={styles.BackIcon + " d-flex justify-content-start"}>
+    <>
+      <div className={styles.BackIcon + " d-flex justify-content-start"}>
         <img
           src={process.env.PUBLIC_URL + "/images/Letter/backIcon.png"}
           alt="back"
-          onClick={() =>ToBack()}
+          onClick={() => ToBack()}
         />
       </div>
-    <Intro display={page.Intro.show}  playMusic={playMusic}/>
+      <Intro display={page.Intro.show} playMusic={playMusic} />
       <Shape
         display={page.Shape.show}
         ShowNext={ToReceivePerson}
         param={GK}
-        ChangeKind={(v)=>SetGK({...GK,kind:v})}
+        ChangeKind={(v) => SetGK({ ...GK, kind: v })}
       />
       <ReceivePerson display={page.ReceivePerson.show} ShowNext={ToLetter} />
       <Send
@@ -126,7 +139,11 @@ const Main = ({setMusic}) => {
         }}
         ShowNext={ToQRcode}
       />
-      <QRcode display={page.QRcode.show} imageLink={page.Send.link} ToBack={ToBack}/>
+      <QRcode
+        display={page.QRcode.show}
+        imageLink={page.Send.link}
+        ToBack={ToBack}
+      />
       <Outlet />
     </>
   );

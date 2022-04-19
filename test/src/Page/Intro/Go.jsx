@@ -37,7 +37,7 @@ const Go = ({ display, toGender }) => {
       <Row>
         <Col className="d-flex justify-content-center">
           <img
-            style={{ height: "8vh", marginTop: "10vh" }}
+            style={{ height: "8vh", marginTop: "10vh",position:"relative",zIndex:3 }}
             src={`${process.env.PUBLIC_URL}/images/Intro/P3/text.png`}
             alt="back"
           />

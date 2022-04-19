@@ -3,8 +3,8 @@ import { Col, Container, Row, Modal } from "react-bootstrap";
 import styles from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
 import Draggable from "react-draggable";
-import './styles.scss'
-const Kind = ({ToGender, gender,ToStory, display = "block" }) => {
+import "./styles.scss";
+const Kind = ({ToLetter, ToGender, gender, ToStory, display = "block" }) => {
   const dragHeightRef = useRef();
   const Pic_Dict = {
     Upcloud: "/images/Intro/P5/upcloud.png",
@@ -39,21 +39,17 @@ const Kind = ({ToGender, gender,ToStory, display = "block" }) => {
         display: `${display}`,
         backgroundColor: "#F3C89D",
         position: "relative",
-       
       }}
     >
       <div className={styles.BackIcon + " d-flex justify-content-start"}>
         <img
           src={process.env.PUBLIC_URL + "/images/backIcon.png"}
           alt="back"
-          onClick={() =>  ToGender()}
+          onClick={() => ToGender()}
         />
       </div>
-      <div className={styles.KindCenterPic} >
-        <img
-          src={process.env.PUBLIC_URL + Pic_Dict[gender]}
-          alt="select"
-        />
+      <div className={styles.KindCenterPic}>
+        <img src={process.env.PUBLIC_URL + Pic_Dict[gender]} alt="select" />
       </div>
 
       <div className={styles.DragBorn} ref={dragHeightRef}>
@@ -88,6 +84,7 @@ const Kind = ({ToGender, gender,ToStory, display = "block" }) => {
           </div>
         </Draggable>
       </div>
+
       <div className={styles.DragStrong}>
         <Draggable
           position={pos[2]}
@@ -116,6 +113,14 @@ const Kind = ({ToGender, gender,ToStory, display = "block" }) => {
           alt="Lowcloud"
         />
       </div>
+      <div>
+        <img
+          className={styles.P5LetterIcon}
+          src={process.env.PUBLIC_URL + "/images/Intro/P5/letterIcon.png"}
+          alt="letterIcon"
+          onClick={ToLetter}
+        />
+      </div>
       <Modal
         className={styles.ModalStyle}
         centered={true}
@@ -126,9 +131,9 @@ const Kind = ({ToGender, gender,ToStory, display = "block" }) => {
       >
         {/* <Modal.Body  style={{background:"#F9eed6"}}> */}
         <img
-          src={process.env.PUBLIC_URL +"/images/Intro/P5/Remind.png"}
+          src={process.env.PUBLIC_URL + "/images/Intro/P5/Remind.png"}
           alt="remind"
-          style={{width:"100%"}}
+          style={{ width: "100%" }}
         />
         {/* </Modal.Body> */}
       </Modal>

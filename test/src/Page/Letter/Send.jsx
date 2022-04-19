@@ -4,10 +4,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 import TextField from "@mui/material/TextField";
 import styles from "./style.module.scss";
 import { useScreenshot, createFileName } from "use-react-screenshot";
-
-const axios = require("axios");
+import axios from "axios";
 const Send = ({ ShowNext, data, display = "block" }) => {
-  const [backline, setBackLine] = useState(false);
   const [loading, setLoading] = React.useState(false);
   useEffect(() => {
     if (loading) {
@@ -29,18 +27,22 @@ const Send = ({ ShowNext, data, display = "block" }) => {
     } = {}
   ) => {
     const headers = {
-      // 'Content-Type': 'application/json',
-    }
+      "Content-Type": "application/json",
+    };
     axios
-      .post("https://dear-family-server.herokuapp.com/letters", {
-        image: image,
-        name: name,
-        text: getAllText(),
-        person: data.name,
-        gender:data.gender,
-        receive:data.reveivePerson,
-        month: new Date().getMonth()+1,
-      },{headers:headers})
+      .post(
+        "https://dear-family-server.herokuapp.com/letters",
+        {
+          // image: image,
+          name: name,
+          text: getAllText(),
+          person: data.name,
+          gender: data.gender,
+          receive: data.reveivePerson,
+          month: new Date().getMonth() + 1,
+        },
+        { headers: headers }
+      )
       .then((resp) => {
         console.log(
           resp.data.id,
@@ -48,14 +50,26 @@ const Send = ({ ShowNext, data, display = "block" }) => {
           resp.data.text,
           resp.data.person
         );
+
         const a = document.createElement("a");
         a.href = image;
         a.tag = `https://tarkers.github.io/Dear-Family/#/download/${resp.data.id}`;
         a.download = createFileName("jpg", name);
-        // a.click();
-        // console.log(image)
+        saveImageServer(resp.data.id, image, name, a);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const saveImageServer = (imageId, image, name, a) => {
+    axios
+      .post("https://image-server17.herokuapp.com/images", {
+        id: imageId,
+        image: image,
+        name: name,
+      })
+      .then(() => {
         setLoading(false);
-        // document.body.style.zoom = `100%`;
         ShowNext(a);
       })
       .catch((error) => {
@@ -64,7 +78,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
   };
   const setLineArray = () => {
     var tmp = [];
-    for (let i = 0; i < 6; ++i) {
+    for (let i = 0; i < 7; ++i) {
       tmp.push(
         <input
           tag=""
@@ -74,16 +88,13 @@ const Send = ({ ShowNext, data, display = "block" }) => {
           id={`line_${i}`}
           key={i}
           onKeyDown={(e) => {
+            console.log(e.target.value, "6416");
             if (e.key === "Enter") {
               changeLine(i + 1);
-            } else if (e.key === "Backspace" && backline) {
+            } else if (e.key === "Backspace" && e.target.value === "") {
               changeLine(i - 1);
-            }
-            setBackLine(false);
-          }}
-          onChange={(e) => {
-            if (e.target.value === "") {
-              setBackLine(true);
+            } else if (e.target.value.length === 15) {
+              changeLine(i + 1);
             }
           }}
         />
@@ -91,18 +102,13 @@ const Send = ({ ShowNext, data, display = "block" }) => {
     }
     return tmp;
   };
-  const changeLine = (id, back = false) => {
+  const changeLine = (id) => {
     document.getElementById(`line_${id}`)?.focus();
-    // alert(document.getElementById(`line_${id}`)?.innerHTML);
-
-    // e.target.parentElement.elements[id + 1].focus();
-    // e.preventDefault();
   };
   const getAllText = () => {
     let content = "";
     let input = document.getElementsByClassName(`yinput`);
     for (let i = 0; i < input.length; i++) {
-      // console.log(input[i].value,i);
       content += input[i].value + "\n";
     }
     return content;
@@ -167,7 +173,10 @@ const Send = ({ ShowNext, data, display = "block" }) => {
           <Col xs={7}>
             <img
               style={{ width: "100%", height: "auto" }}
-              src={process.env.PUBLIC_URL +`/images/Letter/Send/${data.kind}/${data.gender}/${data.shape}.png`}
+              src={
+                process.env.PUBLIC_URL +
+                `/images/Letter/Send/${data.kind}/${data.gender}/${data.shape}.png`
+              }
               alt="test"
             />
             <Row>
@@ -215,7 +224,6 @@ const Send = ({ ShowNext, data, display = "block" }) => {
                   alt="send"
                   onClick={() => {
                     setLoading(true);
-                    
                   }}
                 />
               ) : (

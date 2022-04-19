@@ -31,6 +31,7 @@ const Shape = ({ ShowNext, ChangeKind, param, display = "block" }) => {
   const pagination = {
     clickable: true,
     renderBullet: function (index, className) {
+      console.log(className)
       return '<span class="' + className + '">' + (index + 1) + "</span>";
     },
   };

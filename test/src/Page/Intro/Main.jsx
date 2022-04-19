@@ -64,6 +64,7 @@ const Main = ({ setMusic, InitPlay }) => {
     });
   };
   const ToGender = () => {
+    window.scrollTo(0, 0);
     SetPage({
       ...page,
       Loading: { show: "none" },
@@ -76,6 +77,9 @@ const Main = ({ setMusic, InitPlay }) => {
   const ToStory = (name) => {
     navigate(`/story?kind=${name ?? "Born"}&gender=${page.Gender.gender}`);
   };
+  const ToLetter = () => {
+    navigate(`/letter?kind=Born&gender=${page.Gender.gender}&write=true`);
+  };
   // const turnBack = () => {
   //   // Loading: { show: "block" },
   //   // Envelope: { show: "none" },
@@ -85,9 +89,13 @@ const Main = ({ setMusic, InitPlay }) => {
   //   if (page.Kind.show === "block") {
   //     ToGender();
   //   }else if(page.gender.show==="block"){
-  //     to 
+  //     to
   //   }
   // };
+  // useEffect(() => {
+  //   window.scrollTo(0, 0)
+  // }, [])
+
   useEffect(() => {
     setMusic();
     if (searchParams.get("section") === "Gender") {
@@ -100,6 +108,7 @@ const Main = ({ setMusic, InitPlay }) => {
         Gender: { ...page.Gender, show: "block" },
       });
     }
+    window.scrollTo(0, 0);
   }, []);
 
   return (
@@ -126,6 +135,7 @@ const Main = ({ setMusic, InitPlay }) => {
           gender={page.Gender.gender ?? "Boy"}
           ToStory={ToStory}
           ToGender={ToGender}
+          ToLetter={ToLetter}
         />
       </Element>
     </>

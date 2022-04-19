@@ -43,26 +43,26 @@ const Audio = forwardRef((props, ref) => {
       </div>
       <div>
         <audio
-          //   controls
+            // controls
           playsInline
           style={{ width: 0 }}
           onPause={() => {
-            console.log("pause");
+            // console.log("pause");
             setPlaying(false);
           }}
           onPlay={() => setPlaying(true)}
           ref={ref}
           onCanPlay={() => {
-            console.log("canplaytest");
+            // console.log("canplaytest");
             // ref.current.play();
           }}
           onLoadStart={() => {
-            console.log("onloadstatr!");
+            // console.log("onloadstatr!");
             ref.current.pause();
           }}
           onChange={() => console.log("change")}
-          onLoadedData={() => console.log("loadeddatat")}
-          onLoadedMetadata={() => console.log("loadedmetadatat")}
+          // onLoadedData={() => console.log("loadeddatat")}
+          // onLoadedMetadata={() => console.log("loadedmetadatat")}
           onLoad={() => {
             console.log("onload!");
           }}

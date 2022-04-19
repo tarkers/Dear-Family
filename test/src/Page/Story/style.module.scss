@@ -193,10 +193,10 @@ $anime: 0.8s linear 1s infinite alternate blink;
 
 .BornItem_1 {
     position: absolute;
-    left: 52vw;
-    top: 50%;
+    left: 51vw;
+    top: 49%;
     transform: translate(-50%, 30%);
-    width: 55vw;
+    width: 57vw;
     animation: $anime;
 }
 .BornItem_2 {
@@ -217,18 +217,18 @@ $anime: 0.8s linear 1s infinite alternate blink;
 }
 .BornItem_4 {
     position: absolute;
-    left: 0%;
+    left: 4%;
     top: 50%;
-    width: 45vw;
+    width: 40vw;
     transform: translate(0%, -22%);
     animation: $anime;
 }
 .BornItem_5 {
     position: absolute;
-    left: 61%;
-    top: 50%;
+    left: 63%;
+    top: 70%;
     width: 50vw;
-    transform: translate(0%, 65%);
+    transform: translate(-1%, 1%);
     animation: $anime;
 }
 .BornItem_6 {
@@ -244,7 +244,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
     left: 62%;
     top: 50%;
     width: 30vw;
-    transform: translateY(-63%);
+    transform: translate(2%,-63%);
     animation: $anime;
 }
 .BornItem_8 {
@@ -266,8 +266,8 @@ $anime: 0.8s linear 1s infinite alternate blink;
 .BornItem_10 {
     position: absolute;
     left: 50%;
-    top: 0;
-    width: 46vw;
+    top: 0%;
+    width: 48vw;
     transform: translate(-56%, 22%);
     animation: $anime;
 }
@@ -349,17 +349,17 @@ $anime: 0.8s linear 1s infinite alternate blink;
 .StrongItem_8 {
     position: absolute;
     left: 42%;
-    top: 50%;
+    top: 51%;
     width: 60vw;
-    transform: translate(-53%, 19%);
+    transform: translate(-54%, 19%);
     animation: $anime;
 }
 .StrongItem_9 {
     position: absolute;
-    left: 48%;
-    top: 0;
-    width: 94%;
-    transform: translate(-62%, -15%);
+    left: -12%;
+    top: -8%;
+    width: 98%;
+    transform: translate(-1%, -0%);
     animation: $anime;
 }
 .StrongItem_10 {
@@ -373,7 +373,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
 
 .AnotherFirst {
     position: absolute;
-    left: 12%;
+    left: 17%;
     top: 45%;
     height: 40%;
     // transform: translate(27%, -25%);
@@ -394,10 +394,10 @@ $anime: 0.8s linear 1s infinite alternate blink;
 }
 .AnotherSend {
     position: absolute;
-    left: 35%;
-    top: 90%;
+    left: 47%;
+    top: 92%;
     height: 12%;
-    // transform: translate(82%, -25%);
+    transform: translate(-50%, 0%);
 }
 
 .GrowItem_1 {
@@ -482,19 +482,19 @@ $anime: 0.8s linear 1s infinite alternate blink;
 }
 .BoyPersonPic {
     position: absolute;
-    right: 0;
+    right: 0%;
     top: 50%;
     height: auto;
-    width: 69vw;
+    width: 60vw;
     transform: translate(0vw, -53%);
     animation: $anime;
 }
 .GirlPersonPic {
     position: absolute;
-    right: 0;
-    top: 56%;
+    right: 5%;
+    top: 50%;
     height: auto;
-    width: 69vw;
+    width: 50vw;
     transform: translate(0vw, -53%);
     animation: $anime;
 }
@@ -524,12 +524,12 @@ $anime: 0.8s linear 1s infinite alternate blink;
         left: 0%;
     }
     to {
-        left: 53%;
+        left: 57%;
     }
 }
 .FirstTitle {
     animation-delay: 0.5s;
-    left: 0%;
+    left: 55%;
     position: absolute;
     top: 13%;
     width: 28vw;

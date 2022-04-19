@@ -10,7 +10,7 @@ import React, { useState, useEffect, useRef } from "react";
 // import SW from './SW';
 function App() {
   // const [audioSrc, setAudioSrc] = useState(null)
-  const [isboard, setBoard] = useState(false)
+  const [noSound, setSound] = useState(false)
   const btnRef = useRef()
   const audioRef = useRef(null);
   const setAudioSrc = (src) => {
@@ -18,13 +18,13 @@ function App() {
     audioRef.current.setAttribute('src', setData(src).music);
   }
   useEffect(() => {
-    console.log(isboard)
-  }, [isboard])
+    // console.log(noSound)
+  }, [noSound])
   
   return (
     <div className="App">
-      {console.log(isboard)}
-      {!isboard && <t.Audio ref={audioRef} props={""} />}
+      {console.log(noSound)}
+      {!noSound && <t.Audio ref={audioRef} props={""} />}
       <button ref={btnRef} style={{ display: "none" }} onClick={() => audioRef.current.play()}>Click me</button>
       <HashRouter >
         <Routes >
@@ -38,7 +38,8 @@ function App() {
           <Route path="letter" element={<t.Letter setMusic={setAudioSrc} />} />
 
           <Route path="download/:id" element={<t.Download />} />
-          <Route path="board" element={<t.Board setBoard={(e)=>setBoard(e) } />} />
+          <Route path="board" element={<t.Board setBoard={(e)=>setSound(e) } />} />
+          <Route path="admin" element={<t.Admin setAdmin={(e)=>setSound(e) } />} />
         </Routes>
       </HashRouter>
     </div>

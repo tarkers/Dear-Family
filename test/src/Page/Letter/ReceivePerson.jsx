@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {  Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Input from "@mui/material/Input";
 import styles from "./style.module.scss";
 import classNames from "classnames";
@@ -38,9 +38,7 @@ const ReceivePerson = ({ ShowNext, display = "block" }) => {
     setPersonData({ ...personData, person: name });
     setPersonList(
       personList.map((x) => {
-        return x.name === name
-          ? { ...x, click: true }
-          : { ...x, click: false };
+        return x.name === name ? { ...x, click: true } : { ...x, click: false };
       })
     );
   };
@@ -49,6 +47,7 @@ const ReceivePerson = ({ ShowNext, display = "block" }) => {
       [styles.notclick]: !personList[index].click,
       [styles.testclick]: personList[index].click,
     });
+    // console.log(clickStyle)
     return (
       <div className={clickStyle}>
         <img
@@ -67,10 +66,17 @@ const ReceivePerson = ({ ShowNext, display = "block" }) => {
   return (
     <Container
       fluid
-      style={{ display: `${display}`, padding: 0, position: "relative" }}
+      style={{
+        display: `${display}`,
+        padding: 0,
+        position: "relative",
+        width: "100vw", height: "100vh",
+        background: `center / contain no-repeat 80% url("${process.env.PUBLIC_URL + "/images/Letter/Receive/back.png"}")`,
+      }}
     >
       <img
-        style={{ width: "100%" }}
+
+        style={{ width: "100vw", height: "100vh" }}
         src={process.env.PUBLIC_URL + "/images/Letter/Receive/back.png"}
         alt="back"
       />
@@ -82,16 +88,14 @@ const ReceivePerson = ({ ShowNext, display = "block" }) => {
 
       <div className={styles.LeftLight}>
         <img
-        // className={styles.teseeeft}
+          // className={styles.teseeeft}
           src={process.env.PUBLIC_URL + "/images/Letter/Receive/leftlight.png"}
           alt="back"
         />
       </div>
-      <div 
-      className={styles.RightLight}
-      >
+      <div className={styles.RightLight}>
         <img
-         className={styles.teseeeft}
+          className={styles.teseeeft}
           src={process.env.PUBLIC_URL + "/images/Letter/Receive/rightlight.png"}
           alt="rightlight"
         />
@@ -104,9 +108,12 @@ const ReceivePerson = ({ ShowNext, display = "block" }) => {
       </div>
       <div className={styles.textStyle}>
         <Input
-          placeholder="名字"
-          inputProps={{ maxLength: 7, style:{ width: "inherit", fontSize: "2vh", textAlign: "center"} }}
-          style={{ width: "25vw",textAlign:"center"}}
+          placeholder="名字(最多十字)"
+          inputProps={{
+            maxLength: 10,
+            style: { width: "inherit", fontSize: "2vh", textAlign: "center" },
+          }}
+          style={{ width: "25vw", textAlign: "center" }}
           onChange={(e) =>
             setPersonData({ ...personData, name: e.target.value })
           }

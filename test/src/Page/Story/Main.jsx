@@ -20,8 +20,10 @@ const Main = ({ setMusic }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const gender = searchParams.get("gender");
   const kind = searchParams.get("kind");
+ 
   useEffect(() => {
     setMusic(kind);
+    window.scrollTo(0, 0)
   }, []);
   const ClearData = (newkind) => {
     setMusic(newkind);
@@ -73,6 +75,7 @@ const Main = ({ setMusic }) => {
       StoryPic: { show: "none" },
       Another: { ...page.Another, show: "block" },
     });
+    window.scrollTo(0, 0)
   };
   const ToSend = () => {
     navigate(`/letter?kind=${kind ?? "Born"}&gender=${gender}`);

@@ -14,7 +14,7 @@ const Main = () => {
     const a = document.createElement("a");
     a.href = image;
     a.download = createFileName(extension, name);
-    console.log(a);
+    // console.log(a);
     a.target = "_blank";
     a.click();
     
@@ -24,14 +24,18 @@ const Main = () => {
   };
   const SetLink = () => {
     axios
-      .get(`https://dear-family-server.herokuapp.com/letters/${params}`)
+      .get(`https://image-server17.herokuapp.com/images/${params}`)
       .then((resp) => {
         let data = "";
         data = resp.data;
-        console.log(data);
+        console.log(resp.data);
         Download(data.image, { name: data.name });
       })
       .catch((error) => {
+        if(error.response.status===404){
+          alert("此連結已經無效瞜，為您轉至首頁")
+          navigate(`/`);
+        }
         console.log(error);
       });
     return true;

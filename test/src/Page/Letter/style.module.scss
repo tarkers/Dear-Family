@@ -71,6 +71,10 @@
     &.notclick {
         width: 18vw;
     }
+    &.testclick {
+        transform: translate(-20%, -5%);
+        width: 35vw;
+    }
     img {
         width: inherit;
     }
@@ -141,10 +145,10 @@
     top: 0%;
     right:0;
     width: 68vw;
-    height: 2vh;
+    height: 68vh; 
     z-index: -2;
     padding-top: 17%;
-    // padding-right: 15vw;
+    overflow: hidden;
     filter: drop-shadow(0 0 5rem #fd9d4e);
     img {
         width: 68vw;
@@ -177,14 +181,14 @@
 .QRcodeStyle {
     position: absolute;
     left: 50%;
-    top: 47%;
-    width: 25vw;
+    top: 42%;
+    width: 20vw;
     transform: translate(-50%, -50%);
 }
 .downloadDiv {
     position: absolute;
     left: 50%;
-    top: 62%;
+    top: 50%;
     width: auto;
     // height: 10vh;
     // background-color: red;
@@ -201,130 +205,11 @@
 // }
 .QRBack{
     position: absolute;
-    left: 0;
-    top: 40%;
-    height: 15%;
+    left: 0%;
+    top: 32%;
+    height: 18%;
     // z-index: 2;
 }
-// .SendLetterPic {
-//     position: absolute;
-//     left: 0%;
-//     top: 0%;
-//     width: fit-content;
-//     .PicStyle {
-//         position: absolute;
-//         width: auto;
-//         top: 25%;
-//         left: 50%;
-//         /* height: fit-content; */
-//         transform: translateX(-50%);
-//     }
-//     .LetterStyle {
-//         // position: absolute;
-//         // left: 50%;
-//         // top: 25%;
-//         // width: 98%;
-//         // padding: 2px;
-//         // transform: translateX(-50%);
-//     }
-//     .HeadStyle {
-//         // top: 36%;
-//         // position: absolute;
-//         // left: 61%;
-//         // width: 13%;
-//         // transform: translateY(10px);
-//         top: 23%;
-//         position: absolute;
-//         left: 61%;
-//         width: 13%;
-//         transform: translate(5%,2%);
-//     }
-//     .ReceiveStyle {
-//         top: 23%;
-//         position: absolute;
-//         left: 76%;
-//         width: 13%;
-//         transform: translate(7%,2%);
-//     }
-//     .ReceiveTitle {
-//         // top: 47%;
-//         // position: absolute;
-//         // display: flex;
-//         // // align-items: center;
-//         // justify-content: center;
-//         // left: 57%;
-//         // height: 56px;
-//         // width: 750px;
-//         // transform: translate(-11%, 22%);
-//         // color: #ae4439;
-//         // background-color: #fce1b9;
-//         // white-space: nowrap;
-//         // font-size: 35px;
-//         // font-weight: bold;
-//         // text-size-adjust: auto;
-//         top: 45%;
-//         position: absolute;
-//         display: flex;
-//         justify-content: center;
-//         left: 56%;
-//         height: 56px;
-//         width: 49%;
-//         transform: translate(-11%, 22%);
-//         color: #ae4439;
-//         background-color: #fce1b9;
-//         white-space: nowrap;
-//         font-size: 35px;
-//         font-weight: bold;
-//         text-size-adjust: auto;
-//         u {
-//             font-size: 45px;
-//             padding-left: 10px;
-//             padding-right: 10px;
-//             text-decoration-thickness: 5px;
-//         }
-//     }
-//     .LineDiv {
-//         top: 54%;
-//         left: 62%;
-//         position: absolute;
-//         text-align: center;
-//         height: 19%;
-//         width: 28%;
-//     }
-//     .TypeText {
-//         text-align: center;
-//         margin-top: 5px;
-//         border: 1px;
-//         border-bottom-style: solid;
-//         border-top-style: none;
-//         border-left-style: none;
-//         border-right-style: none;
-//         color: #de7641;
-//         font-weight: bold;
-//         // font-size: 25px;
-//         // height: 35px;
-//         width: 80%;
-//         background-color: transparent;
-//         &:focus {
-//             outline: none;
-//             border-bottom-style: solid;
-//             border-bottom-color: rgb(97, 97, 243);
-//             // border-bottom-width: 2px;
-//         }
-//     }
-//     .SendIcon {
-//         bottom: 10%;
-//         left: 50%;
-//         position: absolute;
-//         transform: translate(-50%, -50%);
-//         img {
-//             width: auto;
-//             height: 25%;
-//         }
-//     }
-// }
-
-
 
 .IntroText {
     top: 32%;
@@ -392,7 +277,7 @@
     border-right-style: none;
     color: #A44338;
     font-weight: bold;
-    font-size: smaller;
+    font-size: 2vw;
     width: 80%;
     background-color: transparent;
     &:focus {
@@ -402,3 +287,4 @@
         // border-bottom-width: 2px;
     }
 }
+

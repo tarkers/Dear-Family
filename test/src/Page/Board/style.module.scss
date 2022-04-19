@@ -1,5 +1,21 @@
 @import "../style.module.scss";
-
+$anime: 0.8s linear 1s infinite alternate blink;
+@keyframes setAppear {
+    0% {
+        transform: rotate(15deg);
+        transform-origin: left top;
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+        transform: rotate(0);
+        transform-origin: left top;
+    }
+}
+@keyframes setScale {
+    0%   {transform: scale(.95);}
+    100% {transform: scale(1);}
+  }
 .back {
     position: absolute;
     left: 0;
@@ -24,33 +40,123 @@
 .boardDiv {
     position: relative;
     z-index: 2;
-    height: 30vh;
-   
-    width: 58vw;
+    height: 45vh;
+    // width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:center;
-    padding: 4vw;
+    justify-content: center;
+    .childDiv{
+        position: absolute;
+        // z-index: 2;
+        height: 400px;
+        // width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .imgBack{
+            position: absolute;
+        z-index: -1;
+        height: inherit;
+        width: auto;
+        }
+    }
+    // padding: 4vw;
     .back {
         // position: "absolute";
         width: 30vw;
         min-height: 305px;
     }
-    img{
+    img {
         width: 15vw;
-        
     }
-    label{
-        color:#ae4439;
+    label {
+        color: #ae4439;
         font-weight: bold;
     }
-    .labelBig{
+    .labelBig {
         font-size: 2vh;
         padding-bottom: 15px;
     }
-    .labelSmall{
+    .labelSmall {
         font-size: 1.5vh;
         // padding-bottom: 20px;
+    }
+}
+
+.intro {
+    position: relative;
+    left: 0;
+    top: 0;
+    
+    z-index: 0;
+    overflow: hidden;
+    .introback {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: auto;
+        z-index: -1;
+        img {
+            width: 100vw;
+            // padding-right: 4vw;
+        }
+    }
+    .introtitle {
+        // margin-top: 8vh;
+        width: auto;
+        height: 10vh;
+    }
+    .intromonth {
+        // margin-top: 8vh;
+        width: auto;
+        height: 5vh;
+        animation: $anime;
+    }
+    .introtext {
+        // margin-top: 8vh;
+        width: auto;
+        height: 4vh;
+    }
+    .intromid {
+        // margin-top: 8vh;
+        width: auto;
+        height: 18vh;
+        animation: setAppear .5s ease-out 0.1s 1 ,setScale 2s linear 0s infinite alternate;
+    }
+    .introleft {
+        // padding-top: 5px;
+        width: 100%;
+        // animation: name duration timing-function delay iteration-count direction fill-mode;
+        animation: setAppear .7s ease-out 0.1s 1 ,setScale 2s linear 0s infinite alternate;
+    }
+    .introright {
+        margin-bottom: 20px;
+        width: 90%;
+        animation: setAppear 1.8s ease-out 0.2s 1 ,setScale 2s linear 0s infinite alternate;
+       
+    }
+    .uppermonth {
+        position: absolute;
+        left: 5;
+        top: 54vh;
+        width: 95vw;
+        // height: 50vh;
+        // background-color: rebeccapurple;
+        .rightt {
+            height: 4vh;
+            padding-left: 65vw;
+        }
+        .midt {
+            margin-top: 10px;
+            height: 3vh;
+            padding-left: 45vw;
+        }
+        .leftt {
+            height: 3vh;
+            // padding-right: 100vw;
+        }
     }
 }
