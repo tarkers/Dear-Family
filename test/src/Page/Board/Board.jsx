@@ -17,10 +17,9 @@ const Board = ({ setBoard }) => {
 
   useEffect(() => {
     setLoading(false);
-    console.log(inform);
+    console.log(inform)
   }, [inform]);
   useEffect(() => {
-    console.log(isVisible);
     if (isVisible) {
       // setLoading(true);
       getThing();
@@ -30,7 +29,7 @@ const Board = ({ setBoard }) => {
     // var myDiv = document.getElementById('containerDiv');
     // myDiv.top = 0;
   }, [month])
-  
+
   const cardBoard = (
     gender = "Boy",
     receive = "dad",
@@ -42,39 +41,25 @@ const Board = ({ setBoard }) => {
       <div
         key={id}
         className={styles.boardDiv}
-      
+
       >
+
         <div className={styles.childDiv} >
           <img
             className={styles.imgBack}
             src={process.env.PUBLIC_URL + `/images/Board/${receive}.png`}
             alt="gender"
           />
-          <div style={{ maxWidth: "200px", marginLeft: "24%" }}>
+          <label className={styles.labelBig}>{`我想對${person}說`}</label>
+          <br></br>
+          <label className={styles.labelSmall}>{text}</label>
+          {/* <div className={styles.labelDiv}>
             <label className={styles.labelBig}>{`我想對${person}說`}</label>
             <br></br>
             <label className={styles.labelSmall}>{text}</label>
-          </div>
-          {/* <Row>
-            <Col className={" d-flex justify-content-center"}>
-              <img
-                style={{ height: "150px", width: "auto" }}
-                src={process.env.PUBLIC_URL + `/images/Board/${gender}.png`}
-                alt="gender"
-              />
-              <Col xs={9} style={{ maxWidth: "200px" }}>
-                <label className={styles.labelBig}>{`我想對${person}說`}</label>
-                <br></br>
-                <label className={styles.labelSmall}>{text}</label>
-              </Col>
-              <img
-                style={{ height: "150px", width: "auto" }}
-                src={process.env.PUBLIC_URL + `/images/Board/${receive}.png`}
-                alt="receive"
-              />
-            </Col>
-          </Row> */}
+          </div> */}
         </div>
+
       </div>
     );
   };
@@ -98,7 +83,7 @@ const Board = ({ setBoard }) => {
           setLoading(false);
         }
         setPage(1);
-        console.log(orderCount);
+        // console.log(orderCount);
       })
       .catch((error) => {
         console.log(error);
@@ -112,7 +97,7 @@ const Board = ({ setBoard }) => {
     setLoading(true);
     let limit = 5;
     let url = `https://dear-family-server.herokuapp.com/letters/?month=${month}&_page=${page}&_limit=${limit}`;
-    console.log(url);
+    // console.log(url);
     await axios
       .get(url)
       .then((resp) => {
@@ -126,13 +111,13 @@ const Board = ({ setBoard }) => {
         setInform([...inform, tmp]);
 
         if (page * limit > orderCount) {
-          console.log("nomore", page, limit);
+          // console.log("nomore", page, limit);
           setNomore(true);
           setLoading(false);
         } else {
           setPage(page + 1);
         }
-        console.log(orderCount);
+        // console.log(orderCount);
       })
       .catch((error) => {
         console.log(error);
@@ -151,12 +136,42 @@ const Board = ({ setBoard }) => {
         margin: 0,
       }}
     >
+
       <img
         className={styles.board_back}
-        src={process.env.PUBLIC_URL + "/images/Board/auto_back.png"}
+        src={process.env.PUBLIC_URL + "/images/Board/intro_back.png"}
         alt="back"
       />
-
+        <img
+        className={styles.upper_shine }
+        src={process.env.PUBLIC_URL + `/images/Board/upper_shine.png`}
+        alt="month"
+      />
+        <img
+        className={styles.lower_shine }
+        src={process.env.PUBLIC_URL + `/images/Board/lower_shine.png`}
+        alt="month"
+      />
+        <img
+        className={styles.boardcloudright }
+        src={process.env.PUBLIC_URL + `/images/Board/cloudright.png`}
+        alt="month"
+      />
+        <img
+        className={styles.boardcloudleft }
+        src={process.env.PUBLIC_URL + `/images/Board/cloudleft.png`}
+        alt="month"
+      />
+        <img
+        className={styles.lowerpic }
+        src={process.env.PUBLIC_URL + `/images/Board/lowerpic.png`}
+        alt="month"
+      />
+        <img
+        className={styles.nextIcon }
+        src={process.env.PUBLIC_URL + `/images/Board/nextIcon.png`}
+        alt="month"
+      />
       <Row className={styles.normal}>
         <Col className={styles.Col + " d-flex justify-content-between"}>
           <img
@@ -175,7 +190,7 @@ const Board = ({ setBoard }) => {
             src={process.env.PUBLIC_URL + `/images/Board/month.png`}
             alt="month"
           />
-          {console.log(month)}
+          {/* {console.log(month)} */}
           <img
             className={styles.upbutton}
             src={process.env.PUBLIC_URL + "/images/Board/letter.png"}
@@ -199,7 +214,6 @@ const Board = ({ setBoard }) => {
           setNomore(false);
           setPage(1);
           if (month === 3) {
-            console.log("test");
             newMonthGet(6);
             setMonth(6);
           } else {
@@ -216,7 +230,6 @@ const Board = ({ setBoard }) => {
           setNomore(false);
           setPage(1);
           if (month === 6) {
-            console.log("test");
             newMonthGet(3);
             setMonth(3);
           } else {
@@ -229,12 +242,12 @@ const Board = ({ setBoard }) => {
       />
       <Row
         className={" d-flex justify-content-center"}
-        style={{ marginTop: "8vh", height: "75vh", overflow: "scroll" }}
+        style={{ marginTop: "9vh", height: "70vh", overflow: "scroll" }}
       >
         <div id="containerDiv">
-           {inform}
+          {inform}
         </div>
-       
+
         <div ref={ref}>
           {isVisible ? `Yep, I'm on screen` : "not in screen"}
         </div>
@@ -254,6 +267,7 @@ const Board = ({ setBoard }) => {
         src={process.env.PUBLIC_URL + `/images/Board/remind.png`}
         alt="month"
       />
+     
     </Container>
   );
 };

@@ -229,12 +229,12 @@ const StoryPic = ({ ShowNext, params, data, display = "block" }) => {
                 : styles.FirstTitle
             }
             src={process.env.PUBLIC_URL + data.Title}
-            alt="firsttitle"
+            alt="Title"
           />
           <img
             className={styles[`${params.kind}Text`]}
             src={process.env.PUBLIC_URL + data.Text}
-            alt="firsttext"
+            alt="Text"
           />
         </div>
       </Row>

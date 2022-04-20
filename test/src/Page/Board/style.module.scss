@@ -1,29 +1,49 @@
 @import "../style.module.scss";
 $anime: 0.8s linear 1s infinite alternate blink;
-@keyframes setAppear {
+
+@keyframes dropDown {
     0% {
-        transform: rotate(15deg);
-        transform-origin: left top;
-        opacity: 0.5;
+        top: -500px;
     }
+
+    100% {
+        top: 10%;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
     100% {
         opacity: 1;
-        transform: rotate(0);
-        transform-origin: left top;
     }
 }
-@keyframes setScale {
+@keyframes fadeOut {
     0% {
-        transform: scale(0.95);
+        opacity: 1;
     }
+
     100% {
-        transform: scale(1);
+        opacity: 0;
     }
 }
+
+@keyframes cloudMove {
+    0% {
+       transform: translate(-8%,50%);
+    }
+
+    100% {
+        transform: translate(8%,40%);
+    }
+}
+
 .board_back {
     position: absolute;
     left: 0;
-    top:0;
+    top: 0;
     width: 100vw;
     height: 100vh;
     // transform: translate(-50%, 0%);
@@ -37,19 +57,23 @@ $anime: 0.8s linear 1s infinite alternate blink;
     height: 99vh;
     z-index: 0;
 }
+
 .normal {
     position: relative;
     z-index: 1;
+
     .Col {
         // padding-top: 1%;
         // padding-left: 5%;
         // padding-right: 5%;
     }
 }
+
 .upbutton {
     height: 5vh;
 }
-.monthtext{
+
+.monthtext {
     position: absolute;
     left: 50%;
     top: 1%;
@@ -58,7 +82,8 @@ $anime: 0.8s linear 1s infinite alternate blink;
     z-index: 1;
     transform: translate(-20%, 0%);
 }
-.prev{
+
+.prev {
     position: absolute;
     left: 43%;
     top: 1%;
@@ -67,7 +92,8 @@ $anime: 0.8s linear 1s infinite alternate blink;
     z-index: 1;
     transform: translate(-30%, 0%);
 }
-.next{
+
+.next {
     position: absolute;
     left: 64%;
     top: 1%;
@@ -76,7 +102,8 @@ $anime: 0.8s linear 1s infinite alternate blink;
     z-index: 1;
     transform: translate(-20%, 0%);
 }
-.boardremind{
+
+.boardremind {
     position: absolute;
     left: 10%;
     top: 10%;
@@ -84,7 +111,9 @@ $anime: 0.8s linear 1s infinite alternate blink;
     height: 14vh;
     z-index: 1;
     transform: translate(-30%, 0%);
+    animation: fadeOut 8s ease-in-out 0.5s 1 alternate forwards;
 }
+
 .boardDiv {
     position: relative;
     z-index: 2;
@@ -95,15 +124,17 @@ $anime: 0.8s linear 1s infinite alternate blink;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     .childDiv {
-        position: absolute;
-        // z-index: 2;
+        position: relative;
+        height: 28vh;
         width: 55vw;
         // width: 100vw;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
         .imgBack {
             position: absolute;
             z-index: -1;
@@ -111,29 +142,101 @@ $anime: 0.8s linear 1s infinite alternate blink;
             width: inherit;
         }
     }
+
     // padding: 4vw;
     .back {
         // position: "absolute";
         width: 30vw;
         min-height: 305px;
     }
+
     img {
         width: 15vw;
     }
+
     label {
         color: #ae4439;
         font-weight: bold;
     }
-    .labelBig {
-        font-size: 1.5vh;
-        padding-bottom: 15px;
-    }
-    .labelSmall {
-        font-size: 1vh;
-        // padding-bottom: 20px;
-    }
+    .labelDiv{
+        position: absolute;
+        top: -61vh;
+        left: 65%;
+        transform: translateX(-50%);
+        width: 250px;
+        // margin-left: 16%;
+    }    
+   
+}
+.labelBig {
+    position: absolute;
+    top: 0;
+    font-size: 1.5vh;
+    margin-bottom: 5%;
+    max-width: 250px;
+    margin-top: 23%;
+    margin-left: 25%;
 }
 
+.upper_shine {
+    position: absolute;
+    left: 0%;
+    top: 5%;
+    width: 100vw;
+    z-index: 1;
+    animation: fadeIn 2s ease-in-out 0.5s infinite alternate ;
+}
+.lower_shine {
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
+    width: 100vw;
+    z-index: 1;
+    animation: fadeIn 1.5s ease-in-out 0.5s infinite alternate ;
+}
+.boardcloudright {
+    position: absolute;
+    right: -20%;
+    top: 35%;
+    width: 80vw;
+    z-index: 1;
+    animation: cloudMove 8s linear 0.5s infinite alternate ;
+}
+.boardcloudleft {
+    position: absolute;
+    left: -10%;
+    top: 15%;
+    width: 60vw;
+    z-index: 1;
+    animation: cloudMove 5s linear 0s infinite alternate ;
+}
+.lowerpic {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 88vw;
+    z-index: 1;
+    transform: translateX(-50%);
+    // animation: cloudMove 5s ease-in-out 0s infinite alternate ;
+}
+.nextIcon {
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+    width: 10vw;
+    z-index: 1;
+    transform: translateX(-50%);
+    // animation: cloudMove 5s ease-in-out 0s infinite alternate ;
+}
+.labelSmall {
+    position: absolute;
+    top: 0;
+    font-size: 1vh;
+    // margin-top: 5px;
+    max-width: 150px;
+    margin-top: 30%;
+    margin-left: 25%;
+}
 .intro {
     position: relative;
     left: 0;
@@ -144,6 +247,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
     padding: 0;
     z-index: 0;
     overflow: hidden;
+
     .introback {
         position: absolute;
         left: 0;
@@ -152,33 +256,45 @@ $anime: 0.8s linear 1s infinite alternate blink;
         height: inherit;
         height: auto;
         z-index: -1;
+
         img {
             width: 100vw;
             // padding-right: 4vw;
         }
     }
+
     .down_rect {
-        // margin-top: 8vh;
+        position: absolute;
+        top: -50%;
+        left: 0;
         z-index: 0;
         width: auto;
         height: 28vh;
+        animation: dropDown 1.5s ease-in-out 1s 1 alternate forwards;
     }
+
     .introtitle {
         position: absolute;
         left: 50%;
         top: 27%;
         width: auto;
+        opacity: 0;
         height: 15vh;
         transform: translate(-50%, 0%);
+        animation: fadeIn 1.5s ease-in-out 0.5s 1 alternate forwards;
     }
+
     .introtext {
         position: absolute;
+        opacity: 0;
         left: 50%;
         top: 39%;
         width: auto;
         height: 15vh;
         transform: translate(-50%, 0%);
+        animation: fadeIn 1.5s ease-in-out 1.5s 1 alternate forwards;
     }
+
     .bottom {
         position: absolute;
         left: 50%;
@@ -187,41 +303,55 @@ $anime: 0.8s linear 1s infinite alternate blink;
         width: 76%;
         transform: translate(-50%, 0%);
     }
+
     .pic1 {
+        opacity: 0;
         position: absolute;
         left: 45%;
         top: 60%;
         width: 25%;
         transform: translate(-50%, 0%);
+        animation: fadeIn 1.5s ease-in-out 2s 1 alternate forwards;
     }
+
     .pic2 {
+        opacity: 0;
         position: absolute;
         left: 35%;
         top: 75%;
         width: 25%;
         transform: translate(-50%, 0%);
+        animation: fadeIn 1.8s ease-in-out 2.3s 1 alternate forwards;
     }
+
     .pic3 {
+        opacity: 0;
         position: absolute;
         left: 67%;
         top: 72%;
         width: 25%;
         transform: translate(-50%, 0%);
+        animation: fadeIn 2.5s ease-in-out 2.5s 1 alternate forwards;
     }
+
     .cloudleft {
         position: absolute;
-        left: 15%;
+        left: 0%;
         top: 40%;
         width: 40%;
         transform: translate(-50%, 50%);
+        animation: cloudMove 4s ease-out 0.5s infinite alternate forwards;
     }
+
     .cloudright {
         position: absolute;
-        left: 80%;
+        left: 60%;
         top: 44%;
         width: 40%;
         transform: translate(-50%, 50%);
+        animation: cloudMove 4.5s ease-out 2s infinite alternate forwards;
     }
+
     .toBoard {
         position: absolute;
         left: 50%;
@@ -230,44 +360,32 @@ $anime: 0.8s linear 1s infinite alternate blink;
         transform: translate(-50%, 0%);
         animation: $anime;
     }
+
     .introtext {
         // margin-top: 8vh;
         width: auto;
         height: 4vh;
     }
-    .intromid {
-        // margin-top: 8vh;
-        width: auto;
-        height: 18vh;
-        animation: setAppear 0.5s ease-out 0.1s 1, setScale 2s linear 0s infinite alternate;
-    }
-    .introleft {
-        // padding-top: 5px;
-        width: 100%;
-        // animation: name duration timing-function delay iteration-count direction fill-mode;
-        animation: setAppear 0.7s ease-out 0.1s 1, setScale 2s linear 0s infinite alternate;
-    }
-    .introright {
-        margin-bottom: 20px;
-        width: 90%;
-        animation: setAppear 1.8s ease-out 0.2s 1, setScale 2s linear 0s infinite alternate;
-    }
+
     .uppermonth {
         position: absolute;
         left: 5;
         top: 54vh;
         width: 95vw;
+
         // height: 50vh;
         // background-color: rebeccapurple;
         .rightt {
             height: 4vh;
             padding-left: 65vw;
         }
+
         .midt {
             margin-top: 10px;
             height: 3vh;
             padding-left: 45vw;
         }
+
         .leftt {
             height: 3vh;
             // padding-right: 100vw;

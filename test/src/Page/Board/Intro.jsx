@@ -68,15 +68,11 @@ const Intro = ({ toBoard, toMenu, toQRcode }) => {
           />
         </Col>
       </Row>
-      <Row>
-        <Col>
-          <img
+      <img
             className={styles.down_rect}
             src={process.env.PUBLIC_URL + "/images/Board/Intro/down_rect.png"}
             alt="title"
           />
-        </Col>
-      </Row>
       <img
         className={styles.toBoard}
         src={process.env.PUBLIC_URL + `/images/Board/Intro/toBoard.png`}
