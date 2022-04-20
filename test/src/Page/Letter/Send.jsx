@@ -88,7 +88,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
           id={`line_${i}`}
           key={i}
           onKeyDown={(e) => {
-            console.log(e.target.value, "6416");
+            // console.log(e.target.value, "6416");
             if (e.key === "Enter") {
               changeLine(i + 1);
             } else if (e.key === "Backspace" && e.target.value === "") {

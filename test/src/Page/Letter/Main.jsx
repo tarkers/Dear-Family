@@ -108,7 +108,8 @@ const Main = ({ setMusic }) => {
         Shape: { ...page.Shape, show: "none" },
       });
     } else if (page.Intro.show === "block") {
-      navigate(`/story?kind=${kind ?? "Born"}&gender=${gender}`);
+      navigate(-1)
+      // navigate(`/story?kind=${kind ?? "Born"}&gender=${gender}`);
     }
   };
   return (

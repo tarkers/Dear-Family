@@ -26,7 +26,11 @@ const Board = ({ setBoard }) => {
       getThing();
     }
   }, [isVisible]);
-
+  useEffect(() => {
+    // var myDiv = document.getElementById('containerDiv');
+    // myDiv.top = 0;
+  }, [month])
+  
   const cardBoard = (
     gender = "Boy",
     receive = "dad",
@@ -38,39 +42,38 @@ const Board = ({ setBoard }) => {
       <div
         key={id}
         className={styles.boardDiv}
-        // style={{
-        //   background: `no-repeat center/70%  url("${
-        //     process.env.PUBLIC_URL + "/images/Board/border.png"
-        //   }")`,
-        // }}
+      
       >
-        <div className={styles.childDiv}>
+        <div className={styles.childDiv} >
           <img
             className={styles.imgBack}
-            src={process.env.PUBLIC_URL + "/images/Board/border.png"}
+            src={process.env.PUBLIC_URL + `/images/Board/${receive}.png`}
             alt="gender"
           />
-          <Row>
-            <Col  className={" d-flex justify-content-center"}>
+          <div style={{ maxWidth: "200px", marginLeft: "24%" }}>
+            <label className={styles.labelBig}>{`我想對${person}說`}</label>
+            <br></br>
+            <label className={styles.labelSmall}>{text}</label>
+          </div>
+          {/* <Row>
+            <Col className={" d-flex justify-content-center"}>
               <img
-                style={{height:"150px",width:"auto"}}
+                style={{ height: "150px", width: "auto" }}
                 src={process.env.PUBLIC_URL + `/images/Board/${gender}.png`}
                 alt="gender"
               />
-              {/* </Col> */}
               <Col xs={9} style={{ maxWidth: "200px" }}>
                 <label className={styles.labelBig}>{`我想對${person}說`}</label>
                 <br></br>
                 <label className={styles.labelSmall}>{text}</label>
               </Col>
-              {/* <Col xs={3}> */}
               <img
-               style={{height:"150px",width:"auto"}}
+                style={{ height: "150px", width: "auto" }}
                 src={process.env.PUBLIC_URL + `/images/Board/${receive}.png`}
                 alt="receive"
               />
             </Col>
-          </Row>
+          </Row> */}
         </div>
       </div>
     );
@@ -140,19 +143,20 @@ const Board = ({ setBoard }) => {
     <Container
       fluid
       style={{
-        padding: "0",
+        padding: 0,
         width: "100vw",
-        height: "100%",
+        height: "100vh",
         overflow: "hidden",
         position: "relative",
         margin: 0,
       }}
     >
       <img
-        className={styles.back}
-        src={process.env.PUBLIC_URL + "/images/Board/back.png"}
+        className={styles.board_back}
+        src={process.env.PUBLIC_URL + "/images/Board/auto_back.png"}
         alt="back"
       />
+
       <Row className={styles.normal}>
         <Col className={styles.Col + " d-flex justify-content-between"}>
           <img
@@ -164,24 +168,14 @@ const Board = ({ setBoard }) => {
               navigate(`/`);
             }}
           />
+
           <img
-            className={styles.upbutton}
-            src={process.env.PUBLIC_URL + `/images/Board/Month/${month}.png`}
+            className={styles.upbutton + " m-2"}
+            style={{ height: "4vh" }}
+            src={process.env.PUBLIC_URL + `/images/Board/month.png`}
             alt="month"
-            onClick={() => {
-              setNomore(false);
-              setPage(1);
-              if (month === 6) {
-                console.log("test");
-                newMonthGet(3);
-                setMonth(3);
-              } else {
-                newMonthGet(month + 1);
-                setMonth(month + 1);
-              }
-            }}
           />
-          {/* {month} */}
+          {console.log(month)}
           <img
             className={styles.upbutton}
             src={process.env.PUBLIC_URL + "/images/Board/letter.png"}
@@ -193,13 +187,54 @@ const Board = ({ setBoard }) => {
           />
         </Col>
       </Row>
+      <img
+        className={styles.monthtext + " m-2"}
+        src={process.env.PUBLIC_URL + `/images/Board/Month/${month}月字.png`}
+        alt="month"
+      />
+      <img
+        className={styles.prev + " m-2"}
+        src={process.env.PUBLIC_URL + `/images/Board/prev.png`}
+        onClick={() => {
+          setNomore(false);
+          setPage(1);
+          if (month === 3) {
+            console.log("test");
+            newMonthGet(6);
+            setMonth(6);
+          } else {
+            newMonthGet(month - 1);
+            setMonth(month - 1);
+          }
+        }}
+        alt="prev"
+      />
+      <img
+        className={styles.next + " m-2"}
+        src={process.env.PUBLIC_URL + `/images/Board/next.png`}
+        onClick={() => {
+          setNomore(false);
+          setPage(1);
+          if (month === 6) {
+            console.log("test");
+            newMonthGet(3);
+            setMonth(3);
+          } else {
+            newMonthGet(month + 1);
+            setMonth(month + 1);
+          }
+          // setMonth(month + 1 === 7 ? 3 : month + 1);
+        }}
+        alt="next"
+      />
       <Row
         className={" d-flex justify-content-center"}
-        style={{ marginTop: "5vh", height: "80vh", overflow: "scroll" }}
+        style={{ marginTop: "8vh", height: "75vh", overflow: "scroll" }}
       >
-        {/* <Col > */}
-        {inform}
-        {/* </Col> */}
+        <div id="containerDiv">
+           {inform}
+        </div>
+       
         <div ref={ref}>
           {isVisible ? `Yep, I'm on screen` : "not in screen"}
         </div>
@@ -214,6 +249,11 @@ const Board = ({ setBoard }) => {
           />
         </div>
       )}
+      <img
+        className={styles.boardremind + " m-2"}
+        src={process.env.PUBLIC_URL + `/images/Board/remind.png`}
+        alt="month"
+      />
     </Container>
   );
 };

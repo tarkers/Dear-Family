@@ -13,9 +13,22 @@ $anime: 0.8s linear 1s infinite alternate blink;
     }
 }
 @keyframes setScale {
-    0%   {transform: scale(.95);}
-    100% {transform: scale(1);}
-  }
+    0% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.board_back {
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 100vw;
+    height: 100vh;
+    // transform: translate(-50%, 0%);
+}
+
 .back {
     position: absolute;
     left: 0;
@@ -28,38 +41,74 @@ $anime: 0.8s linear 1s infinite alternate blink;
     position: relative;
     z-index: 1;
     .Col {
-        padding-top: 3%;
-        padding-left: 5%;
-        padding-right: 5%;
+        // padding-top: 1%;
+        // padding-left: 5%;
+        // padding-right: 5%;
     }
 }
 .upbutton {
     height: 5vh;
 }
-
+.monthtext{
+    position: absolute;
+    left: 50%;
+    top: 1%;
+    width: auto;
+    height: 2vh;
+    z-index: 1;
+    transform: translate(-20%, 0%);
+}
+.prev{
+    position: absolute;
+    left: 43%;
+    top: 1%;
+    width: auto;
+    height: 2vh;
+    z-index: 1;
+    transform: translate(-30%, 0%);
+}
+.next{
+    position: absolute;
+    left: 64%;
+    top: 1%;
+    width: auto;
+    height: 2vh;
+    z-index: 1;
+    transform: translate(-20%, 0%);
+}
+.boardremind{
+    position: absolute;
+    left: 10%;
+    top: 10%;
+    width: auto;
+    height: 14vh;
+    z-index: 1;
+    transform: translate(-30%, 0%);
+}
 .boardDiv {
     position: relative;
     z-index: 2;
-    height: 45vh;
-    // width: 100vw;
+    // height: fit-content;
+    height: 28vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    .childDiv{
+    .childDiv {
         position: absolute;
         // z-index: 2;
-        height: 400px;
+        width: 55vw;
         // width: 100vw;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        .imgBack{
+        .imgBack {
             position: absolute;
-        z-index: -1;
-        height: inherit;
-        width: auto;
+            z-index: -1;
+            // height: inherit;
+            width: inherit;
         }
     }
     // padding: 4vw;
@@ -76,11 +125,11 @@ $anime: 0.8s linear 1s infinite alternate blink;
         font-weight: bold;
     }
     .labelBig {
-        font-size: 2vh;
+        font-size: 1.5vh;
         padding-bottom: 15px;
     }
     .labelSmall {
-        font-size: 1.5vh;
+        font-size: 1vh;
         // padding-bottom: 20px;
     }
 }
@@ -89,14 +138,18 @@ $anime: 0.8s linear 1s infinite alternate blink;
     position: relative;
     left: 0;
     top: 0;
-    
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
     z-index: 0;
     overflow: hidden;
     .introback {
         position: absolute;
         left: 0;
         top: 0;
-        width: 100vw;
+        width: inherit;
+        height: inherit;
         height: auto;
         z-index: -1;
         img {
@@ -104,15 +157,77 @@ $anime: 0.8s linear 1s infinite alternate blink;
             // padding-right: 4vw;
         }
     }
-    .introtitle {
+    .down_rect {
         // margin-top: 8vh;
+        z-index: 0;
         width: auto;
-        height: 10vh;
+        height: 28vh;
     }
-    .intromonth {
-        // margin-top: 8vh;
+    .introtitle {
+        position: absolute;
+        left: 50%;
+        top: 27%;
         width: auto;
-        height: 5vh;
+        height: 15vh;
+        transform: translate(-50%, 0%);
+    }
+    .introtext {
+        position: absolute;
+        left: 50%;
+        top: 39%;
+        width: auto;
+        height: 15vh;
+        transform: translate(-50%, 0%);
+    }
+    .bottom {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: auto;
+        width: 76%;
+        transform: translate(-50%, 0%);
+    }
+    .pic1 {
+        position: absolute;
+        left: 45%;
+        top: 60%;
+        width: 25%;
+        transform: translate(-50%, 0%);
+    }
+    .pic2 {
+        position: absolute;
+        left: 35%;
+        top: 75%;
+        width: 25%;
+        transform: translate(-50%, 0%);
+    }
+    .pic3 {
+        position: absolute;
+        left: 67%;
+        top: 72%;
+        width: 25%;
+        transform: translate(-50%, 0%);
+    }
+    .cloudleft {
+        position: absolute;
+        left: 15%;
+        top: 40%;
+        width: 40%;
+        transform: translate(-50%, 50%);
+    }
+    .cloudright {
+        position: absolute;
+        left: 80%;
+        top: 44%;
+        width: 40%;
+        transform: translate(-50%, 50%);
+    }
+    .toBoard {
+        position: absolute;
+        left: 50%;
+        top: 35%;
+        height: 25vh;
+        transform: translate(-50%, 0%);
         animation: $anime;
     }
     .introtext {
@@ -124,19 +239,18 @@ $anime: 0.8s linear 1s infinite alternate blink;
         // margin-top: 8vh;
         width: auto;
         height: 18vh;
-        animation: setAppear .5s ease-out 0.1s 1 ,setScale 2s linear 0s infinite alternate;
+        animation: setAppear 0.5s ease-out 0.1s 1, setScale 2s linear 0s infinite alternate;
     }
     .introleft {
         // padding-top: 5px;
         width: 100%;
         // animation: name duration timing-function delay iteration-count direction fill-mode;
-        animation: setAppear .7s ease-out 0.1s 1 ,setScale 2s linear 0s infinite alternate;
+        animation: setAppear 0.7s ease-out 0.1s 1, setScale 2s linear 0s infinite alternate;
     }
     .introright {
         margin-bottom: 20px;
         width: 90%;
-        animation: setAppear 1.8s ease-out 0.2s 1 ,setScale 2s linear 0s infinite alternate;
-       
+        animation: setAppear 1.8s ease-out 0.2s 1, setScale 2s linear 0s infinite alternate;
     }
     .uppermonth {
         position: absolute;

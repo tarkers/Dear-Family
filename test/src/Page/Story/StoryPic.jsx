@@ -17,7 +17,7 @@ const StoryPic = ({ ShowNext, params, data, display = "block" }) => {
   const initState = () => {
     let tmp = [];
     for (let i = 0; i < 20; ++i) {
-      tmp.push("block");
+      tmp.push("none");
     }
 
     return tmp;
