@@ -13,6 +13,7 @@ const Main = ({ setMusic, InitPlay }) => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   /* IF Get The Gender Link auto scroll to link*/
+ 
   const InitPage = () => {
     if (searchParams.get("section") === "Gender") {
       return {

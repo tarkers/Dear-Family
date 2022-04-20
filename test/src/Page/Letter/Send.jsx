@@ -22,7 +22,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
   const SaveData = (
     image,
     {
-      name = `to_${data.name}_${new Date().toLocaleTimeString()}`,
+      name = `to_${data.name}_${new Date().toISOString().split('T')[0]}_${new Date().toLocaleTimeString()}`,
       extension = "jpg",
     } = {}
   ) => {
@@ -40,6 +40,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
           gender: data.gender,
           receive: data.reveivePerson,
           month: new Date().getMonth() + 1,
+          pic:`${data.kind}_${data.gender}_${data.shape}`,
         },
         { headers: headers }
       )
@@ -48,7 +49,8 @@ const Send = ({ ShowNext, data, display = "block" }) => {
           resp.data.id,
           resp.data.name,
           resp.data.text,
-          resp.data.person
+          resp.data.person,
+          resp.data.pic,
         );
 
         const a = document.createElement("a");

@@ -32,11 +32,11 @@ $anime: 0.8s linear 1s infinite alternate blink;
 
 @keyframes cloudMove {
     0% {
-       transform: translate(-8%,50%);
+        transform: translate(-8%, 50%);
     }
 
     100% {
-        transform: translate(8%,40%);
+        transform: translate(8%, 40%);
     }
 }
 
@@ -158,33 +158,44 @@ $anime: 0.8s linear 1s infinite alternate blink;
         color: #ae4439;
         font-weight: bold;
     }
-    .labelDiv{
+    .labelDiv {
         position: absolute;
         top: -61vh;
         left: 65%;
         transform: translateX(-50%);
         width: 250px;
         // margin-left: 16%;
-    }    
-   
+    }
 }
 .labelBig {
     position: absolute;
     top: 0;
+    left: 22%;
     font-size: 1.5vh;
     margin-bottom: 5%;
-    max-width: 250px;
-    margin-top: 23%;
-    margin-left: 25%;
+    max-width: 400px;
+    width: 400px;
+    margin-top: 20%;
+    // margin-right: 25%;
+    // transform: translateX(20%);
 }
-
+.labelSmall {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1vh;
+    width: 150px;
+    max-width: 150px;
+    margin-top: 32%;
+    margin-right: 20%;
+}
 .upper_shine {
     position: absolute;
     left: 0%;
     top: 5%;
     width: 100vw;
     z-index: 1;
-    animation: fadeIn 2s ease-in-out 0.5s infinite alternate ;
+    animation: fadeIn 2s ease-in-out 0.5s infinite alternate;
 }
 .lower_shine {
     position: absolute;
@@ -192,7 +203,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
     bottom: 0%;
     width: 100vw;
     z-index: 1;
-    animation: fadeIn 1.5s ease-in-out 0.5s infinite alternate ;
+    animation: fadeIn 1.5s ease-in-out 0.5s infinite alternate;
 }
 .boardcloudright {
     position: absolute;
@@ -200,7 +211,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
     top: 35%;
     width: 80vw;
     z-index: 1;
-    animation: cloudMove 8s linear 0.5s infinite alternate ;
+    animation: cloudMove 8s linear 0.5s infinite alternate;
 }
 .boardcloudleft {
     position: absolute;
@@ -208,7 +219,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
     top: 15%;
     width: 60vw;
     z-index: 1;
-    animation: cloudMove 5s linear 0s infinite alternate ;
+    animation: cloudMove 5s linear 0s infinite alternate;
 }
 .lowerpic {
     position: absolute;
@@ -228,15 +239,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
     transform: translateX(-50%);
     // animation: cloudMove 5s ease-in-out 0s infinite alternate ;
 }
-.labelSmall {
-    position: absolute;
-    top: 0;
-    font-size: 1vh;
-    // margin-top: 5px;
-    max-width: 150px;
-    margin-top: 30%;
-    margin-left: 25%;
-}
+
 .intro {
     position: relative;
     left: 0;
