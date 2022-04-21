@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import QRCode from "qrcode.react";
 import styles from "./style.module.scss";
 const QRcode = ({ imageLink = null, display = "block",ToBack }) => {
+  // console.log(imageLink)
   const navigate = useNavigate();
   return (
     <Container fluid style={{ display: `${display}`, position: "relative" }}>

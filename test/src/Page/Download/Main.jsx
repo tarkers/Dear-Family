@@ -18,9 +18,9 @@ const Main = () => {
     a.target = "_blank";
     a.click();
     
-    navigate(`/`);
+    // navigate(`/`);
     // 
-    // window.location.href="https://tarkers.github.io/Dear-Family"
+    window.location.href="https://tarkers.github.io/Dear-Family"
   };
   const SetLink = () => {
     axios

@@ -1,56 +1,44 @@
 import React, { createRef, useState, useCallback, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import CircularProgress from "@mui/material/CircularProgress";
-import TextField from "@mui/material/TextField";
+import html2canvas from "html2canvas";
 import styles from "./style.module.scss";
 import { useScreenshot, createFileName } from "use-react-screenshot";
-import * as htmlToImage from "html-to-image";
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 import axios from "axios";
 const Send = ({ ShowNext, data, display = "block" }) => {
   const [loading, setLoading] = React.useState(false);
+  const [labeltext, SetLabelText] = useState([]);
   useEffect(() => {
     if (loading) {
+      exportAsImage();
       // downloadScreenshot();
-      onButtonClick();
     }
   }, [loading]);
+  useEffect(() => {
+    if(labeltext.length!==0){
+      setLoading(true)
+    }
+  }, [labeltext]);
 
   const ref = createRef(null);
-  const [_, takeScreenShot] = useScreenshot({
-    type: "image/jpeg",
-    quality: 1.0,
-  });
-  const onButtonClick = useCallback(() => {
-    if (ref.current === null) {
-      return;
-    }
-    toJpeg(ref.current, { quality: 0.95 })
-      .then(function (dataUrl) {
-        SaveData(dataUrl);
-        // var link = document.createElement('a');
-        // link.download = 'my-image-name.jpeg';
-        // link.href = dataUrl;
-        // link.click();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    // toPng(ref.current, { cacheBust: true, })
-    //   .then((dataUrl) => {
-    //     SaveData(dataUrl)
-    //     console.log("have URL!!")
-    //     // const link = document.createElement('a')
-    //     // link.download = 'teset.png'
-    //     // link.href = dataUrl
-    //     // console.log(dataUrl)
-    //     // link.click()
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
-  }, [ref]);
-  const downloadScreenshot = () => takeScreenShot(ref.current).then(SaveData);
+  const exportAsImage = () => {
+    html2canvas(ref.current).then((canvas) => {
+      const imageData = canvas.toDataURL("image/jpeg", 0.8);
+      // console.log(imageData);
+      SaveData(imageData);
+      // var link = document.createElement("a");
+      // link.download = "total.jpg";
+      // link.target="_blank"
+      // link.href = imageData;
+      // link.click();
+      // setLoading(false)
+    });
+  };
+  // const [_, takeScreenShot] = useScreenshot({
+  //   type: "image/jpeg",
+  //   quality: 1.0,
+  // });
+  // const downloadScreenshot = () => takeScreenShot(ref.current).then(SaveData);
   const SaveData = (
     image,
     {
@@ -66,7 +54,6 @@ const Send = ({ ShowNext, data, display = "block" }) => {
       .post(
         "https://dear-family-server.herokuapp.com/letters",
         {
-          // image: image,
           name: name,
           text: getAllText(),
           person: data.name,
@@ -89,7 +76,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
         const a = document.createElement("a");
         a.href = image;
         a.tag = `https://tarkers.github.io/Dear-Family/#/download/${resp.data.id}`;
-        a.download = createFileName("jpg", name);
+        a.download = `${name}.jpg`;
         saveImageServer(resp.data.id, image, name, a);
       })
       .catch((error) => {
@@ -97,8 +84,6 @@ const Send = ({ ShowNext, data, display = "block" }) => {
       });
   };
   const saveImageServer = (imageId, image, name, a) => {
-    // setLoading(false);
-    // ShowNext(a);
     console.log("start save to images server");
     axios
       .post("https://image-server17.herokuapp.com/images", {
@@ -109,6 +94,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
       .then(() => {
         console.log("save Image to Server!!");
         setLoading(false);
+        SetLabelText([])
         ShowNext(a);
       })
       .catch((error) => {
@@ -117,7 +103,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
   };
   const setLineArray = () => {
     var tmp = [];
-    for (let i = 0; i < 7; ++i) {
+    for (let i = 0; i < 6; ++i) {
       tmp.push(
         <input
           tag=""
@@ -126,8 +112,8 @@ const Send = ({ ShowNext, data, display = "block" }) => {
           maxLength={15}
           id={`line_${i}`}
           key={i}
+          name={i}
           onKeyDown={(e) => {
-            // console.log(e.target.value, "6416");
             if (e.key === "Enter") {
               changeLine(i + 1);
             } else if (e.key === "Backspace" && e.target.value === "") {
@@ -141,14 +127,30 @@ const Send = ({ ShowNext, data, display = "block" }) => {
     }
     return tmp;
   };
+  // const setLabelArray = () => {
+  //   var tmp = [];
+  //   for (let i = 0; i < 6; ++i) {
+  //     tmp.push(<label className={styles.TypeLabel}>{labeltext[i]}</label>);
+  //   }
+  //   return tmp;
+  // };
   const changeLine = (id) => {
     document.getElementById(`line_${id}`)?.focus();
+  };
+  const InputToLabel = () => {
+   
+    let tmplist = [];
+    let input = document.getElementsByClassName(`yinput`);
+    for (const element of input) {
+      tmplist.push(element.value);
+    }
+    SetLabelText(tmplist);
   };
   const getAllText = () => {
     let content = "";
     let input = document.getElementsByClassName(`yinput`);
-    for (let i = 0; i < input.length; i++) {
-      content += input[i].value + "\n";
+    for (const element of input) {
+      content += element.value + "\n";
     }
     return content;
   };
@@ -251,9 +253,31 @@ const Send = ({ ShowNext, data, display = "block" }) => {
                 </span>
               </Col>
             </Row>
-            <Row>
+            {!loading ? (
+              <Row>
+                <Col>{setLineArray()}</Col>
+              </Row>
+            ) : (
+              <Row>
+                <Col>
+                  {labeltext.map((value) => (
+                    <label className={styles.TypeLabel}>{value}</label>
+                  ))}
+                </Col>
+              </Row>
+            )}
+
+            {/* <Row>
               <Col>{setLineArray()}</Col>
             </Row>
+            <Row>
+              <Col>
+                {labeltext.map((value) => (
+                  <label className={styles.TypeLabel}>{value}</label>
+                ))}
+              </Col>
+            </Row> */}
+            {/* <button onClick={() =>InputToLabel()}>test</button> */}
             <div
               style={{
                 position: "absolute",
@@ -264,7 +288,6 @@ const Send = ({ ShowNext, data, display = "block" }) => {
             >
               {!loading ? (
                 <img
-                  // className="align-self-end"
                   style={{
                     width: "28vw",
                     height: "auto",
@@ -274,12 +297,11 @@ const Send = ({ ShowNext, data, display = "block" }) => {
                   src={process.env.PUBLIC_URL + `/images/Letter/Send/send.png`}
                   alt="send"
                   onClick={() => {
-                    setLoading(true);
+                    InputToLabel()
                   }}
                 />
               ) : (
                 <img
-                  // className="align-self-end"
                   style={{ width: "30vw", height: "auto", paddingTop: "5%" }}
                   src={process.env.PUBLIC_URL + `/images/Letter/Send/mail.png`}
                   alt="send"

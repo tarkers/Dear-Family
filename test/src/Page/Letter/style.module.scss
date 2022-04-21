@@ -279,6 +279,8 @@
     color: #A44338;
     font-weight: bold;
     font-size: 2vw;
+    line-height: 50px;
+    // height: 30px;
     width: 80%;
     background-color: transparent;
     &:focus {
@@ -287,5 +289,22 @@
         border-bottom-color: rgb(97, 97, 243);
         // border-bottom-width: 2px;
     }
+}
+.TypeLabel {
+    margin-top: 5px;
+    border: 1px;
+    border-bottom-style: solid;
+    border-bottom-color:#de7641;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    color: #A44338;
+    font-weight: bold;
+    font-size: 15px;
+    text-align:start;
+    // line-height: 50px;
+    height: 25px;
+    width: 80%;
+    // background-color: transparent;
 }
 
