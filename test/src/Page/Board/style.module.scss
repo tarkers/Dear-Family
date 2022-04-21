@@ -108,10 +108,10 @@ $anime: 0.8s linear 1s infinite alternate blink;
     left: 10%;
     top: 10%;
     width: auto;
-    height: 14vh;
+    height: 10vh;
     z-index: 1;
     transform: translate(-30%, 0%);
-    animation: fadeOut 8s ease-in-out 0.5s 1 alternate forwards;
+    animation: fadeOut 6s ease-in-out 0.5s 1 alternate forwards;
 }
 
 .boardDiv {
@@ -324,7 +324,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
         top: 75%;
         width: 25%;
         transform: translate(-50%, 0%);
-        animation: fadeIn 1.8s ease-in-out 2.3s 1 alternate forwards;
+        animation: fadeIn 1.5s ease-in-out 3s 1 alternate forwards;
     }
 
     .pic3 {
@@ -334,7 +334,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
         top: 72%;
         width: 25%;
         transform: translate(-50%, 0%);
-        animation: fadeIn 2.5s ease-in-out 2.5s 1 alternate forwards;
+        animation: fadeIn 1.5s ease-in-out 4s 1 alternate forwards;
     }
 
     .cloudleft {

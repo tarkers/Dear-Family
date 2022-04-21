@@ -1,15 +1,18 @@
-import React, { createRef, useState, useLayoutEffect, useEffect } from "react";
+import React, { createRef, useState, useCallback, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import CircularProgress from "@mui/material/CircularProgress";
 import TextField from "@mui/material/TextField";
 import styles from "./style.module.scss";
 import { useScreenshot, createFileName } from "use-react-screenshot";
+import * as htmlToImage from "html-to-image";
+import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 import axios from "axios";
 const Send = ({ ShowNext, data, display = "block" }) => {
   const [loading, setLoading] = React.useState(false);
   useEffect(() => {
     if (loading) {
-      downloadScreenshot();
+      // downloadScreenshot();
+      onButtonClick();
     }
   }, [loading]);
 
@@ -18,12 +21,42 @@ const Send = ({ ShowNext, data, display = "block" }) => {
     type: "image/jpeg",
     quality: 1.0,
   });
+  const onButtonClick = useCallback(() => {
+    if (ref.current === null) {
+      return;
+    }
+    toJpeg(ref.current, { quality: 0.95 })
+      .then(function (dataUrl) {
+        SaveData(dataUrl);
+        // var link = document.createElement('a');
+        // link.download = 'my-image-name.jpeg';
+        // link.href = dataUrl;
+        // link.click();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // toPng(ref.current, { cacheBust: true, })
+    //   .then((dataUrl) => {
+    //     SaveData(dataUrl)
+    //     console.log("have URL!!")
+    //     // const link = document.createElement('a')
+    //     // link.download = 'teset.png'
+    //     // link.href = dataUrl
+    //     // console.log(dataUrl)
+    //     // link.click()
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //   })
+  }, [ref]);
   const downloadScreenshot = () => takeScreenShot(ref.current).then(SaveData);
   const SaveData = (
     image,
     {
-      name = `to_${data.name}_${new Date().toISOString().split('T')[0]}_${new Date().toLocaleTimeString()}`,
-      extension = "jpg",
+      name = `to_${data.name}_${
+        new Date().toISOString().split("T")[0]
+      }_${new Date().toLocaleTimeString()}`,
     } = {}
   ) => {
     const headers = {
@@ -40,7 +73,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
           gender: data.gender,
           receive: data.reveivePerson,
           month: new Date().getMonth() + 1,
-          pic:`${data.kind}_${data.gender}_${data.shape}`,
+          pic: `${data.kind}_${data.gender}_${data.shape}`,
         },
         { headers: headers }
       )
@@ -50,7 +83,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
           resp.data.name,
           resp.data.text,
           resp.data.person,
-          resp.data.pic,
+          resp.data.pic
         );
 
         const a = document.createElement("a");
@@ -64,6 +97,9 @@ const Send = ({ ShowNext, data, display = "block" }) => {
       });
   };
   const saveImageServer = (imageId, image, name, a) => {
+    // setLoading(false);
+    // ShowNext(a);
+    console.log("start save to images server");
     axios
       .post("https://image-server17.herokuapp.com/images", {
         id: imageId,
@@ -71,6 +107,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
         name: name,
       })
       .then(() => {
+        console.log("save Image to Server!!");
         setLoading(false);
         ShowNext(a);
       })
@@ -217,11 +254,23 @@ const Send = ({ ShowNext, data, display = "block" }) => {
             <Row>
               <Col>{setLineArray()}</Col>
             </Row>
-            <div style={{ position: "absolute", bottom: "10%" }}>
+            <div
+              style={{
+                position: "absolute",
+                width: "inherit",
+                bottom: "10%",
+                justifyContent: "center",
+              }}
+            >
               {!loading ? (
                 <img
                   // className="align-self-end"
-                  style={{ width: "50%", height: "auto", paddingTop: "5%" }}
+                  style={{
+                    width: "28vw",
+                    height: "auto",
+                    paddingTop: "5%",
+                    marginRight: "40px",
+                  }}
                   src={process.env.PUBLIC_URL + `/images/Letter/Send/send.png`}
                   alt="send"
                   onClick={() => {
@@ -231,7 +280,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
               ) : (
                 <img
                   // className="align-self-end"
-                  style={{ width: "80%", height: "auto", paddingTop: "5%" }}
+                  style={{ width: "30vw", height: "auto", paddingTop: "5%" }}
                   src={process.env.PUBLIC_URL + `/images/Letter/Send/mail.png`}
                   alt="send"
                 />

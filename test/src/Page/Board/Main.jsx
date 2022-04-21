@@ -3,18 +3,19 @@ import { Container } from "react-bootstrap";
 import { useParams, useNavigate, } from "react-router-dom";
 import Intro from "./Intro";
 import Board from "./Board";
-const Main = ({ setBoard }) => {
+const Main = ({ setBoard,setMusic }) => {
   const navigate =useNavigate();
   useEffect(() => {
-    setBoard(true);
+    setMusic("Strong","none")  
+    // setBoard(true);
     // getThing();
   }, []);
   const toMenu=()=>{
-    setBoard(false);
+    // setBoard(false);
     navigate(`/`)
   }
   const toLast=()=>{
-    setBoard(false);
+    // setBoard(false);
     navigate(-1)
   }
   const [show, setShow] = useState(false);

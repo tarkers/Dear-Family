@@ -11,10 +11,19 @@ import React, { useState, useEffect, useRef } from "react";
 function App() {
   // const [audioSrc, setAudioSrc] = useState(null)
   const [noSound, setSound] = useState(false);
+  const [showMuteBtn, setMuteBtn] = useState("block");
   const btnRef = useRef();
   const audioRef = useRef(null);
-  const setAudioSrc = (src) => {
+  const setAudioSrc = (src,showmuteBtn="block") => {
+    // if(showmuteBtn){
+    //   console.log("show")
+      
+    // }else{
+    //   setMuteBtn("none")
+    // }
+    setMuteBtn(showmuteBtn)
     if (audioRef.current != null) {
+      // console.log(audioRef.current.showMuteBtn)
       audioRef.current.pause();
       audioRef.current.setAttribute("src", setData(src).music);
     }
@@ -27,7 +36,7 @@ function App() {
   return (
     <div className="App">
       {console.log(noSound)}
-      {!noSound && <t.Audio ref={audioRef} props={""} />}
+      {!noSound && <t.Audio ref={audioRef} props={""} showMuteBtn={showMuteBtn}/>}
       <button
         ref={btnRef}
         style={{ display: "none" }}
@@ -57,7 +66,7 @@ function App() {
           <Route path="download/:id" element={<t.Download />} />
           <Route
             path="board"
-            element={<t.Board setBoard={(e) => setSound(e)} />}
+            element={<t.Board setMusic={setAudioSrc}  setBoard={(e) => setSound(e)} />}
           />
           <Route
             path="admin"

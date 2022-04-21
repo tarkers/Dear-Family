@@ -3,7 +3,7 @@ import styles from "./style.module.scss";
 import PropTypes from "prop-types";
 import CircularProgress from "@mui/material/CircularProgress";
 const Audio = forwardRef((props, ref) => {
-  const { src, LoadingComplete, navigateBack } = props;
+  const { src, LoadingComplete, navigateBack,showMuteBtn="block" } = props;
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(true);
   const timerRef = useRef();
@@ -27,7 +27,7 @@ const Audio = forwardRef((props, ref) => {
   }, [src, ref]);
 
   return (
-    <div className={styles.BCIcon}>
+    <div className={styles.BCIcon} style={{display:showMuteBtn}}>
       <div className={" d-flex justify-content-end"}>
         <img
           src={

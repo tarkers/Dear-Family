@@ -31,7 +31,7 @@ const QRcode = ({ imageLink = null, display = "block",ToBack }) => {
         />
         <div
           className=" d-flex justify-content-center"
-          style={{ height: "12vh",marginTop:"5%" }}
+          style={{ height: "12vh",marginTop:"10vh" }}
         >
           <img
           style={{height:"inherit",width:"auto"}}
