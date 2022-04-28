@@ -150,26 +150,37 @@ $anime: 0.8s linear 1s infinite alternate blink;
     }
 }
 .BackgroundText {
-    position: absolute;
+    position: relative;
     opacity: 0;
-    left: 50%;
-    top:  34%;
-    transform: translate(-50%, 0);
-    width: 70vw;
+    // left: 50%;
+    // top:  34%;
+    // transform: translate(-50%, 0);
+    margin-top: 5vh;
+    height: 36vh;
     &.move{
         animation: 1s ease-out 2.0s 1 fade-in;
         animation-fill-mode: forwards;  
     }
  
 }
-.BackgroundTitle {
+.BackgroundDiv {
     position: absolute;
     height: auto;
+    left: 50%;
+    top: 30%;
+    height: 9vh;
+    width: 100%;
+    transform: translate(-50%,0);
+   
+}
+.BackgroundTitle {
+    position: absolute;
+    // height: auto;
     opacity: 0;
     left: 50%;
     top: 30%;
     transform: translate(-50%,0);
-    height: 9vh;
+    height: 7vh;
     &.move{
         animation: 1s ease-out 1.5s 1 fade-in;
         animation-fill-mode: forwards;  
@@ -332,10 +343,10 @@ $anime: 0.8s linear 1s infinite alternate blink;
 
 .StrongItem_6 {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    width: 57vw;
-    transform: translate(-48%, 7%);
+    left: 27%;
+    top: 57%;
+    width: 46vw;
+    transform: translate(-1%, 0%);
     animation: $anime;
 }
 .StrongItem_7 {
@@ -373,7 +384,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
 
 .AnotherFirst {
     position: absolute;
-    left: 17%;
+    left: 22%;
     top: 45%;
     height: 40%;
     // transform: translate(27%, -25%);
@@ -387,14 +398,14 @@ $anime: 0.8s linear 1s infinite alternate blink;
 }
 .AnotherSecond {
     position: absolute;
-    left: 45%;
+    left: 50%;
     top: 45%;
     height: 40%;
     // transform: translate(10%, -25%);
 }
 .AnotherSend {
     position: absolute;
-    left: 47%;
+    left: 50%;
     top: 92%;
     height: 12%;
     transform: translate(-50%, 0%);

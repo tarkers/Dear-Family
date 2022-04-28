@@ -4,7 +4,7 @@ import styles from "./style.module.scss";
 import { useNavigate } from "react-router-dom";
 import Draggable from "react-draggable";
 import "./styles.scss";
-const Kind = ({ToLetter, ToGender, gender, ToStory, display = "block" }) => {
+const Kind = ({ ToLetter, ToGender, gender, ToStory, display = "block" }) => {
   const dragHeightRef = useRef();
   const Pic_Dict = {
     Upcloud: "/images/Intro/P5/upcloud.png",
@@ -51,6 +51,16 @@ const Kind = ({ToLetter, ToGender, gender, ToStory, display = "block" }) => {
       <div className={styles.KindCenterPic}>
         <img src={process.env.PUBLIC_URL + Pic_Dict[gender]} alt="select" />
       </div>
+      <img
+        className={styles.selectPicStyle}
+        alt="select_text"
+        src={process.env.PUBLIC_URL + "/images/Story/Kind/select_text.png"}
+      />
+      <img
+        className={styles.sendTextStyle}
+        alt="select_text"
+        src={process.env.PUBLIC_URL + "/images/Story/Kind/send_text.png"}
+      />
 
       <div className={styles.DragBorn} ref={dragHeightRef}>
         <Draggable

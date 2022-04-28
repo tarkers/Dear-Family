@@ -16,6 +16,46 @@
         opacity: 1;
     }
 }
+@keyframes fade_anime {
+    0% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 1;
+    }
+
+}
+.selectPicStyle{
+    position: absolute;
+    top: 4%;
+    left: 50%;
+    height: 4vh;
+    margin-top: 5vh;
+    transform: translateX(-50%);
+    animation-name: fade_anime;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    // animation-fill-mode: forwards;
+    animation-direction: alternate;
+    // animation-iteration-count: 2;
+    animation-timing-function: linear;
+}
+.sendTextStyle{
+    position: absolute;
+    bottom: 10%;
+    left: 55%;
+    height: 4vh;
+    margin-top: 5vh;
+    opacity: 0;
+    transform: translateX(0%);
+    animation-name: fade_anime;
+    animation-duration: 4s;
+    animation-iteration-count: 1;
+    // animation-fill-mode: forwards;
+    animation-direction: alternate;
+    z-index: 5;
+    animation-timing-function: linear;
+}
 .BCIcon {
     position: fixed;
     margin-top: 2vh;
@@ -242,8 +282,8 @@
 
 .KindCenterPic {
     position: absolute;
-    top: 50%;
-    left: 48%;
+    top: 53%;
+    left: 50%;
     transform: translate(-50%, -50%);
     width: 100vw;
     img {
@@ -262,9 +302,9 @@
     position: absolute;
     overflow: auto;
     padding: 0;
-    top: 59%;
-    left: 21%;
-    transform: translate(-50%, -50%);
+    top: 48%;
+    left: 23%;
+    transform: translate(-50%, 2%);
     z-index: 3;
 }
 .DragGrow {
@@ -273,9 +313,9 @@
     position: absolute;
     overflow: auto;
     padding: 0;
-    top: 59%;
-    left: 48%;
-    transform: translate(-50%, -50%);
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, 2%);
     // background-color: rebeccapurple;
     z-index: 3;
 }
@@ -285,9 +325,9 @@
     position: absolute;
     overflow: auto;
     padding: 0;
-    top: 59%;
-    left: 74%;
-    transform: translate(-50%, -50%);
+    top: 48%;
+    left: 76%;
+    transform: translate(-50%, 2%);
     //background-color: rebeccapurple;
     z-index: 3;
 }
@@ -370,7 +410,7 @@
 }
 .P5LetterIcon {
     position: absolute;
-    bottom: 10%;
+    bottom: 5%;
     right: 0%;
     transform: translateX(-50%);
     width: 15%;

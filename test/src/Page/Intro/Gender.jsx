@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import styles from "./style.module.scss";
-const Gender = ({ ToKind, display = "block" }) => {
+const Gender = ({ ToKind, display = "block" ,ToHome}) => {
   const Pic_Dict = {
     Upcloud: "/images/Intro/P4/upcloud.png",
     Lowcloud: "/images/Intro/P4/lowcloud.png",
@@ -24,8 +24,19 @@ const Gender = ({ ToKind, display = "block" }) => {
     <Container
       fluid
       className={styles.PDiv}
-      style={{ backgroundColor: "#F3c89D", position: "relative",display:`${display}` }}
+      style={{
+        backgroundColor: "#F3c89D",
+        position: "relative",
+        display: `${display}`,
+      }}
     >
+      <div className={styles.BackIcon + " d-flex justify-content-start"}>
+        <img
+          src={process.env.PUBLIC_URL + "/images/Home.png"}
+          alt="back"
+          onClick={() => ToHome()}
+        />
+      </div>
       <Row className=" d-flex justify-content-center">
         <img
           className={styles.P4UpperText}
@@ -46,6 +57,7 @@ const Gender = ({ ToKind, display = "block" }) => {
         style={{ margin: "1em", position: "relative", zIndex: 1 }}
       >
         {personList.map((person, index) => {
+         
           return (
             <img
               key={index}
@@ -53,7 +65,8 @@ const Gender = ({ ToKind, display = "block" }) => {
               // className={styles.letterImg}
               src={process.env.PUBLIC_URL + person.img}
               alt="choose"
-              onClick={() => ToKind(person.name)}
+              onClick={() => {
+                ToKind(person.name)}}
             />
           );
         })}

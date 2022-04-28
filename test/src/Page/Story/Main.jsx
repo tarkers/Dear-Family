@@ -82,6 +82,7 @@ const Main = ({ setMusic }) => {
   };
   return (
     <>
+    
       <div className={styles.BackIcon + " d-flex justify-content-start"}>
         <img
           src={process.env.PUBLIC_URL + "/images/backIcon.png"}
@@ -97,7 +98,6 @@ const Main = ({ setMusic }) => {
         params={{ gender: gender, kind: kind }}
         // playMusic={playMusic}
       />
-      {console.log(kind)}
       <Another
         other={page.Another.other}
         display={page.Another.show}

@@ -45,16 +45,18 @@ const Main = ({ setMusic, InitPlay }) => {
   };
 
   const ToKind = (gender) => {
-    SetPage({
-      ...page,
-      Kind: { show: "block" },
-      Gender: { show: "block", gender: gender },
-    });
     scroller.scrollTo("Kind", {
       duration: 300,
       delay: 300,
       smooth: "easeOutQuad",
     });
+    console.log(gender)
+    SetPage({
+      ...page,
+      Kind: { show: "block" },
+      Gender: { show: "none", gender: gender },
+    });
+   
   };
   const ToEnvelope = () => {
     SetPage({ ...page, Envelope: { show: "block" } });
@@ -81,21 +83,16 @@ const Main = ({ setMusic, InitPlay }) => {
   const ToLetter = () => {
     navigate(`/letter?kind=Born&gender=${page.Gender.gender}&write=true`);
   };
-  // const turnBack = () => {
-  //   // Loading: { show: "block" },
-  //   // Envelope: { show: "none" },
-  //   // Go: { show: "none" },
-  //   // Gender: { show: "none", gender: null },
-  //   // Kind: { show: "none" },
-  //   if (page.Kind.show === "block") {
-  //     ToGender();
-  //   }else if(page.gender.show==="block"){
-  //     to
-  //   }
-  // };
-  // useEffect(() => {
-  //   window.scrollTo(0, 0)
-  // }, [])
+  const ToHome = () => {
+    SetPage({
+      ...page,
+      Loading: { show: "block" },
+      Envelope: { show: "none" },
+      Go: { show: "none" },
+      Gender: { ...page.Gender, show: "none" },
+    });
+  };
+
 
   useEffect(() => {
     setMusic();
@@ -128,7 +125,7 @@ const Main = ({ setMusic, InitPlay }) => {
         <Go display={page.Go.show} toGender={() => ToGender()} />
       </Element>
       <Element name="Gender" className="element">
-        <Gender display={page.Gender.show} ToKind={ToKind} />
+        <Gender display={page.Gender.show} ToHome={()=>ToHome()} ToKind={ToKind} />
       </Element>
       <Element name="Kind" className="element">
         <Kind

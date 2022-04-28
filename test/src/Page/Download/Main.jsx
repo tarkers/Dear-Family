@@ -18,9 +18,9 @@ const Main = () => {
     a.target = "_blank";
     a.click();
     
-    // navigate(`/`);
+    navigate(`/`);
     // 
-    window.location.href="https://tarkers.github.io/Dear-Family"
+    // window.location.href="https://tarkers.github.io/Dear-Family"
   };
   const SetLink = () => {
     axios
@@ -34,7 +34,7 @@ const Main = () => {
       .catch((error) => {
         if(error.response.status===404){
           alert("此連結已經無效瞜，為您轉至首頁")
-          navigate(`/`);
+          window.location.href="https://tarkers.github.io/Dear-Family"
         }
         console.log(error);
       });

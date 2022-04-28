@@ -9,14 +9,19 @@ const Send = ({ ShowNext, data, display = "block" }) => {
   const [loading, setLoading] = React.useState(false);
   const [labeltext, SetLabelText] = useState([]);
   useEffect(() => {
+    var TimeClick = null;
     if (loading) {
-      exportAsImage();
-      // downloadScreenshot();
+      TimeClick = setTimeout(() => {
+        exportAsImage();
+      }, 1500);
+      return () => {
+        clearTimeout(TimeClick);
+      };
     }
   }, [loading]);
   useEffect(() => {
-    if(labeltext.length!==0){
-      setLoading(true)
+    if (labeltext.length !== 0) {
+      setLoading(true);
     }
   }, [labeltext]);
 
@@ -47,6 +52,8 @@ const Send = ({ ShowNext, data, display = "block" }) => {
       }_${new Date().toLocaleTimeString()}`,
     } = {}
   ) => {
+    const text = labeltext.join(" ");
+    console.log(text);
     const headers = {
       "Content-Type": "application/json",
     };
@@ -55,7 +62,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
         "https://dear-family-server.herokuapp.com/letters",
         {
           name: name,
-          text: getAllText(),
+          text: text,
           person: data.name,
           gender: data.gender,
           receive: data.reveivePerson,
@@ -94,7 +101,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
       .then(() => {
         console.log("save Image to Server!!");
         setLoading(false);
-        SetLabelText([])
+        SetLabelText([]);
         ShowNext(a);
       })
       .catch((error) => {
@@ -138,7 +145,6 @@ const Send = ({ ShowNext, data, display = "block" }) => {
     document.getElementById(`line_${id}`)?.focus();
   };
   const InputToLabel = () => {
-   
     let tmplist = [];
     let input = document.getElementsByClassName(`yinput`);
     for (const element of input) {
@@ -146,14 +152,14 @@ const Send = ({ ShowNext, data, display = "block" }) => {
     }
     SetLabelText(tmplist);
   };
-  const getAllText = () => {
-    let content = "";
-    let input = document.getElementsByClassName(`yinput`);
-    for (const element of input) {
-      content += element.value + "\n";
-    }
-    return content;
-  };
+  // const getAllText = () => {
+  //   let content = "";
+  //   let input = document.getElementsByClassName(`yinput`);
+  //   for (const element of input) {
+  //     content += element.value + "\n";
+  //   }
+  //   return content;
+  // };
 
   return (
     <>
@@ -253,20 +259,16 @@ const Send = ({ ShowNext, data, display = "block" }) => {
                 </span>
               </Col>
             </Row>
-            {!loading ? (
-              <Row>
-                <Col>{setLineArray()}</Col>
-              </Row>
-            ) : (
-              <Row>
-                <Col>
-                  {labeltext.map((value) => (
-                    <label className={styles.TypeLabel}>{value}</label>
-                  ))}
-                </Col>
-              </Row>
-            )}
-
+            <Row>
+              <Col>
+                {labeltext.length === 0
+                  ? setLineArray()
+                  : labeltext.map((value) => (
+                      <label className={styles.TypeLabel}>{value}</label>
+                    ))}
+              </Col>
+            </Row>
+           
             {/* <Row>
               <Col>{setLineArray()}</Col>
             </Row>
@@ -289,7 +291,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
               {!loading ? (
                 <img
                   style={{
-                    width: "28vw",
+                    width: "20vw",
                     height: "auto",
                     paddingTop: "5%",
                     marginRight: "40px",
@@ -297,7 +299,7 @@ const Send = ({ ShowNext, data, display = "block" }) => {
                   src={process.env.PUBLIC_URL + `/images/Letter/Send/send.png`}
                   alt="send"
                   onClick={() => {
-                    InputToLabel()
+                    InputToLabel();
                   }}
                 />
               ) : (

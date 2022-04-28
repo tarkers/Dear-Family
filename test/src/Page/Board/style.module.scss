@@ -134,7 +134,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
+        overflow: hidden;
         .imgBack {
             position: absolute;
             z-index: -1;
@@ -170,7 +170,7 @@ $anime: 0.8s linear 1s infinite alternate blink;
 .labelBig {
     position: absolute;
     top: 0;
-    left: 22%;
+    left: 20%;
     font-size: 1.5vh;
     margin-bottom: 5%;
     max-width: 400px;
@@ -184,10 +184,10 @@ $anime: 0.8s linear 1s infinite alternate blink;
     top: 0;
     right: 0;
     font-size: 1vh;
-    width: 150px;
+    width: 170px;
     max-width: 150px;
     margin-top: 32%;
-    margin-right: 20%;
+    margin-right:18%;
 }
 .upper_shine {
     position: absolute;

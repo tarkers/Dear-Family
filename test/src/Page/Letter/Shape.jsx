@@ -119,12 +119,12 @@ const Shape = ({ ShowNext, ChangeKind, param, display = "block" }) => {
                     paddingBottom:"20%"
                   }}
                 />
-                <img
+                {/* <img
                   src={process.env.PUBLIC_URL + data.Title[i]}
                   alt="title"
                   style={{ height: "6vh", width: "auto", margin: "auto" }}
                   onClick={() => console.log(image)}
-                />
+                /> */}
               </div>
             </SwiperSlide>
           ))}

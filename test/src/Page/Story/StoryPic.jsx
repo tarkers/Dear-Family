@@ -132,20 +132,27 @@ const StoryPic = ({ ShowNext, params, data, display = "block" }) => {
               src={process.env.PUBLIC_URL + data.Intro[i].back}
               alt="back"
             />
-            <img
+            <div
               className={
-                index[i * 2] === "block"
-                  ? classNames(styles.BackgroundTitle, styles.move)
-                  : styles.BackgroundTitle
+                styles.BackgroundDiv
               }
-              src={process.env.PUBLIC_URL + data.Intro[i].title}
-              alt="text"
-            />
-            <img
-              className={classNames(styles.BackgroundText, styles.move)}
-              src={process.env.PUBLIC_URL + data.Intro[i].text}
-              alt="text"
-            />
+            >
+              <img
+                className={
+                  index[i * 2] === "block"
+                    ? classNames(styles.BackgroundTitle, styles.move)
+                    : styles.BackgroundTitle
+                }
+                // className={classNames(styles.BackgroundText, styles.move)}
+                src={process.env.PUBLIC_URL + data.Intro[i].title}
+                alt="text"
+              />
+              <img
+                className={classNames(styles.BackgroundText, styles.move)}
+                src={process.env.PUBLIC_URL + data.Intro[i].text}
+                alt="text"
+              />
+            </div>
           </div>
         </Row>
       </Element>

@@ -14,22 +14,20 @@ const Another = ({ ToSend, other, ShowNext, display = "block" }) => {
         backgroundColor: "#ae4439",
       }}
     >
+      <img
+        style={{ position: "absolute",top:0,right:0, width: "93%", height: "auto" }}
+        src={process.env.PUBLIC_URL + "/images/Story/Another/back.png"}
+        alt="back"
+      />
       <div style={{ position: "relative" }}>
+        <div style={{ width: "100%", height: "80vh" }}></div>
+
         <img
-          style={{ width: "100%" }}
-          src={process.env.PUBLIC_URL + "/images/Story/Another/back.png"}
-          alt="back"
+          className={styles.AnotherNext}
+          // className={styles.letterImg}
+          src={process.env.PUBLIC_URL + `/images/Story/Another/next.png`}
+          alt="choose"
         />
-        
-        <img
-            className={styles.AnotherNext}
-            // className={styles.letterImg}
-            src={
-              process.env.PUBLIC_URL +
-              `/images/Story/Another/next.png`
-            }
-            alt="choose"
-          />
         {/* First */}
         <div
           className={styles.AnotherFirst}
